@@ -1,7 +1,9 @@
 # ADVL_Coordinates_1
-Andorville (TM) Coordinate Conversion Software.
+### Andorville (TM) Coordinate Conversion Software.
 
--------------------------------------------------------------------------------------------------
+
+
+- - -
 Copyright 2016 Signalworks Pty Ltd, ABN 26 066 681 598
 
 Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,8 +17,10 @@ distributed under the License is distributed on an "AS IS" BASIS,
 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
--------------------------------------------------------------------------------------------------
 
+
+
+- - -
 25th July 2016 : I'm still working out how to use GitHub and organise the software projects.
 
 ADVL_Coordinates is a coordinate conversion program that uses the EPSG Geodetic Parameter Dataset.
