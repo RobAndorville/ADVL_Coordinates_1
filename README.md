@@ -1,5 +1,5 @@
 # ADVL_Coordinates_1
-### Andorville (TM) Coordinate Conversion Software.
+### Andorville™ Coordinate Conversion Software.
 
 
 
@@ -23,19 +23,19 @@ limitations under the License.
 - - -
 
 
-ADVL_Coordinates_1 is a coordinate conversion program that uses the EPSG Geodetic Parameter Dataset.
+Andorville™ Coordinates is a coordinate conversion program that uses the EPSG Geodetic Parameter Dataset.
 This dataset can be found at http://www.epsg.org/EPSGhome.aspx
 
-ADVL_Coordinates_1 is written in Visual Basic 2015.
+The Coordinates software is written in Visual Basic 2015.
 Only the UTM projection has been implemented but the parameters for all coordinate systems imported from the EPSG Dataset can be viewed.
 
-The program uses two library projects ADVL_Coordinates_Library_1 and ADVL_Utilities_Library_1.
+The program uses two class libraries, the Andorville™ Coordinates library and the Andorville™ Utilities library.
 
-The Software was written to demonstrate the ADVL_Application_Network_1 software.  
-This is a system for connecting a number of Andorville (TM) Applications.
+The Software was written to demonstrate the Andorville™ Application Network software.
+This is a system for connecting a number of Andorville™ Applications.
 This collection of simple, single purpose applications interact to perform higher level functions.
 
-Another project, ADVL_Coordinates_Client_1, shows how the applications communicate across the network.
+Another application, the Andorville™ Coordinates Client, shows how the applications communicate across the network.
 
 
 
