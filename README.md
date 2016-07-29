@@ -23,19 +23,18 @@ limitations under the License.
 - - -
 
 
-Andorville™ Coordinates is a coordinate conversion program that uses the EPSG Geodetic Parameter Dataset.
+Andorville™ Coordinates is a coordinate conversion application that uses the EPSG Geodetic Parameter Dataset.
 This dataset can be found at http://www.epsg.org/EPSGhome.aspx
 
 The Coordinates software is written in Visual Basic 2015.
 Only the UTM projection has been implemented but the parameters for all coordinate systems imported from the EPSG Dataset can be viewed.
 
-The program uses two class libraries, the Andorville™ Coordinates library and the Andorville™ Utilities library.
+The software uses two class libraries, the Andorville™ Coordinates library and the Andorville™ Utilities library.
 
-The Software was written to demonstrate the Andorville™ Application Network software.
+The Coordinates application can be used with the Andorville™ Coordinates Client to demonstrate the Andorville™ Application Network software.
 This is a system for connecting a number of Andorville™ Applications.
 This collection of simple, single purpose applications interact to perform higher level functions.
 
-Another application, the Andorville™ Coordinates Client, shows how the applications communicate across the network.
 
 
 
