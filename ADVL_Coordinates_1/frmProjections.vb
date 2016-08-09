@@ -6,6 +6,8 @@
     Dim AngleDegMinSec As New ADVL_Coordinates_Library_1.AngleDegMinSec 'Used for converting between decimal degrees and degrees-minutes-seconds
     Dim AngleConvert As New ADVL_Coordinates_Library_1.AngleConvert  'Used for converting between radians, decimal degrees and gradians
 
+    Dim WithEvents Zip As ADVL_Utilities_Library_1.ZipComp
+
 #End Region 'Variable Declarations ------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 #Region " Properties - All the properties used in this form and this application" '------------------------------------------------------------------------------------------------------------
@@ -559,7 +561,16 @@
 
             Case ADVL_Utilities_Library_1.FileLocation.Types.Archive
                 'Select an Area of Use list file from the project archive:
-
+                'Show the zip archive file selection form:
+                Zip = New ADVL_Utilities_Library_1.ZipComp
+                Zip.ArchivePath = Main.Project.DataLocn.Path
+                Zip.SelectFile()
+                Zip.SelectFileForm.ApplicationName = Main.Project.ApplicationName
+                Zip.SelectFileForm.SettingsLocn = Main.Project.SettingsLocn
+                Zip.SelectFileForm.Show()
+                Zip.SelectFileForm.RestoreFormSettings()
+                Zip.SelectFileForm.FileExtension = ".ProjectionList"
+                Zip.SelectFileForm.GetFileList()
         End Select
     End Sub
 

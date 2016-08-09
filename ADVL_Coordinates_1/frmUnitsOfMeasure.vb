@@ -2,6 +2,9 @@
     'The Unit Of Measure form is used to view, create or edit unit of measure parameters.
 
 #Region " Variable Declarations - All the variables used in this form." '----------------------------------------------------------------------------------------------------------------------
+
+    Dim WithEvents Zip As ADVL_Utilities_Library_1.ZipComp
+
 #End Region 'Variable Declarations ------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
@@ -272,7 +275,16 @@
 
             Case ADVL_Utilities_Library_1.FileLocation.Types.Archive
                 'Select an Area of Use list file from the project archive:
-
+                'Show the zip archive file selection form:
+                Zip = New ADVL_Utilities_Library_1.ZipComp
+                Zip.ArchivePath = Main.Project.DataLocn.Path
+                Zip.SelectFile()
+                Zip.SelectFileForm.ApplicationName = Main.Project.ApplicationName
+                Zip.SelectFileForm.SettingsLocn = Main.Project.SettingsLocn
+                Zip.SelectFileForm.Show()
+                Zip.SelectFileForm.RestoreFormSettings()
+                Zip.SelectFileForm.FileExtension = ".UomList"
+                Zip.SelectFileForm.GetFileList()
         End Select
 
     End Sub

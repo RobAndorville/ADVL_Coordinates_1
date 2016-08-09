@@ -61,9 +61,31 @@ Public Class Main
 
     'Forms used by this application:
     Public WithEvents EpsgDatabaseForm As frmEpsgDatabase
-    Public WithEvents GeodeticParametersForm As frmGeodeticParameters
+    'Public WithEvents GeodeticParametersForm As frmGeodeticParameters
     Public WithEvents ConversionsForm As frmConversions
     Public WithEvents ProjectionCalcsForm As frmProjectionCalcs
+
+    'Forms used to view Geodetic Paramters:
+    Public WithEvents AreaOfUseForm As frmAreasOfUse
+    Public WithEvents UnitOfMeasureForm As frmUnitsOfMeasure
+    Public WithEvents PrimeMeridianForm As frmPrimeMeridians
+    Public WithEvents EllipsoidForm As frmEllipsoids
+    Public WithEvents ProjectionForm As frmProjections
+    Public WithEvents CoordOpMethodsForm As frmCoordOpMethods
+    Public WithEvents CoordinateSystemsForm As frmCoordinateSystems
+    Public WithEvents DatumsForm As frmDatums
+    Public WithEvents TransformationsForm As frmTransformations
+    Public WithEvents GeodeticDatumsForm As frmGeodeticDatums
+    Public WithEvents VerticalDatumsForm As frmVerticalDatums
+    Public WithEvents EngineeringDatumsForm As frmEngineeringDatums
+    Public WithEvents CoordRefSystemsForm As frmCoordRefSystems
+    Public WithEvents Geographic2DCRSForm As frmGeographic2DCRS
+    Public WithEvents Geographic3DCRSForm As frmGeographic3DCRS
+    Public WithEvents ProjectedCRSForm As frmProjectedCRS
+    Public WithEvents GeocentricCRSForm As frmGeocentricCRS
+    Public WithEvents VerticalCRSForm As frmVerticalCRS
+    Public WithEvents EngineeringCRSForm As frmEngineeringCRS
+    Public WithEvents CompoundCRSForm As frmCompoundCRS
 
     'Lists of Coordinate System parameter lists:
     Public WithEvents AreaOfUse As New ADVL_Coordinates_Library_1.AreaOfUseList
@@ -512,7 +534,6 @@ Public Class Main
 
     Private Sub DefaultAppProperties()
 
-        'ApplicationInfo.Name = "ADVL_Coordinates"
         ApplicationInfo.Name = "ADVL_Coordinates_1"
 
         'ApplicationInfo.ApplicationDir is set when the application is started.
@@ -936,13 +957,12 @@ Public Class Main
 #Region " Form Subroutines - Code used to display this form." '--------------------------------------------------------------------------------------------------------------------------------
 
     Private Sub Main_Load(sender As Object, e As EventArgs) Handles Me.Load
-
+        'Starting the Main form.
 
         'Write the startup messages in a stringbuilder object.
         'Messages cannot be written using Message.Add until this is set up later in the startup sequence.
         Dim sb As New System.Text.StringBuilder
         sb.Append("------------------- Starting Application: ADVL Coordinates -------------------------------------------------------------------------- " & vbCrLf)
-
 
         'Set the Application Directory path:
         Project.ApplicationDir = My.Application.Info.DirectoryPath.ToString
@@ -1302,20 +1322,6 @@ Public Class Main
         EpsgDatabaseForm = Nothing
     End Sub
 
-    Private Sub btnGeodeticParameters_Click(sender As Object, e As EventArgs) Handles btnGeodeticParameters.Click
-        'Open the Geodetic Parameters form:
-        If IsNothing(GeodeticParametersForm) Then
-            GeodeticParametersForm = New frmGeodeticParameters
-            GeodeticParametersForm.Show()
-        Else
-            GeodeticParametersForm.Show()
-        End If
-    End Sub
-
-    Private Sub GeodeticParametersForm_FormClosed(sender As Object, e As FormClosedEventArgs) Handles GeodeticParametersForm.FormClosed
-        GeodeticParametersForm = Nothing
-    End Sub
-
     Private Sub btnMessages_Click(sender As Object, e As EventArgs) Handles btnMessages.Click
         Message.ApplicationName = ApplicationInfo.Name
         Message.SettingsLocn = Project.SettingsLocn
@@ -1351,10 +1357,338 @@ Public Class Main
         ProjectionCalcsForm = Nothing
     End Sub
 
+
+#Region "Show Geodetic Parameters Forms" '----------------------------------------------------------------------------------------------------------------------------------------
+
+    Private Sub btnAreasOfUse_Click(sender As Object, e As EventArgs) Handles btnAreasOfUse.Click
+        'Open the Area of Use form:
+        If IsNothing(AreaOfUseForm) Then
+            AreaOfUseForm = New frmAreasOfUse
+            AreaOfUseForm.Show()
+        Else
+            AreaOfUseForm.Show()
+        End If
+    End Sub
+
+    Private Sub AreaOfUseForm_FormClosed(sender As Object, e As FormClosedEventArgs) Handles AreaOfUseForm.FormClosed
+        AreaOfUseForm = Nothing
+    End Sub
+
+    Private Sub btnUnitsOfMeasure_Click(sender As Object, e As EventArgs) Handles btnUnitsOfMeasure.Click
+        'Open the  Unit of Measure form:
+        If IsNothing(UnitOfMeasureForm) Then
+            UnitOfMeasureForm = New frmUnitsOfMeasure
+            UnitOfMeasureForm.Show()
+        Else
+            UnitOfMeasureForm.Show()
+        End If
+    End Sub
+
+    Private Sub UnitOfMeasureForm_FormClosed(sender As Object, e As FormClosedEventArgs) Handles UnitOfMeasureForm.FormClosed
+        UnitOfMeasureForm = Nothing
+    End Sub
+
+    Private Sub btnPrimeMeridians_Click(sender As Object, e As EventArgs) Handles btnPrimeMeridians.Click
+        'Open the  Prime Meridian form:
+        If IsNothing(PrimeMeridianForm) Then
+            PrimeMeridianForm = New frmPrimeMeridians
+            PrimeMeridianForm.Show()
+        Else
+            PrimeMeridianForm.Show()
+        End If
+    End Sub
+
+    Private Sub PrimeMeridianForm_FormClosed(sender As Object, e As FormClosedEventArgs) Handles PrimeMeridianForm.FormClosed
+        PrimeMeridianForm = Nothing
+    End Sub
+
+    Private Sub btnEllipsoids_Click(sender As Object, e As EventArgs) Handles btnEllipsoids.Click
+        'Open the  Ellipsoid form:
+        If IsNothing(EllipsoidForm) Then
+            EllipsoidForm = New frmEllipsoids
+            EllipsoidForm.Show()
+        Else
+            EllipsoidForm.Show()
+        End If
+    End Sub
+
+    Private Sub EllipsoidForm_FormClosed(sender As Object, e As FormClosedEventArgs) Handles EllipsoidForm.FormClosed
+        EllipsoidForm = Nothing
+    End Sub
+
+    Private Sub btnProjections_Click(sender As Object, e As EventArgs) Handles btnProjections.Click
+        'Open the  Projection form:
+        If IsNothing(ProjectionForm) Then
+            ProjectionForm = New frmProjections
+            ProjectionForm.Show()
+        Else
+            ProjectionForm.Show()
+        End If
+    End Sub
+
+    Private Sub ProjectionForm_FormClosed(sender As Object, e As FormClosedEventArgs) Handles ProjectionForm.FormClosed
+        ProjectionForm = Nothing
+    End Sub
+
+    Private Sub btnCoordOpMethods_Click(sender As Object, e As EventArgs) Handles btnCoordOpMethods.Click
+        'Open the  CoordOpMethods form:
+        If IsNothing(CoordOpMethodsForm) Then
+            CoordOpMethodsForm = New frmCoordOpMethods
+            CoordOpMethodsForm.Show()
+        Else
+            CoordOpMethodsForm.Show()
+        End If
+    End Sub
+
+    Private Sub CoordOpMethodsForm_FormClosed(sender As Object, e As FormClosedEventArgs) Handles CoordOpMethodsForm.FormClosed
+        CoordOpMethodsForm = Nothing
+    End Sub
+
+    Private Sub btnCoordinateSystems_Click(sender As Object, e As EventArgs) Handles btnCoordinateSystems.Click
+        'Open the  CoordinateSystems form:
+        If IsNothing(CoordinateSystemsForm) Then
+            CoordinateSystemsForm = New frmCoordinateSystems
+            CoordinateSystemsForm.Show()
+        Else
+            CoordinateSystemsForm.Show()
+        End If
+    End Sub
+
+    Private Sub CoordinateSystemsForm_FormClosed(sender As Object, e As FormClosedEventArgs) Handles CoordinateSystemsForm.FormClosed
+        CoordinateSystemsForm = Nothing
+    End Sub
+
+    Private Sub btnDatumList_Click(sender As Object, e As EventArgs) Handles btnDatumList.Click
+        'Open the  Datums form:
+        If IsNothing(DatumsForm) Then
+            DatumsForm = New frmDatums
+            DatumsForm.Show()
+        Else
+            DatumsForm.Show()
+        End If
+    End Sub
+
+    Private Sub DatumsForm_FormClosed(sender As Object, e As FormClosedEventArgs) Handles DatumsForm.FormClosed
+        DatumsForm = Nothing
+    End Sub
+
+    Private Sub btnTransformations_Click(sender As Object, e As EventArgs) Handles btnTransformations.Click
+        'Open the  Transformations form:
+        If IsNothing(TransformationsForm) Then
+            TransformationsForm = New frmTransformations
+            TransformationsForm.Show()
+        Else
+            TransformationsForm.Show()
+        End If
+    End Sub
+
+    Private Sub TransformationsForm_FormClosed(sender As Object, e As FormClosedEventArgs) Handles TransformationsForm.FormClosed
+        TransformationsForm = Nothing
+    End Sub
+
+    Private Sub btnGeodeticDatums_Click(sender As Object, e As EventArgs) Handles btnGeodeticDatums.Click
+        'Open the  Geodetic Datums form:
+        If IsNothing(GeodeticDatumsForm) Then
+            GeodeticDatumsForm = New frmGeodeticDatums
+            GeodeticDatumsForm.Show()
+        Else
+            GeodeticDatumsForm.Show()
+        End If
+    End Sub
+
+    Private Sub GeodeticDatumsForm_FormClosed(sender As Object, e As FormClosedEventArgs) Handles GeodeticDatumsForm.FormClosed
+        GeodeticDatumsForm = Nothing
+    End Sub
+
+    Private Sub btnCRSList_Click(sender As Object, e As EventArgs) Handles btnCRSList.Click
+        'Open the  Coordinate Reference Systems form:
+        If IsNothing(CoordRefSystemsForm) Then
+            CoordRefSystemsForm = New frmCoordRefSystems
+            CoordRefSystemsForm.Show()
+        Else
+            CoordRefSystemsForm.Show()
+        End If
+    End Sub
+
+    Private Sub CoordRefSystemsForm_FormClosed(sender As Object, e As FormClosedEventArgs) Handles CoordRefSystemsForm.FormClosed
+        CoordRefSystemsForm = Nothing
+    End Sub
+
+    Private Sub btnGeographic2D_Click(sender As Object, e As EventArgs) Handles btnGeographic2D.Click
+        'Open the  Geographic 2D Coordinate Reference Systems form:
+        If IsNothing(Geographic2DCRSForm) Then
+            Geographic2DCRSForm = New frmGeographic2DCRS
+            Geographic2DCRSForm.Show()
+        Else
+            Geographic2DCRSForm.Show()
+        End If
+    End Sub
+
+    Private Sub Geographic2DCRSForm_FormClosed(sender As Object, e As FormClosedEventArgs) Handles Geographic2DCRSForm.FormClosed
+        Geographic2DCRSForm = Nothing
+    End Sub
+
+    Private Sub btnProjected_Click(sender As Object, e As EventArgs) Handles btnProjected.Click
+        'Open the  Projected Coordinate Reference Systems form:
+        If IsNothing(ProjectedCRSForm) Then
+            ProjectedCRSForm = New frmProjectedCRS
+            ProjectedCRSForm.Show()
+        Else
+            ProjectedCRSForm.Show()
+        End If
+    End Sub
+
+    Private Sub ProjectedCRSForm_FormClosed(sender As Object, e As FormClosedEventArgs) Handles ProjectedCRSForm.FormClosed
+        ProjectedCRSForm = Nothing
+    End Sub
+
+    Private Sub btnGeocentric_Click(sender As Object, e As EventArgs) Handles btnGeocentric.Click
+        'Open the  Geocentric Coordinate Reference Systems form:
+        If IsNothing(GeocentricCRSForm) Then
+            GeocentricCRSForm = New frmGeocentricCRS
+            GeocentricCRSForm.Show()
+        Else
+            GeocentricCRSForm.Show()
+        End If
+    End Sub
+
+    Private Sub GeocentricCRSForm_FormClosed(sender As Object, e As FormClosedEventArgs) Handles GeocentricCRSForm.FormClosed
+        GeocentricCRSForm = Nothing
+    End Sub
+
+    Private Sub btnVerticalDatum_Click(sender As Object, e As EventArgs) Handles btnVerticalDatum.Click
+        'Open the  Vertical Datums form:
+        If IsNothing(VerticalDatumsForm) Then
+            VerticalDatumsForm = New frmVerticalDatums
+            VerticalDatumsForm.Show()
+        Else
+            VerticalDatumsForm.Show()
+        End If
+    End Sub
+
+    Private Sub VerticalDatumsForm_FormClosed(sender As Object, e As FormClosedEventArgs) Handles VerticalDatumsForm.FormClosed
+        VerticalDatumsForm = Nothing
+    End Sub
+
+    Private Sub btnEngineeringDatum_Click(sender As Object, e As EventArgs) Handles btnEngineeringDatum.Click
+        'Open the  Engineering Datums form:
+        If IsNothing(EngineeringDatumsForm) Then
+            EngineeringDatumsForm = New frmEngineeringDatums
+            EngineeringDatumsForm.Show()
+        Else
+            EngineeringDatumsForm.Show()
+        End If
+    End Sub
+
+    Private Sub EngineeringDatumsForm_FormClosed(sender As Object, e As FormClosedEventArgs) Handles EngineeringDatumsForm.FormClosed
+        EngineeringDatumsForm = Nothing
+    End Sub
+
+    Private Sub btnVerticalCRS_Click(sender As Object, e As EventArgs) Handles btnVerticalCRS.Click
+        'Open the  Vertical CRS form:
+        If IsNothing(VerticalCRSForm) Then
+            VerticalCRSForm = New frmVerticalCRS
+            VerticalCRSForm.Show()
+        Else
+            VerticalCRSForm.Show()
+        End If
+    End Sub
+
+    Private Sub VerticalCRSForm_FormClosed(sender As Object, e As FormClosedEventArgs) Handles VerticalCRSForm.FormClosed
+        VerticalCRSForm = Nothing
+    End Sub
+
+    Private Sub btnGeographic3D_Click(sender As Object, e As EventArgs) Handles btnGeographic3D.Click
+        'Open the  Geographic 3D Coordinate Reference Systems form:
+        If IsNothing(Geographic3DCRSForm) Then
+            Geographic3DCRSForm = New frmGeographic3DCRS
+            Geographic3DCRSForm.Show()
+        Else
+            Geographic3DCRSForm.Show()
+        End If
+    End Sub
+
+    Private Sub Geographic3DCRSForm_FormClosed(sender As Object, e As FormClosedEventArgs) Handles Geographic3DCRSForm.FormClosed
+        Geographic3DCRSForm = Nothing
+    End Sub
+
+    Private Sub btnEngineering_Click(sender As Object, e As EventArgs) Handles btnEngineering.Click
+        'Open the  Engineering CRS form:
+        If IsNothing(EngineeringCRSForm) Then
+            EngineeringCRSForm = New frmEngineeringCRS
+            EngineeringCRSForm.Show()
+        Else
+            EngineeringCRSForm.Show()
+        End If
+    End Sub
+
+    Private Sub EngineeringCRSForm_FormClosed(sender As Object, e As FormClosedEventArgs) Handles EngineeringCRSForm.FormClosed
+        EngineeringCRSForm = Nothing
+    End Sub
+
+    Private Sub btnCompound_Click(sender As Object, e As EventArgs) Handles btnCompound.Click
+        'Open the  Compound CRS form:
+        If IsNothing(CompoundCRSForm) Then
+            CompoundCRSForm = New frmCompoundCRS
+            CompoundCRSForm.Show()
+        Else
+            CompoundCRSForm.Show()
+        End If
+    End Sub
+
+    Private Sub CompoundCRSForm_FormClosed(sender As Object, e As FormClosedEventArgs) Handles CompoundCRSForm.FormClosed
+        CompoundCRSForm = Nothing
+    End Sub
+
+#End Region 'Show Geodetic Parameters Forms" '------------------------------------------------------------------------------------------------------------------------------------
+
 #End Region 'Open and Close Forms -------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
 #Region " Form Methods - The main actions performed by this form." '---------------------------------------------------------------------------------------------------------------------------
+
+    Private Sub txtProjectName_LostFocus(sender As Object, e As EventArgs) Handles txtProjectName.LostFocus
+        'The Project Name has been changed
+        Project.Name = txtProjectName.Text
+    End Sub
+
+    Private Sub txtProjectDescription_LostFocus(sender As Object, e As EventArgs) Handles txtProjectDescription.LostFocus
+        'The Project Description has been changed
+        Project.Description = txtProjectDescription.Text
+    End Sub
+
+    Private Sub txtProjectType_LostFocus(sender As Object, e As EventArgs) Handles txtProjectType.LostFocus
+        'The Project Type had been changed.
+        Select Case txtProjectType.Text
+            Case "Archive"
+                Project.Type = ADVL_Utilities_Library_1.Project.Types.Archive
+            Case "Directory"
+                Project.Type = ADVL_Utilities_Library_1.Project.Types.Directory
+            Case "Hybrid"
+                Project.Type = ADVL_Utilities_Library_1.Project.Types.Hybrid
+            Case "None"
+                Project.Type = ADVL_Utilities_Library_1.Project.Types.None
+            Case Else
+                txtProjectType.Text = Project.Type.ToString
+        End Select
+    End Sub
+
+    Private Sub txtDataLocationType_LostFocus(sender As Object, e As EventArgs) Handles txtDataLocationType.LostFocus
+        'The Data Location Type has been changed.
+        Select Case txtDataLocationType.Text
+            Case "Archive"
+                Project.DataLocn.Type = ADVL_Utilities_Library_1.FileLocation.Types.Archive
+            Case "Directory"
+                Project.DataLocn.Type = ADVL_Utilities_Library_1.FileLocation.Types.Directory
+            Case Else
+                txtDataLocationType.Text = Project.DataLocn.Type.ToString
+        End Select
+    End Sub
+
+    Private Sub txtDataLocationPath_LostFocus(sender As Object, e As EventArgs) Handles txtDataLocationPath.LostFocus
+        'The Data Location Path has been changed.
+        Project.DataLocn.Path = txtDataLocationPath.Text
+    End Sub
 
 #Region " Display Messages"
 
@@ -1515,7 +1849,7 @@ Public Class Main
 #End Region 'Display Messages
 
     Private Sub btnProject_Click(sender As Object, e As EventArgs) Handles btnProject.Click
-        Project.SelectProject()
+        Project.SelectProject() 'This opens the Project Form - A list of projects is displayed - Any of these can be selected.
     End Sub
 
     Private Sub Project_ProjectChanging() Handles Project.ProjectChanging
@@ -1525,7 +1859,8 @@ Public Class Main
         SaveProjectSettings()
 
         'Update the old Project Information file:
-        Project.SaveProjectInfoFile()
+        'UPDATE: THIS DOES NOT NEED TO BE CHANGED.
+        'Project.SaveProjectInfoFile()
 
         'Save the old poriject usage information:
         Project.Usage.SaveUsageInfo()
@@ -3079,7 +3414,34 @@ Public Class Main
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     'END Process XMessages ------------------------------------------------------------------------------------------------
+
+
+
 
 #End Region 'Form Methods ---------------------------------------------------------------------------------------------------------------------------------------------------------------------
 

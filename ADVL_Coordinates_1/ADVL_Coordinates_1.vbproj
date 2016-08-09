@@ -181,12 +181,6 @@
     <Compile Include="frmGeodeticDatums.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmGeodeticParameters.Designer.vb">
-      <DependentUpon>frmGeodeticParameters.vb</DependentUpon>
-    </Compile>
-    <Compile Include="frmGeodeticParameters.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="frmGeographic2DCRS.Designer.vb">
       <DependentUpon>frmGeographic2DCRS.vb</DependentUpon>
     </Compile>
@@ -315,9 +309,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmGeodeticDatums.resx">
       <DependentUpon>frmGeodeticDatums.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frmGeodeticParameters.resx">
-      <DependentUpon>frmGeodeticParameters.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmGeographic2DCRS.resx">
       <DependentUpon>frmGeographic2DCRS.vb</DependentUpon>

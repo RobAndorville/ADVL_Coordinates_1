@@ -649,7 +649,6 @@
             Case ADVL_Utilities_Library_1.FileLocation.Types.Archive
                 'Select an Area of Use list file from the project archive:
                 'Show the zip archive file selection form:
-                'Dim Zip As New ADVL_System_Utilities.ZipComp
                 Zip = New ADVL_Utilities_Library_1.ZipComp
                 Zip.ArchivePath = Main.Project.DataLocn.Path
                 Zip.SelectFile()
