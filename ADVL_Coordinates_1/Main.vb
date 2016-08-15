@@ -327,15 +327,13 @@ Public Class Main
                                <CompoundCRSListFileName><%= CompoundCRS.ListFileName %></CompoundCRSListFileName>
                            </ProjectSettings>
 
-        'Dim SettingsFileName As String = "Projectsettings_" & ApplicationInfo.Name & "_" & Me.Text & ".xml"
         Dim SettingsFileName As String = "ProjectSettings_" & ApplicationInfo.Name & "_" & Me.Text & ".xml"
         Project.SaveXmlSettings(SettingsFileName, settingsData)
     End Sub
 
     Private Sub RestoreProjectSettings()
-        'Read the project settings from an XML document.
+        'Restore the project settings from an XML document.
 
-        'Dim SettingsFileName As String = "Projectsettings_" & ApplicationInfo.Name & "_" & Me.Text & ".xml"
         Dim SettingsFileName As String = "ProjectSettings_" & ApplicationInfo.Name & "_" & Me.Text & ".xml"
 
         If Project.SettingsFileExists(SettingsFileName) Then
@@ -1113,28 +1111,22 @@ Public Class Main
     Private Sub btnExit_Click(sender As Object, e As EventArgs) Handles btnExit.Click
         'Exit the Application
 
-        'DisconnectFromExchange()
-        DisconnectFromAppNet()
+        DisconnectFromAppNet() 'Disconnect from the Application Network.
 
-        'Save the form settings:
-        SaveFormSettings()
+        SaveFormSettings() 'Save the settings of this form.
 
-        'Save the project settings:
-        SaveProjectSettings()
+        SaveProjectSettings()  'Save the project settings.
 
-        'Update the Application Information file:
-        ApplicationInfo.WriteFile()
+        ApplicationInfo.WriteFile()  'Update the Application Information file.
         ApplicationInfo.UnlockApplication()
 
-        Project.SaveLastProjectInfo()
+        Project.SaveLastProjectInfo() 'Save information about the last project used.
 
-        'Update the Project Information file:
-        Project.SaveProjectInfoFile()
+        'Project.SaveProjectInfoFile() 'Update the Project Information file. This is not required unless there is a change made to the project.
 
-        Project.Usage.SaveUsageInfo()
+        Project.Usage.SaveUsageInfo() 'Save Project usage information.
 
-        'Save Application Usage information:
-        ApplicationUsage.SaveUsageInfo()
+        ApplicationUsage.SaveUsageInfo() 'Save Application Usage information.
 
         Application.Exit()
 
@@ -1852,23 +1844,25 @@ Public Class Main
         Project.SelectProject() 'This opens the Project Form - A list of projects is displayed - Any of these can be selected.
     End Sub
 
-    Private Sub Project_ProjectChanging() Handles Project.ProjectChanging
-        'The project is being changed.
+    'Private Sub Project_ProjectChanging() Handles Project.ProjectChanging
+    Private Sub Project_Closing() Handles Project.Closing
+        'The current project is closing.
 
-        'Save the old project settings:
+        'Save the current project settings:
         SaveProjectSettings()
 
         'Update the old Project Information file:
         'UPDATE: THIS DOES NOT NEED TO BE CHANGED.
         'Project.SaveProjectInfoFile()
 
-        'Save the old poriject usage information:
+        ''Save the old project usage information:
         Project.Usage.SaveUsageInfo()
 
     End Sub
 
-    Private Sub Project_ProjectSelected() Handles Project.ProjectSelected
-        'A project has been selected.
+    'Private Sub Project_ProjectSelected() Handles Project.ProjectSelected
+    Private Sub Project_Selected() Handles Project.Selected
+        'A new project has been selected.
 
         'Message.Add("------------------------- A project has been selected --------------------------------------------------------------" & vbCrLf)
 
@@ -1900,6 +1894,7 @@ Public Class Main
         Project.Usage.StartTime = Now
 
         ApplicationInfo.SettingsLocn = Project.SettingsLocn
+
 
 
         'Set up Message object:
@@ -3412,39 +3407,9 @@ Public Class Main
         End Select
     End Sub
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     'END Process XMessages ------------------------------------------------------------------------------------------------
 
-
-
-
 #End Region 'Form Methods ---------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
 
 End Class
 
