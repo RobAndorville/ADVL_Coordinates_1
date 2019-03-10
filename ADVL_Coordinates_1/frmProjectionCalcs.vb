@@ -124,7 +124,6 @@
                                <GridRowCount><%= DataGridView1.RowCount %></GridRowCount>
                            </FormSettings>
 
-        'Dim SettingsFileName As String = "Formsettings_" & Main.ApplicationInfo.Name & "_" & Me.Text & ".xml"
         Dim SettingsFileName As String = "FormSettings_" & Main.ApplicationInfo.Name & "_" & Me.Text & ".xml"
         Main.Project.SaveXmlSettings(SettingsFileName, settingsData)
 
@@ -133,7 +132,6 @@
     Private Sub RestoreFormSettings()
         'Read the form settings from an XML document.
 
-        'Dim SettingsFileName As String = "Formsettings_" & Main.ApplicationInfo.Name & "_" & Me.Text & ".xml"
         Dim SettingsFileName As String = "FormSettings_" & Main.ApplicationInfo.Name & "_" & Me.Text & ".xml"
 
         If Main.Project.SettingsFileExists(SettingsFileName) Then
@@ -323,7 +321,7 @@
             Else
                 DataGridView1.RowCount = Settings.<FormSettings>.<GridRowCount>.Value
             End If
-            'RestorePoints()
+
         End If
     End Sub
 
@@ -486,8 +484,6 @@
         cmbDirection6.Items.Add("East/West_North/South")
         cmbDirection6.SelectedIndex = 0
 
-        'Main.Message.Add("Finished initializing cmbUnits 1 to 6" & vbCrLf)
-
         RestoreFormSettings()
 
         UpdateDataGridView()
@@ -561,12 +557,9 @@
     Private Sub UpdateDataGridView()
         'Update the DataGridView1 to match the settings in DataSettings().
 
-        'Main.Message.Add("Updating data grid view" & vbCrLf)
-
         Dim NCols As Integer
 
         NCols = DataSettings(0).NColumns + DataSettings(1).NColumns + DataSettings(2).NColumns + DataSettings(3).NColumns + DataSettings(4).NColumns + DataSettings(5).NColumns
-        'Main.Message.Add("Total number of columns in DataGridView1: " & NCols & vbCrLf)
 
         DataGridView1.ColumnCount = NCols
 
@@ -1265,8 +1258,6 @@
             cmbDirection1.Enabled = False
         End If
 
-
-
         LabelX = DataSettings(1).DataPosition + DataGridView1.Location.X
         txtDescr2.Location = New Point(LabelX, LabelRowTop)
         txtDescr2.Width = DataSettings(1).DataWidth
@@ -1862,7 +1853,6 @@
         Main.Message.Add("-----------------------------------------------------------------------------------------------------------------" & vbCrLf)
         Main.Message.Add("Selected index number is: " & Str(Index) & vbCrLf)
         Main.Message.Add("Projected coordinate reference system: " & cmbProjectedCRS.SelectedItem.ToString & vbCrLf)
-        'DisplayGeographic2DCRSData(Index)
 
         txtProjectionMethod.Text = Main.ProjectedCRS.List(Index).ProjectionMethod.Name
         txtDescr1.Text = Main.ProjectedCRS.List(Index).SourceGeographicCRS.Name 'txtDescr1.Text contains a description of the data contained in Data Column 1 (Eg geodetic datum GDA94)
@@ -1872,11 +1862,8 @@
 
         'Set the Projection parameters :
         'All the Projection Parameters are stored in Main.ProjectionList()
-        'If Main.ProjectionList.Count = 0 Then
         If Main.Projection.NRecords = 0 Then
-            Main.Message.SetWarningStyle()
-            Main.Message.Add("There is no Projection data!" & vbCrLf)
-            Main.Message.SetNormalStyle()
+            Main.Message.AddWarning("There is no Projection data!" & vbCrLf)
         Else
             Select Case Main.ProjectedCRS.List(Index).ProjectionMethod.Name
                 Case "Transverse Mercator"
@@ -2039,41 +2026,6 @@
         End If
     End Sub
 
-    'Private Sub GetDatumMatch_Old(ByVal Author As String, ByVal Code As Integer)
-    '    'Use Datum Author and Code to get Datum record:
-    '    Dim DatumMatch = From Datum In Main.GeodeticDatum.List Where Datum.Author = Author And Datum.Code = Code
-
-    '    If DatumMatch.Count > 0 Then
-    '        TransverseMercator.GeographicCRS.DatumName = DatumMatch(0).Name
-    '        TransverseMercator.GeographicCRS.EllipsoidName = DatumMatch(0).Ellipsoid.Name
-    '        If DatumMatch(0).Ellipsoid.EllipsoidParameters = ADVL_Coordinates_Library.Coordinates.Ellipsoid.DefiningParameters.SemiMajorAxis_InverseFlattening Then
-    '            TransverseMercator.GeographicCRS.SemiMajorAxis = DatumMatch(0).Ellipsoid.SemiMajorAxis
-    '            TransverseMercator.GeographicCRS.InverseFlattening = DatumMatch(0).Ellipsoid.InverseFlattening
-    '            'Calculate SemiMinorAxis:
-    '            TransverseMercator.GeographicCRS.SemiMinorAxis = DatumMatch(0).Ellipsoid.SemiMajorAxis - (DatumMatch(0).Ellipsoid.SemiMajorAxis / DatumMatch(0).Ellipsoid.InverseFlattening)
-    '            Main.Message.Add("Calculated Semi Minor Axis: " & TransverseMercator.GeographicCRS.SemiMinorAxis & vbCrLf)
-    '        ElseIf DatumMatch(0).Ellipsoid.EllipsoidParameters = ADVL_Coordinates_Library.Coordinates.Ellipsoid.DefiningParameters.SemiMajorAxis_SemiMinorAxis Then
-    '            TransverseMercator.GeographicCRS.SemiMajorAxis = DatumMatch(0).Ellipsoid.SemiMajorAxis
-    '            TransverseMercator.GeographicCRS.SemiMinorAxis = DatumMatch(0).Ellipsoid.SemiMinorAxis
-    '            'Calculate InverseFlattening:
-    '            TransverseMercator.GeographicCRS.InverseFlattening = DatumMatch(0).Ellipsoid.SemiMajorAxis / (DatumMatch(0).Ellipsoid.SemiMajorAxis - DatumMatch(0).Ellipsoid.SemiMinorAxis)
-    '            Main.Message.Add("Calculated Inverse Flattening: " & TransverseMercator.GeographicCRS.InverseFlattening & vbCrLf)
-    '        Else
-    '            Main.Message.Add("Unknown ellipsoid specification: " & vbCrLf)
-    '            TransverseMercator.GeographicCRS.SemiMajorAxis = DatumMatch(0).Ellipsoid.SemiMajorAxis
-    '            TransverseMercator.GeographicCRS.SemiMinorAxis = DatumMatch(0).Ellipsoid.SemiMinorAxis
-    '            TransverseMercator.GeographicCRS.InverseFlattening = DatumMatch(0).Ellipsoid.InverseFlattening
-    '        End If
-    '        Main.Message.Add("Base datum found: " & DatumMatch(0).Name & vbCrLf)
-    '        Main.Message.Add("Ellipsoid name: " & DatumMatch(0).Ellipsoid.Name & vbCrLf)
-    '        Main.Message.Add("Inverse Flattening: " & DatumMatch(0).Ellipsoid.InverseFlattening & vbCrLf)
-    '        Main.Message.Add("Semi Major Axis: " & DatumMatch(0).Ellipsoid.SemiMajorAxis & vbCrLf)
-    '        Main.Message.Add("Semi Minor Axis: " & DatumMatch(0).Ellipsoid.SemiMinorAxis & vbCrLf)
-    '    Else
-    '        Main.Message.Add("No matching datum found for Datum.Author = " & "EPSG" & " and Datum.Code =  " & "6658" & vbCrLf)
-    '        Main.Message.Add("Number of entries in the Geodetic Datum List is: " & Main.GeodeticDatum.List.Count & vbCrLf)
-    '    End If
-    'End Sub
 
     Private Sub GetDatumMatch(ByVal Author As String, ByVal Code As Integer)
         'Use Datum Author and Code to get Datum record:
@@ -2107,31 +2059,8 @@
                 Main.Message.Add("Semi Major Axis: " & EllipsoidMatch(0).SemiMajorAxis & vbCrLf)
                 Main.Message.Add("Semi Minor Axis: " & EllipsoidMatch(0).SemiMinorAxis & vbCrLf)
             End If
-            'If DatumMatch(0).Ellipsoid.EllipsoidParameters = ADVL_Coordinates_Library.Coordinates.Ellipsoid.DefiningParameters.SemiMajorAxis_InverseFlattening Then
-            '    TransverseMercator.GeographicCRS.SemiMajorAxis = DatumMatch(0).Ellipsoid.SemiMajorAxis
-            '    TransverseMercator.GeographicCRS.InverseFlattening = DatumMatch(0).Ellipsoid.InverseFlattening
-            '    'Calculate SemiMinorAxis:
-            '    TransverseMercator.GeographicCRS.SemiMinorAxis = DatumMatch(0).Ellipsoid.SemiMajorAxis - (DatumMatch(0).Ellipsoid.SemiMajorAxis / DatumMatch(0).Ellipsoid.InverseFlattening)
-            '    Main.Message.Add("Calculated Semi Minor Axis: " & TransverseMercator.GeographicCRS.SemiMinorAxis & vbCrLf)
-            'ElseIf DatumMatch(0).Ellipsoid.EllipsoidParameters = ADVL_Coordinates_Library.Coordinates.Ellipsoid.DefiningParameters.SemiMajorAxis_SemiMinorAxis Then
-            '    TransverseMercator.GeographicCRS.SemiMajorAxis = DatumMatch(0).Ellipsoid.SemiMajorAxis
-            '    TransverseMercator.GeographicCRS.SemiMinorAxis = DatumMatch(0).Ellipsoid.SemiMinorAxis
-            '    'Calculate InverseFlattening:
-            '    TransverseMercator.GeographicCRS.InverseFlattening = DatumMatch(0).Ellipsoid.SemiMajorAxis / (DatumMatch(0).Ellipsoid.SemiMajorAxis - DatumMatch(0).Ellipsoid.SemiMinorAxis)
-            '    Main.Message.Add("Calculated Inverse Flattening: " & TransverseMercator.GeographicCRS.InverseFlattening & vbCrLf)
-            'Else
-            '    Main.Message.Add("Unknown ellipsoid specification: " & vbCrLf)
-            '    TransverseMercator.GeographicCRS.SemiMajorAxis = DatumMatch(0).Ellipsoid.SemiMajorAxis
-            '    TransverseMercator.GeographicCRS.SemiMinorAxis = DatumMatch(0).Ellipsoid.SemiMinorAxis
-            '    TransverseMercator.GeographicCRS.InverseFlattening = DatumMatch(0).Ellipsoid.InverseFlattening
-            'End If
-            'Main.Message.Add("Base datum found: " & DatumMatch(0).Name & vbCrLf)
-            'Main.Message.Add("Ellipsoid name: " & DatumMatch(0).Ellipsoid.Name & vbCrLf)
-            'Main.Message.Add("Inverse Flattening: " & EllipsoidMatch(0).InverseFlattening & vbCrLf)
-            'Main.Message.Add("Semi Major Axis: " & EllipsoidMatch(0).SemiMajorAxis & vbCrLf)
-            'Main.Message.Add("Semi Minor Axis: " & EllipsoidMatch(0).SemiMinorAxis & vbCrLf)
+
         Else
-            'Main.Message.Add("No matching datum found for Datum.Author = " & "EPSG" & " and Datum.Code =  " & "6658" & vbCrLf)
             Main.Message.Add("No matching datum found for Datum.Author = " & Author & " and Datum.Code =  " & "6658" & vbCrLf)
             Main.Message.Add("Number of entries in the Geodetic Datum List is: " & Main.GeodeticDatum.List.Count & vbCrLf)
         End If
@@ -2139,8 +2068,6 @@
 
     Private Sub cmbDataType1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbDataType1.SelectedIndexChanged
         'Change datatype in position 1
-
-        'Main.Message.Add("Data Column 1 Data Type changed. AutoModeLevel = " & AutoModeLevel & vbCrLf)
 
         If AutoModeLevel = 0 Then 'The units have been changed manually. Save the current set of coordinate points then clear the DataGridView1 values.
             'SavePoints()
@@ -2221,8 +2148,6 @@
 
     Private Sub cmbDataType2_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbDataType2.SelectedIndexChanged
         'Change datatype in position 2
-
-        'Main.Message.Add("Data Column 2 Data Type changed. AutoModeLevel = " & AutoModeLevel & vbCrLf)
 
         If AutoModeLevel = 0 Then 'The units have been changed manually. Save the current set of coordinate points then clear the DataGridView1 values.
             'SavePoints()
@@ -2305,8 +2230,6 @@
     Private Sub cmbDataType3_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbDataType3.SelectedIndexChanged
         'Change datatype in position 3
 
-        'Main.Message.Add("Data Column 3 Data Type changed. AutoModeLevel = " & AutoModeLevel & vbCrLf)
-
         If AutoModeLevel = 0 Then 'The units have been changed manually. Save the current set of coordinate points then clear the DataGridView1 values.
             SavePoints(2)
             ClearGridValues()
@@ -2382,18 +2305,12 @@
             RestorePoints()
         End If
 
-        'AutoMode = False 'Automode finished.
-        'AutoModeLevel -= 1 'Decrement the AutoMode level.
-
     End Sub
 
     Private Sub cmbDataType4_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbDataType4.SelectedIndexChanged
         'Change datatype in position 4
 
-        'Main.Message.Add("Data Column 4 Data Type changed. AutoModeLevel = " & AutoModeLevel & vbCrLf)
-
         If AutoModeLevel = 0 Then 'The units have been changed manually. Save the current set of coordinate points then clear the DataGridView1 values.
-            'SavePoints()
             SavePoints(3)
             ClearGridValues()
         End If
@@ -2473,17 +2390,10 @@
     Private Sub cmbDataType5_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbDataType5.SelectedIndexChanged
         'Change datatype in position 5
 
-        'Main.Message.Add("Data Column 5 Data Type changed. AutoModeLevel = " & AutoModeLevel & vbCrLf)
-
         If AutoModeLevel = 0 Then 'The units have been changed manually. Save the current set of coordinate points then clear the DataGridView1 values.
-            'AutoModeLevel = 1
-            'SavePoints()
             SavePoints(4)
             ClearGridValues()
         End If
-        'Else
-        '    AutoModeLevel += 1 'Increment the AutoMode level. This indicates that the following changes to DataGridView1 are being made automatically.
-        'End If
 
         AutoModeLevel += 1 'Increment the AutoMode level. This indicates that the following changes to DataGridView1 are being made automatically.
         Select Case cmbDataType5.SelectedItem
@@ -2560,10 +2470,7 @@
     Private Sub cmbDataType6_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbDataType6.SelectedIndexChanged
         'Change datatype in position 6
 
-        'Main.Message.Add("Data Column 6 Data Type changed. AutoModeLevel = " & AutoModeLevel & vbCrLf)
-
         If AutoModeLevel = 0 Then 'The units have been changed manually. Save the current set of coordinate points then clear the DataGridView1 values.
-            'SavePoints()
             SavePoints(5)
             ClearGridValues()
         End If
@@ -2645,8 +2552,6 @@
         'Angle units can be Decimal Degrees, Drgrees-Minutes-Seconds, Sexagesimal Degrees, Radians, Gradians or Turns.
         'Distance units can be Metres or Default (default units are defined for the projection and can be Metres, foot, US survey foot, Clarke's foot, British foot, Indain foot etc.
 
-        'Main.Message.Add("Data Column 1 units changed. AutoModeLevel = " & AutoModeLevel & vbCrLf)
-
         If AutoModeLevel = 0 Then 'The units have been changed manually. Save the current set of coordinate points then clear the DataGridView1 values.
             'SavePoints()
             SavePoints(0)
@@ -2690,10 +2595,7 @@
     Private Sub cmbUnits2_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbUnits2.SelectedIndexChanged
         'Change Units in position 2
 
-        'Main.Message.Add("Data Column 2 units changed. AutoModeLevel = " & AutoModeLevel & vbCrLf)
-
         If AutoModeLevel = 0 Then 'The units have been changed manually. Save the current set of coordinate points then clear the DataGridView1 values.
-            'SavePoints()
             SavePoints(1)
             ClearGridValues()
         End If
@@ -2735,10 +2637,7 @@
     Private Sub cmbUnits3_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbUnits3.SelectedIndexChanged
         'Change Units in position 3
 
-        'Main.Message.Add("Data Column 3 units changed. AutoModeLevel = " & AutoModeLevel & vbCrLf)
-
         If AutoModeLevel = 0 Then 'The units have been changed manually. Save the current set of coordinate points then clear the DataGridView1 values.
-            'SavePoints()
             SavePoints(2)
             ClearGridValues()
         End If
@@ -2780,10 +2679,7 @@
     Private Sub cmbUnits4_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbUnits4.SelectedIndexChanged
         'Change Units in position 4
 
-        'Main.Message.Add("Data Column 4 units changed. AutoModeLevel = " & AutoModeLevel & vbCrLf)
-
         If AutoModeLevel = 0 Then 'The units have been changed manually. Save the current set of coordinate points then clear the DataGridView1 values.
-            'SavePoints()
             SavePoints(3)
             ClearGridValues()
         End If
@@ -2825,10 +2721,7 @@
     Private Sub cmbUnits5_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbUnits5.SelectedIndexChanged
         'Change Units in position 5
 
-        'Main.Message.Add("Data Column 5 units changed. AutoModeLevel = " & AutoModeLevel & vbCrLf)
-
         If AutoModeLevel = 0 Then 'The units have been changed manually. Save the current set of coordinate points then clear the DataGridView1 values.
-            'SavePoints()
             SavePoints(4)
             ClearGridValues()
         End If
@@ -2870,10 +2763,7 @@
     Private Sub cmbUnits6_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbUnits6.SelectedIndexChanged
         'Change Units in position 6
 
-        'Main.Message.Add("Data Column 6 units changed. AutoModeLevel = " & AutoModeLevel & vbCrLf)
-
         If AutoModeLevel = 0 Then 'The units have been changed manually. Save the current set of coordinate points then clear the DataGridView1 values.
-            'SavePoints()
             SavePoints(5)
             ClearGridValues()
         End If
@@ -2915,10 +2805,7 @@
     Private Sub cmbDirection1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbDirection1.SelectedIndexChanged
         'Change direction code in position 1
 
-        'Main.Message.Add("Data Column 1 Direction Code changed. AutoModeLevel = " & AutoModeLevel & vbCrLf)
-
         If AutoModeLevel = 0 Then 'The direction has been changed manually. Save the current set of coordinate points then clear the DataGridView1 values.
-            'SavePoints()
             SavePoints(0)
             ClearGridValues()
         End If
@@ -2944,10 +2831,7 @@
     Private Sub cmbDirection2_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbDirection2.SelectedIndexChanged
         'Change direction code in position 2
 
-        'Main.Message.Add("Data Column 2 Direction Code changed. AutoModeLevel = " & AutoModeLevel & vbCrLf)
-
         If AutoModeLevel = 0 Then 'The direction has been changed manually. Save the current set of coordinate points then clear the DataGridView1 values.
-            'SavePoints()
             SavePoints(1)
             ClearGridValues()
         End If
@@ -2973,10 +2857,7 @@
     Private Sub cmbDirection3_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbDirection3.SelectedIndexChanged
         'Change direction code in position 3
 
-        'Main.Message.Add("Data Column 3 Direction Code changed. AutoModeLevel = " & AutoModeLevel & vbCrLf)
-
         If AutoModeLevel = 0 Then 'The direction has been changed manually. Save the current set of coordinate points then clear the DataGridView1 values.
-            'SavePoints()
             SavePoints(2)
             ClearGridValues()
         End If
@@ -3002,10 +2883,7 @@
     Private Sub cmbDirection4_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbDirection4.SelectedIndexChanged
         'Change direction code in position 4
 
-        'Main.Message.Add("Data Column 4 Direction Code changed. AutoModeLevel = " & AutoModeLevel & vbCrLf)
-
         If AutoModeLevel = 0 Then 'The direction has been changed manually. Save the current set of coordinate points then clear the DataGridView1 values.
-            'SavePoints()
             SavePoints(3)
             ClearGridValues()
         End If
@@ -3031,10 +2909,7 @@
     Private Sub cmbDirection5_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbDirection5.SelectedIndexChanged
         'Change direction code in position 5
 
-        'Main.Message.Add("Data Column 5 Direction Code changed. AutoModeLevel = " & AutoModeLevel & vbCrLf)
-
         If AutoModeLevel = 0 Then 'The direction has been changed manually. Save the current set of coordinate points then clear the DataGridView1 values.
-            'SavePoints()
             SavePoints(4)
             ClearGridValues()
         End If
@@ -3060,10 +2935,7 @@
     Private Sub cmbDirection6_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbDirection6.SelectedIndexChanged
         'Change direction code in position 6
 
-        'Main.Message.Add("Data Column 6 Direction Code changed. AutoModeLevel = " & AutoModeLevel & vbCrLf)
-
         If AutoModeLevel = 0 Then 'The direction has been changed manually. Save the current set of coordinate points then clear the DataGridView1 values.
-            'SavePoints()
             SavePoints(5)
             ClearGridValues()
         End If
@@ -3098,9 +2970,6 @@
         'Dim PointDescription() As String
         'Dim PointLatitude() As Double
         'Dim PointLongitude() As Double
-
-        'Main.Message.Add("Saving Points" & vbCrLf)
-
 
         Dim NumberDataCol As Integer = -1      'The number of the data column containing point numbers. (-1 if none found.)
         Dim DescriptionDataCol As Integer = -1 'The number of the data column containing point descriptions. (-1 if none found.)
@@ -4026,28 +3895,6 @@
             End Select
         End If
 
-        ''Display first point saved:
-        'Main.Message.Add("First point saved: -------------------------------------------------------------------------------------------------------------------------------------" & vbCrLf)
-        'If PointNumber.Count > 0 Then
-        '    If PointNumber.Count > 0 Then
-        '        Main.Message.Add("First point number: " & PointNumber(0) & vbCrLf)
-        '    End If
-        '    If PointDescription.Count > 0 Then
-        '        Main.Message.Add("First point description: " & PointDescription(0) & vbCrLf)
-        '    End If
-        '    If PointLatitude.Count > 0 Then
-        '        Main.Message.Add("First point latitude: " & PointLatitude(0) & vbCrLf)
-        '    End If
-        '    If PointLongitude.Count > 0 Then
-        '        Main.Message.Add("First point longitude: " & PointLongitude(0) & vbCrLf)
-        '    End If
-
-        'Else
-        '    Main.Message.Add("No points saved." & vbCrLf)
-        'End If
-
-        'Main.Message.Add("Finished saving points --------------------------------------------------------------------------------------------------------------------------------------------------------" & vbCrLf)
-
     End Sub
 
     Private Sub RestorePoints()
@@ -4059,7 +3906,6 @@
         'Dim PointLatitude() As Double
         'Dim PointLongitude() As Double
 
-        'Main.Message.Add("Restoring points" & vbCrLf)
         AutoModeLevel += 1 'Increment the AutoMode level.
 
         Dim DataColNo As Integer 'The current data column number.
@@ -4504,7 +4350,6 @@
             End Select
         Next
 
-        'Main.Message.Add("Finished restoring points" & vbCrLf)
         AutoModeLevel -= 1 'Decrement the AutoMode level.
 
     End Sub
@@ -4849,8 +4694,6 @@
         'TransverseMercator.Location.Longitude
         'TransverseMercator.Location.Easting
         'TransverseMercator.Location.Northing
-
-
 
         Dim NCols As Integer
 
@@ -6250,7 +6093,6 @@
 #End Region
 
     Private Sub btnShowDataSettings_Click(sender As Object, e As EventArgs) Handles btnShowDataSettings.Click
-        Main.Message.SetNormalStyle()
         Main.Message.Add(vbCrLf)
         Main.Message.Add("Data Settings:" & vbCrLf)
 

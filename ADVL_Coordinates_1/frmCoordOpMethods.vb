@@ -41,7 +41,6 @@
                                <!---->
                            </FormSettings>
 
-        'Dim SettingsFileName As String = "Formsettings_" & Main.ApplicationInfo.Name & "_" & Me.Text & ".xml"
         Dim SettingsFileName As String = "FormSettings_" & Main.ApplicationInfo.Name & "_" & Me.Text & ".xml"
         Main.Project.SaveXmlSettings(SettingsFileName, settingsData)
 
@@ -50,7 +49,6 @@
     Private Sub RestoreFormSettings()
         'Read the form settings from an XML document.
 
-        'Dim SettingsFileName As String = "Formsettings_" & Main.ApplicationInfo.Name & "_" & Me.Text & ".xml"
         Dim SettingsFileName As String = "FormSettings_" & Main.ApplicationInfo.Name & "_" & Me.Text & ".xml"
 
         If Main.Project.SettingsFileExists(SettingsFileName) Then
@@ -111,7 +109,6 @@
         CurrentRecordNo = 1
         DisplayListData(1)
 
-
     End Sub
 
     Private Sub btnExit_Click(sender As Object, e As EventArgs) Handles btnExit.Click
@@ -141,14 +138,12 @@
         'Display a record in the CoordOpMethod list.
 
         If RecordNo < 1 Then
-            Main.Message.SetWarningStyle()
-            Main.Message.Add("Cannot display Coordinate Operation Method data. Selected record number is too small." & vbCrLf)
+            Main.Message.AddWarning("Cannot display Coordinate Operation Method data. Selected record number is too small." & vbCrLf)
             Exit Sub
         End If
 
         If RecordNo > Main.CoordOpMethod.NRecords Then
-            Main.Message.SetWarningStyle()
-            Main.Message.Add("Cannot display Coordinate Operation Method data. Selected record number is too large." & vbCrLf)
+            Main.Message.AddWarning("Cannot display Coordinate Operation Method data. Selected record number is too large." & vbCrLf)
             Exit Sub
         End If
 
@@ -181,8 +176,6 @@
         Else
             DataGridView1.RowCount = 1
         End If
-
-
 
     End Sub
 
@@ -260,8 +253,7 @@
         Dim CoordOpMethodListFileName As String = Trim(txtCoordOpMethodListFileName.Text)
 
         If CoordOpMethodListFileName = "" Then
-            Main.Message.SetWarningStyle()
-            Main.Message.Add("Please enter a file name for the Coordinate Operation Method list!" & vbCrLf)
+            Main.Message.AddWarning("Please enter a file name for the Coordinate Operation Method list!" & vbCrLf)
             Exit Sub
         End If
 

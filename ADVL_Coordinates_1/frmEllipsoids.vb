@@ -41,7 +41,6 @@
                                <!---->
                            </FormSettings>
 
-        'Dim SettingsFileName As String = "Formsettings_" & Main.ApplicationInfo.Name & "_" & Me.Text & ".xml"
         Dim SettingsFileName As String = "FormSettings_" & Main.ApplicationInfo.Name & "_" & Me.Text & ".xml"
         Main.Project.SaveXmlSettings(SettingsFileName, settingsData)
 
@@ -50,7 +49,6 @@
     Private Sub RestoreFormSettings()
         'Read the form settings from an XML document.
 
-        'Dim SettingsFileName As String = "Formsettings_" & Main.ApplicationInfo.Name & "_" & Me.Text & ".xml"
         Dim SettingsFileName As String = "FormSettings_" & Main.ApplicationInfo.Name & "_" & Me.Text & ".xml"
 
         If Main.Project.SettingsFileExists(SettingsFileName) Then
@@ -95,32 +93,6 @@
     Private Sub frmEllipsoid_Load(sender As Object, e As EventArgs) Handles Me.Load
 
         RestoreFormSettings()
-
-        'If Main.Ellipsoid.ListFileName = "" Then
-        '    txtEllipsoidListFileName.Text = ""
-        '    'No Ellipsoid list has been selected.
-        'Else
-        '    If Main.Ellipsoid.NRecords = 0 Then
-        '        'Load records from the selected UnitOfMeasure file:
-        '        Dim XmlDoc As System.Xml.Linq.XDocument
-        '        Main.Project.DataLocn.ReadXmlData(Main.Ellipsoid.ListFileName, XmlDoc)
-        '        Main.Ellipsoid.LoadXml(XmlDoc)
-        '        UpdateList()
-        '        Main.Ellipsoid.AddUser()
-        '        txtNRecords.Text = Main.Ellipsoid.NRecords
-        '        txtEllipsoidListFileName.Text = Main.Ellipsoid.ListFileName
-        '        CurrentRecordNo = 1
-        '        DisplayListData(1)
-        '    Else
-        '        'Records have already been loaded.
-        '        UpdateList()
-        '        Main.Ellipsoid.AddUser()
-        '        txtNRecords.Text = Main.Ellipsoid.NRecords
-        '        txtEllipsoidListFileName.Text = Main.Ellipsoid.ListFileName
-        '        CurrentRecordNo = 1
-        '        DisplayListData(1)
-        '    End If
-        'End If
 
         Main.Ellipsoid.AddUser()
         UpdateList()
@@ -167,14 +139,12 @@
         'Display a record in the Ellipsoid list.
 
         If RecordNo < 1 Then
-            Main.Message.SetWarningStyle()
-            Main.Message.Add("Cannot display Area Of Use data. Selected record number is too small." & vbCrLf)
+            Main.Message.AddWarning("Cannot display Area Of Use data. Selected record number is too small." & vbCrLf)
             Exit Sub
         End If
 
         If RecordNo > Main.Ellipsoid.NRecords Then
-            Main.Message.SetWarningStyle()
-            Main.Message.Add("Cannot display Area Of Use data. Selected record number is too large." & vbCrLf)
+            Main.Message.AddWarning("Cannot display Area Of Use data. Selected record number is too large." & vbCrLf)
             Exit Sub
         End If
 
@@ -215,8 +185,7 @@
         Dim EllipsoidListFileName As String = Trim(txtEllipsoidListFileName.Text)
 
         If EllipsoidListFileName = "" Then
-            Main.Message.SetWarningStyle()
-            Main.Message.Add("Please enter a file name for the Ellipsoid list!" & vbCrLf)
+            Main.Message.AddWarning("Please enter a file name for the Ellipsoid list!" & vbCrLf)
             Exit Sub
         End If
 

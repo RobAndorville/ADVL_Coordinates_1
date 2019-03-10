@@ -43,7 +43,6 @@
                                <!---->
                            </FormSettings>
 
-        'Dim SettingsFileName As String = "Formsettings_" & Main.ApplicationInfo.Name & "_" & Me.Text & ".xml"
         Dim SettingsFileName As String = "FormSettings_" & Main.ApplicationInfo.Name & "_" & Me.Text & ".xml"
         Main.Project.SaveXmlSettings(SettingsFileName, settingsData)
 
@@ -52,7 +51,6 @@
     Private Sub RestoreFormSettings()
         'Read the form settings from an XML document.
 
-        'Dim SettingsFileName As String = "Formsettings_" & Main.ApplicationInfo.Name & "_" & Me.Text & ".xml"
         Dim SettingsFileName As String = "FormSettings_" & Main.ApplicationInfo.Name & "_" & Me.Text & ".xml"
 
         If Main.Project.SettingsFileExists(SettingsFileName) Then
@@ -156,14 +154,12 @@
         'Displays a record from the CRS list.
 
         If RecordNo < 1 Then
-            Main.Message.SetWarningStyle()
-            Main.Message.Add("Cannot display Coordinate Reference System data. Selected record number is too small." & vbCrLf)
+            Main.Message.AddWarning("Cannot display Coordinate Reference System data. Selected record number is too small." & vbCrLf)
             Exit Sub
         End If
 
         If RecordNo > Main.CoordRefSystem.NRecords Then
-            Main.Message.SetWarningStyle()
-            Main.Message.Add("Cannot display Coordinate Reference System data. Selected record number is too large." & vbCrLf)
+            Main.Message.AddWarning("Cannot display Coordinate Reference System data. Selected record number is too large." & vbCrLf)
             Exit Sub
         End If
 
@@ -210,8 +206,7 @@
 
         If Main.AreaOfUse.NRecords = 0 Then
             'There is no Are Of Use data.
-            Main.Message.SetWarningStyle()
-            Main.Message.Add("There is no Area Of Use data!" & vbCrLf)
+            Main.Message.AddWarning("There is no Area Of Use data!" & vbCrLf)
         Else
             Dim AreaMatch = From Area In Main.AreaOfUse.List Where Area.Author = Author And Area.Code = Code
 
@@ -233,7 +228,6 @@
                 txtIso2CharCode.Text = AreaMatch(0).IsoA2Code
                 txtIso3CharCode.Text = AreaMatch(0).IsoA3Code
                 txtIsoNumericCode.Text = AreaMatch(0).IsoNCode
-
 
 
                 'Bounding coordinates are stored as decimal degrees referenced to the WGS84 datum.
@@ -318,12 +312,10 @@
                 txtELongSeconds.Text = AngleDegMinSec.Seconds
 
                 If AreaMatch.Count > 1 Then
-                    Main.Message.SetWarningStyle()
-                    Main.Message.Add("More than one Area Of Use found! " & Str(AreaMatch.Count) & " matches found for Author = " & Author & " and Code = " & Str(Code) & vbCrLf)
+                    Main.Message.AddWarning("More than one Area Of Use found! " & Str(AreaMatch.Count) & " matches found for Author = " & Author & " and Code = " & Str(Code) & vbCrLf)
                 End If
             Else
-                Main.Message.SetWarningStyle()
-                Main.Message.Add("No Area Of Use found for Author = " & Author & " and Code = " & Str(Code) & vbCrLf)
+                Main.Message.AddWarning("No Area Of Use found for Author = " & Author & " and Code = " & Str(Code) & vbCrLf)
             End If
         End If
 
@@ -334,8 +326,7 @@
         'Display the Coordinate System parameters corresponding to the Author and Code.
         If Main.CoordinateSystem.NRecords = 0 Then
             'There is no Coordinate System data.
-            Main.Message.SetWarningStyle()
-            Main.Message.Add("There is no Coordinate System data!" & vbCrLf)
+            Main.Message.AddWarning("There is no Coordinate System data!" & vbCrLf)
         Else
             Dim CoordSysMatch = From Area In Main.CoordinateSystem.List Where Area.Author = Author And Area.Code = Code
             If CoordSysMatch.Count > 0 Then
@@ -401,8 +392,7 @@
         Dim CoordRefSystemListFileName As String = Trim(txtCRSListFileName.Text)
 
         If CoordRefSystemListFileName = "" Then
-            Main.Message.SetWarningStyle()
-            Main.Message.Add("Please enter a file name for the Coordinate Reference System list!" & vbCrLf)
+            Main.Message.AddWarning("Please enter a file name for the Coordinate Reference System list!" & vbCrLf)
             Exit Sub
         End If
 

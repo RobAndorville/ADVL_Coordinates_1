@@ -106,6 +106,7 @@ Partial Class frmAreasOfUse
         Me.btnExit = New System.Windows.Forms.Button()
         Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
         Me.btnNameFindPrev = New System.Windows.Forms.Button()
+        Me.btnCopyToClipboard = New System.Windows.Forms.Button()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
@@ -127,7 +128,7 @@ Partial Class frmAreasOfUse
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtSearchText.Location = New System.Drawing.Point(387, 13)
         Me.txtSearchText.Name = "txtSearchText"
-        Me.txtSearchText.Size = New System.Drawing.Size(352, 20)
+        Me.txtSearchText.Size = New System.Drawing.Size(324, 20)
         Me.txtSearchText.TabIndex = 197
         '
         'btnNameFind
@@ -255,7 +256,7 @@ Partial Class frmAreasOfUse
         Me.TabControl1.Location = New System.Drawing.Point(15, 95)
         Me.TabControl1.Name = "TabControl1"
         Me.TabControl1.SelectedIndex = 0
-        Me.TabControl1.Size = New System.Drawing.Size(794, 532)
+        Me.TabControl1.Size = New System.Drawing.Size(766, 532)
         Me.TabControl1.TabIndex = 183
         '
         'TabPage1
@@ -287,7 +288,7 @@ Partial Class frmAreasOfUse
         Me.TabPage1.Location = New System.Drawing.Point(4, 22)
         Me.TabPage1.Name = "TabPage1"
         Me.TabPage1.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage1.Size = New System.Drawing.Size(786, 506)
+        Me.TabPage1.Size = New System.Drawing.Size(758, 506)
         Me.TabPage1.TabIndex = 0
         Me.TabPage1.Text = "Area of Use"
         Me.TabPage1.UseVisualStyleBackColor = True
@@ -348,7 +349,7 @@ Partial Class frmAreasOfUse
         Me.txtAreaOfUse.Location = New System.Drawing.Point(78, 371)
         Me.txtAreaOfUse.Multiline = True
         Me.txtAreaOfUse.Name = "txtAreaOfUse"
-        Me.txtAreaOfUse.Size = New System.Drawing.Size(702, 129)
+        Me.txtAreaOfUse.Size = New System.Drawing.Size(674, 129)
         Me.txtAreaOfUse.TabIndex = 171
         '
         'Label25
@@ -716,7 +717,7 @@ Partial Class frmAreasOfUse
         Me.txtComments.Location = New System.Drawing.Point(97, 113)
         Me.txtComments.Multiline = True
         Me.txtComments.Name = "txtComments"
-        Me.txtComments.Size = New System.Drawing.Size(683, 53)
+        Me.txtComments.Size = New System.Drawing.Size(655, 53)
         Me.txtComments.TabIndex = 162
         '
         'Label4
@@ -734,13 +735,13 @@ Partial Class frmAreasOfUse
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtNewAliasName.Location = New System.Drawing.Point(97, 87)
         Me.txtNewAliasName.Name = "txtNewAliasName"
-        Me.txtNewAliasName.Size = New System.Drawing.Size(683, 20)
+        Me.txtNewAliasName.Size = New System.Drawing.Size(655, 20)
         Me.txtNewAliasName.TabIndex = 160
         '
         'btnDelAlias
         '
         Me.btnDelAlias.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btnDelAlias.Location = New System.Drawing.Point(741, 58)
+        Me.btnDelAlias.Location = New System.Drawing.Point(713, 58)
         Me.btnDelAlias.Name = "btnDelAlias"
         Me.btnDelAlias.Size = New System.Drawing.Size(39, 22)
         Me.btnDelAlias.TabIndex = 159
@@ -763,7 +764,7 @@ Partial Class frmAreasOfUse
         Me.cmbAliasNames.FormattingEnabled = True
         Me.cmbAliasNames.Location = New System.Drawing.Point(78, 58)
         Me.cmbAliasNames.Name = "cmbAliasNames"
-        Me.cmbAliasNames.Size = New System.Drawing.Size(657, 21)
+        Me.cmbAliasNames.Size = New System.Drawing.Size(629, 21)
         Me.cmbAliasNames.TabIndex = 157
         '
         'Label8
@@ -781,7 +782,7 @@ Partial Class frmAreasOfUse
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtAreaOfUseName.Location = New System.Drawing.Point(78, 6)
         Me.txtAreaOfUseName.Name = "txtAreaOfUseName"
-        Me.txtAreaOfUseName.Size = New System.Drawing.Size(702, 20)
+        Me.txtAreaOfUseName.Size = New System.Drawing.Size(674, 20)
         Me.txtAreaOfUseName.TabIndex = 155
         '
         'Label3
@@ -799,7 +800,7 @@ Partial Class frmAreasOfUse
         Me.TabPage2.Location = New System.Drawing.Point(4, 22)
         Me.TabPage2.Name = "TabPage2"
         Me.TabPage2.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage2.Size = New System.Drawing.Size(788, 506)
+        Me.TabPage2.Size = New System.Drawing.Size(786, 506)
         Me.TabPage2.TabIndex = 1
         Me.TabPage2.Text = "List"
         Me.TabPage2.UseVisualStyleBackColor = True
@@ -836,7 +837,7 @@ Partial Class frmAreasOfUse
         'btnFind
         '
         Me.btnFind.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btnFind.Location = New System.Drawing.Point(761, 40)
+        Me.btnFind.Location = New System.Drawing.Point(733, 40)
         Me.btnFind.Name = "btnFind"
         Me.btnFind.Size = New System.Drawing.Size(48, 22)
         Me.btnFind.TabIndex = 180
@@ -849,7 +850,7 @@ Partial Class frmAreasOfUse
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtAouListFileName.Location = New System.Drawing.Point(141, 41)
         Me.txtAouListFileName.Name = "txtAouListFileName"
-        Me.txtAouListFileName.Size = New System.Drawing.Size(614, 20)
+        Me.txtAouListFileName.Size = New System.Drawing.Size(586, 20)
         Me.txtAouListFileName.TabIndex = 179
         '
         'btnNew
@@ -873,7 +874,7 @@ Partial Class frmAreasOfUse
         'btnExit
         '
         Me.btnExit.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btnExit.Location = New System.Drawing.Point(745, 12)
+        Me.btnExit.Location = New System.Drawing.Point(717, 12)
         Me.btnExit.Name = "btnExit"
         Me.btnExit.Size = New System.Drawing.Size(64, 22)
         Me.btnExit.TabIndex = 175
@@ -893,11 +894,22 @@ Partial Class frmAreasOfUse
         Me.btnNameFindPrev.Text = "Prev"
         Me.btnNameFindPrev.UseVisualStyleBackColor = True
         '
+        'btnCopyToClipboard
+        '
+        Me.btnCopyToClipboard.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btnCopyToClipboard.Location = New System.Drawing.Point(670, 67)
+        Me.btnCopyToClipboard.Name = "btnCopyToClipboard"
+        Me.btnCopyToClipboard.Size = New System.Drawing.Size(111, 22)
+        Me.btnCopyToClipboard.TabIndex = 200
+        Me.btnCopyToClipboard.Text = "Copy to Clipboard"
+        Me.btnCopyToClipboard.UseVisualStyleBackColor = True
+        '
         'frmAreasOfUse
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(821, 639)
+        Me.ClientSize = New System.Drawing.Size(793, 639)
+        Me.Controls.Add(Me.btnCopyToClipboard)
         Me.Controls.Add(Me.btnNameFindPrev)
         Me.Controls.Add(Me.btnNameFindNext)
         Me.Controls.Add(Me.txtSearchText)
@@ -1018,4 +1030,5 @@ Partial Class frmAreasOfUse
     Friend WithEvents btnExit As System.Windows.Forms.Button
     Friend WithEvents OpenFileDialog1 As System.Windows.Forms.OpenFileDialog
     Friend WithEvents btnNameFindPrev As System.Windows.Forms.Button
+    Friend WithEvents btnCopyToClipboard As Button
 End Class

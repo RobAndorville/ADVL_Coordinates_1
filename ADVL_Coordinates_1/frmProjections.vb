@@ -43,7 +43,6 @@
                                <!---->
                            </FormSettings>
 
-        'Dim SettingsFileName As String = "Formsettings_" & Main.ApplicationInfo.Name & "_" & Me.Text & ".xml"
         Dim SettingsFileName As String = "FormSettings_" & Main.ApplicationInfo.Name & "_" & Me.Text & ".xml"
         Main.Project.SaveXmlSettings(SettingsFileName, settingsData)
 
@@ -52,7 +51,6 @@
     Private Sub RestoreFormSettings()
         'Read the form settings from an XML document.
 
-        'Dim SettingsFileName As String = "Formsettings_" & Main.ApplicationInfo.Name & "_" & Me.Text & ".xml"
         Dim SettingsFileName As String = "FormSettings_" & Main.ApplicationInfo.Name & "_" & Me.Text & ".xml"
 
         If Main.Project.SettingsFileExists(SettingsFileName) Then
@@ -138,13 +136,11 @@
         Main.Projection.AddUser()
         Main.CoordOpMethod.AddUser()
 
-
         UpdateList()
         txtNRecords.Text = Main.Projection.NRecords
         txtProjectionListFileName.Text = Main.Projection.ListFileName
         CurrentRecordNo = 1
         DisplayListData(1)
-
 
     End Sub
 
@@ -185,14 +181,12 @@
         'Display a record in the Projection list.
 
         If RecordNo < 1 Then
-            Main.Message.SetWarningStyle()
-            Main.Message.Add("Cannot display Projection data. Selected record number is too small." & vbCrLf)
+            Main.Message.AddWarning("Cannot display Projection data. Selected record number is too small." & vbCrLf)
             Exit Sub
         End If
 
         If RecordNo > Main.Projection.NRecords Then
-            Main.Message.SetWarningStyle()
-            Main.Message.Add("Cannot display Projection data. Selected record number is too large." & vbCrLf)
+            Main.Message.AddWarning("Cannot display Projection data. Selected record number is too large." & vbCrLf)
             Exit Sub
         End If
 
@@ -363,18 +357,10 @@
                 txtELongSeconds.Text = AngleDegMinSec.Seconds
 
                 If AreaMatch.Count > 1 Then
-                    'Main.MessageStyleWarningSet()
-                    'Main.MessageAdd("More than one Area Of Use found! " & Str(AreaMatch.Count) & " matches found for Author = " & Author & " and Code = " & Str(Code) & vbCrLf)
-                    'Main.MessageStyleNormalSet()
-                    Main.Message.SetWarningStyle()
-                    Main.Message.Add("More than one Area Of Use found! " & Str(AreaMatch.Count) & " matches found for Author = " & Author & " and Code = " & Str(Code) & vbCrLf)
+                    Main.Message.AddWarning("More than one Area Of Use found! " & Str(AreaMatch.Count) & " matches found for Author = " & Author & " and Code = " & Str(Code) & vbCrLf)
                 End If
             Else
-                'Main.MessageStyleWarningSet()
-                'Main.MessageAdd("No Area Of Use found for Author = " & Author & " and Code = " & Str(Code) & vbCrLf)
-                'Main.MessageStyleNormalSet()
-                Main.Message.SetWarningStyle()
-                Main.Message.Add("No Area Of Use found for Author = " & Author & " and Code = " & Str(Code) & vbCrLf)
+                Main.Message.AddWarning("No Area Of Use found for Author = " & Author & " and Code = " & Str(Code) & vbCrLf)
             End If
         End If
     End Sub
@@ -457,8 +443,7 @@
         Dim ProjectionListFileName As String = Trim(txtProjectionListFileName.Text)
 
         If ProjectionListFileName = "" Then
-            Main.Message.SetWarningStyle()
-            Main.Message.Add("Please enter a file name for the Projection list!" & vbCrLf)
+            Main.Message.AddWarning("Please enter a file name for the Projection list!" & vbCrLf)
             Exit Sub
         End If
 
@@ -479,7 +464,6 @@
     Private Sub btnFirst_Click(sender As Object, e As EventArgs) Handles btnFirst.Click
         'Move to the first record in the Projection list:
         CurrentRecordNo = 1
-        'DisplayListData(CurrentRecordNo)
     End Sub
 
     Private Sub btnPrev_Click(sender As Object, e As EventArgs) Handles btnPrev.Click
@@ -489,7 +473,6 @@
             Exit Sub
         End If
         CurrentRecordNo = CurrentRecordNo - 1
-        'DisplayListData(CurrentRecordNo)
     End Sub
 
     Private Sub btnNext_Click(sender As Object, e As EventArgs) Handles btnNext.Click
@@ -499,13 +482,11 @@
             Exit Sub
         End If
         CurrentRecordNo = CurrentRecordNo + 1
-        'DisplayListData(CurrentRecordNo) 'This is called when the CurrentRecordNo is changed
     End Sub
 
     Private Sub btnLast_Click(sender As Object, e As EventArgs) Handles btnLast.Click
         'Move to the last record in the Area of Use list:
         CurrentRecordNo = Main.Projection.NRecords
-        'DisplayListData(CurrentRecordNo)
     End Sub
 
     Private Sub txtRecordNo_TextChanged(sender As Object, e As EventArgs) Handles txtRecordNo.TextChanged
@@ -533,7 +514,6 @@
             Dim Index As Integer
             Index = ListBox1.SelectedIndex + 1
             CurrentRecordNo = Index
-            'DisplayListData(Index)
         End If
 
     End Sub
@@ -651,28 +631,10 @@
 
     End Sub
 
-    Private Sub DataGridView2_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridView2.CellContentClick
-
-    End Sub
-
-
 #End Region 'Form Methods ---------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 #Region " Form Events - Events that can be triggered by this form." '--------------------------------------------------------------------------------------------------------------------------
 #End Region 'Form Events ----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

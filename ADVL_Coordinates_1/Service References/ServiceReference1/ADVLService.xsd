@@ -1,11 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:import schemaLocation="http://localhost:8080/hello?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/ADVL_ApplicationNetwork" />
+  <xs:import schemaLocation="http://localhost:8733/ADVLService?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/ADVL_Utilities_Library_1" />
   <xs:element name="Connect">
     <xs:complexType>
       <xs:sequence>
+        <xs:element minOccurs="0" name="appNetName" nillable="true" type="xs:string" />
         <xs:element minOccurs="0" name="appName" nillable="true" type="xs:string" />
-        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/ADVL_ApplicationNetwork" minOccurs="0" name="appType" type="q1:clsConnection.AppTypes" />
+        <xs:element minOccurs="0" name="connectionName" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="projectName" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="projectDescription" nillable="true" type="xs:string" />
+        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/ADVL_Utilities_Library_1" minOccurs="0" name="projectType" type="q1:Project.Types" />
+        <xs:element minOccurs="0" name="projectPath" nillable="true" type="xs:string" />
         <xs:element minOccurs="0" name="getAllWarnings" type="xs:boolean" />
         <xs:element minOccurs="0" name="getAllMessages" type="xs:boolean" />
       </xs:sequence>
@@ -14,14 +19,30 @@
   <xs:element name="ConnectResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="ConnectResult" type="xs:boolean" />
+        <xs:element minOccurs="0" name="ConnectResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ConnectionAvailable">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="AppNetName" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="ConnName" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ConnectionAvailableResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="ConnectionAvailableResult" type="xs:boolean" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="SendMessage">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="appName" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="appNetName" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="connName" nillable="true" type="xs:string" />
         <xs:element minOccurs="0" name="message" nillable="true" type="xs:string" />
       </xs:sequence>
     </xs:complexType>
@@ -66,10 +87,43 @@
       <xs:sequence />
     </xs:complexType>
   </xs:element>
-  <xs:element name="Disconnect">
+  <xs:element name="GetApplicationList">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetApplicationListResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetApplicationInfo">
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="appName" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetApplicationInfoResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetMessageServiceAppInfo">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetMessageServiceAppInfoResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Disconnect">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="appNetName" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="connName" nillable="true" type="xs:string" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -89,6 +143,20 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="IsAliveResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AppNetNameUsed">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="AppNetName" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AppNetNameUsedResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="AppNetNameUsedResult" type="xs:boolean" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

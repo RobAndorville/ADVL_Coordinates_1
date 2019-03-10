@@ -43,7 +43,6 @@
                                <!---->
                            </FormSettings>
 
-        'Dim SettingsFileName As String = "Formsettings_" & Main.ApplicationInfo.Name & "_" & Me.Text & ".xml"
         Dim SettingsFileName As String = "FormSettings_" & Main.ApplicationInfo.Name & "_" & Me.Text & ".xml"
         Main.Project.SaveXmlSettings(SettingsFileName, settingsData)
 
@@ -52,7 +51,6 @@
     Private Sub RestoreFormSettings()
         'Read the form settings from an XML document.
 
-        'Dim SettingsFileName As String = "Formsettings_" & Main.ApplicationInfo.Name & "_" & Me.Text & ".xml"
         Dim SettingsFileName As String = "FormSettings_" & Main.ApplicationInfo.Name & "_" & Me.Text & ".xml"
 
         If Main.Project.SettingsFileExists(SettingsFileName) Then
@@ -161,14 +159,12 @@
         'Display a record in the Vertical Datum list.
 
         If RecordNo < 1 Then
-            Main.Message.SetWarningStyle()
-            Main.Message.Add("Cannot display Vertical Datum data. Selected record number is too small." & vbCrLf)
+            Main.Message.AddWarning("Cannot display Vertical Datum data. Selected record number is too small." & vbCrLf)
             Exit Sub
         End If
 
         If RecordNo > Main.VerticalDatum.NRecords Then
-            Main.Message.SetWarningStyle()
-            Main.Message.Add("Cannot display Vertical Datum data. Selected record number is too large." & vbCrLf)
+            Main.Message.AddWarning("Cannot display Vertical Datum data. Selected record number is too large." & vbCrLf)
             Exit Sub
         End If
 
@@ -310,8 +306,7 @@
         Dim DatumListFileName As String = Trim(txtDatumListFileName.Text)
 
         If DatumListFileName = "" Then
-            Main.Message.SetWarningStyle()
-            Main.Message.Add("Please enter a file name for the Vertical Datum list!" & vbCrLf)
+            Main.Message.AddWarning("Please enter a file name for the Vertical Datum list!" & vbCrLf)
             Exit Sub
         End If
 
@@ -490,9 +485,5 @@
 
 #Region " Form Events - Events that can be triggered by this form." '--------------------------------------------------------------------------------------------------------------------------
 #End Region 'Form Events ----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-
-
-   
 
 End Class

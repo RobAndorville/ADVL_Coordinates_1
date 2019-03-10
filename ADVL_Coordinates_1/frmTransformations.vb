@@ -42,7 +42,6 @@
                                <!---->
                            </FormSettings>
 
-        'Dim SettingsFileName As String = "Formsettings_" & Main.ApplicationInfo.Name & "_" & Me.Text & ".xml"
         Dim SettingsFileName As String = "FormSettings_" & Main.ApplicationInfo.Name & "_" & Me.Text & ".xml"
         Main.Project.SaveXmlSettings(SettingsFileName, settingsData)
 
@@ -51,7 +50,6 @@
     Private Sub RestoreFormSettings()
         'Read the form settings from an XML document.
 
-        'Dim SettingsFileName As String = "Formsettings_" & Main.ApplicationInfo.Name & "_" & Me.Text & ".xml"
         Dim SettingsFileName As String = "FormSettings_" & Main.ApplicationInfo.Name & "_" & Me.Text & ".xml"
 
         If Main.Project.SettingsFileExists(SettingsFileName) Then
@@ -132,7 +130,6 @@
             End If
         End If
 
-
     End Sub
 
 
@@ -172,14 +169,12 @@
         'Display a record in the Transformation list.
 
         If RecordNo < 1 Then
-            Main.Message.SetWarningStyle()
-            Main.Message.Add("Cannot display Transformation data. Selected record number is too small." & vbCrLf)
+            Main.Message.AddWarning("Cannot display Transformation data. Selected record number is too small." & vbCrLf)
             Exit Sub
         End If
 
         If RecordNo > Main.Transformation.NRecords Then
-            Main.Message.SetWarningStyle()
-            Main.Message.Add("Cannot display Transformation data. Selected record number is too large." & vbCrLf)
+            Main.Message.AddWarning("Cannot display Transformation data. Selected record number is too large." & vbCrLf)
             Exit Sub
         End If
 
@@ -192,17 +187,6 @@
         txtVersion.Text = Main.Transformation.List(RecordNo - 1).Version
         txtVariant.Text = Main.Transformation.List(RecordNo - 1).VariantNo
         txtAccuracy.Text = Main.Transformation.List(RecordNo - 1).Accuracy
-
-        ''Update the list of alias names:
-        'cmbAliasNames.Items.Clear()
-        'cmbAliasNames.Text = ""
-        'For Each item As String In Main.Projection.List(RecordNo - 1).AliasName
-        '    cmbAliasNames.Items.Add(item)
-        'Next
-
-        'If cmbAliasNames.Items.Count > 0 Then
-        '    cmbAliasNames.SelectedIndex = 0 'Select first item
-        'End If
 
         txtComments.Text = Main.Transformation.List(RecordNo - 1).Comments
 
@@ -226,7 +210,6 @@
                 DataGridView1.Rows(RowNo).Cells(1).Value = Main.Transformation.List(RecordNo - 1).ParameterValue(RowNo).Value
                 DataGridView1.Rows(RowNo).Cells(2).Value = Main.Transformation.List(RecordNo - 1).ParameterValue(RowNo).Unit.Name
             Next
-            'DataGridView1.AutoResizeColumns()
             DataGridView1.Columns(0).Width = 280
             DataGridView1.Columns(1).Width = 120
             DataGridView1.Columns(2).Width = 200
@@ -245,8 +228,7 @@
         Dim TransformationListFileName As String = Trim(txtTransformationListFileName.Text)
 
         If TransformationListFileName = "" Then
-            Main.Message.SetWarningStyle()
-            Main.Message.Add("Please enter a file name for the Transformation list!" & vbCrLf)
+            Main.Message.AddWarning("Please enter a file name for the Transformation list!" & vbCrLf)
             Exit Sub
         End If
 
@@ -419,15 +401,6 @@
 #Region " Form Events - Events that can be triggered by this form." '--------------------------------------------------------------------------------------------------------------------------
 #End Region 'Form Events ----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
- 
-   
-   
-   
-   
-   
-  
-  
- 
-  
-   
+
+
 End Class

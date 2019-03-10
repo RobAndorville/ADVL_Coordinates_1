@@ -43,7 +43,6 @@
 
         'Add code to include other settings to save after the comment line <!---->
 
-        'Dim SettingsFileName As String = "Formsettings_" & Main.ApplicationInfo.Name & "_" & Me.Text & ".xml"
         Dim SettingsFileName As String = "FormSettings_" & Main.ApplicationInfo.Name & "_" & Me.Text & ".xml"
         Main.Project.SaveXmlSettings(SettingsFileName, settingsData)
     End Sub
@@ -51,7 +50,6 @@
     Private Sub RestoreFormSettings()
         'Read the form settings from an XML document.
 
-        'Dim SettingsFileName As String = "Formsettings_" & Main.ApplicationInfo.Name & "_" & Me.Text & ".xml"
         Dim SettingsFileName As String = "FormSettings_" & Main.ApplicationInfo.Name & "_" & Me.Text & ".xml"
 
         If Main.Project.SettingsFileExists(SettingsFileName) Then
@@ -154,8 +152,7 @@
         Dim GeocentricCRSListFileName As String = Trim(txtGeocentricCRSListFileName.Text)
 
         If GeocentricCRSListFileName = "" Then
-            Main.Message.SetWarningStyle()
-            Main.Message.Add("Please enter a file name for the Geocentric CRS list!" & vbCrLf)
+            Main.Message.AddWarning("Please enter a file name for the Geocentric CRS list!" & vbCrLf)
             Exit Sub
         End If
 
@@ -193,15 +190,13 @@
         'Display a record in the Geocentric CRS list.
 
         If RecordNo < 1 Then
-            Main.Message.SetWarningStyle()
-            Main.Message.Add("Cannot display CRS data. Selected record number is too small." & vbCrLf)
+            Main.Message.AddWarning("Cannot display CRS data. Selected record number is too small." & vbCrLf)
             Exit Sub
         End If
 
         If RecordNo > Main.GeocentricCRS.NRecords Then
-            Main.Message.SetWarningStyle()
-            Main.Message.Add("Cannot display CRS data. Selected record number is too large." & vbCrLf)
-            Main.Message.Add("RecordNo = " & RecordNo & "   Main.GeocentricCRS.NRecords = " & Main.GeocentricCRS.NRecords & vbCrLf)
+            Main.Message.AddWarning("Cannot display CRS data. Selected record number is too large." & vbCrLf)
+            Main.Message.AddWarning("RecordNo = " & RecordNo & "   Main.GeocentricCRS.NRecords = " & Main.GeocentricCRS.NRecords & vbCrLf)
             Exit Sub
         End If
 
@@ -246,10 +241,7 @@
 
         If Main.AreaOfUse.List.Count = 0 Then
             'There is no Are Of Use data.
-            'Main.MessageStyleWarningSet()
-            'Main.MessageAdd("There is no Area Of Use data!" & vbCrLf)
-            Main.Message.SetWarningStyle()
-            Main.Message.Add("There is no Area Of Use data!" & vbCrLf)
+            Main.Message.AddWarning("There is no Area Of Use data!" & vbCrLf)
         Else
             Dim AreaMatch = From Area In Main.AreaOfUse.List Where Area.Author = Author And Area.Code = Code
 
@@ -354,16 +346,10 @@
                 txtELongSeconds.Text = AngleDMS.Seconds
 
                 If AreaMatch.Count > 1 Then
-                    'Main.MessageStyleWarningSet()
-                    'Main.MessageAdd("More than one Area Of Use found! " & Str(AreaMatch.Count) & " matches found for Author = " & Author & " and Code = " & Str(Code) & vbCrLf)
-                    Main.Message.SetWarningStyle()
-                    Main.Message.Add("More than one Area Of Use found! " & Str(AreaMatch.Count) & " matches found for Author = " & Author & " and Code = " & Str(Code) & vbCrLf)
+                    Main.Message.AddWarning("More than one Area Of Use found! " & Str(AreaMatch.Count) & " matches found for Author = " & Author & " and Code = " & Str(Code) & vbCrLf)
                 End If
             Else
-                'Main.MessageStyleWarningSet()
-                'Main.MessageAdd("No Area Of Use found for Author = " & Author & " and Code = " & Str(Code) & vbCrLf)
-                Main.Message.SetWarningStyle()
-                Main.Message.Add("No Area Of Use found for Author = " & Author & " and Code = " & Str(Code) & vbCrLf)
+                Main.Message.AddWarning("No Area Of Use found for Author = " & Author & " and Code = " & Str(Code) & vbCrLf)
             End If
         End If
     End Sub
@@ -373,8 +359,7 @@
 
         If Main.CoordinateSystem.List.Count = 0 Then
             'There is no Coordinate System data.
-            Main.Message.SetWarningStyle()
-            Main.Message.Add("There is no Coordinate System data!" & vbCrLf)
+            Main.Message.AddWarning("There is no Coordinate System data!" & vbCrLf)
         Else
             Dim CoordSysMatch = From CoordSys In Main.CoordinateSystem.List Where CoordSys.Author = Author And CoordSys.Code = Code
 
@@ -447,12 +432,10 @@
                 End If
 
                 If CoordSysMatch.Count > 1 Then
-                    Main.Message.SetWarningStyle()
-                    Main.Message.Add("More than one Coordinate System found! " & Str(CoordSysMatch.Count) & " matches found for Author = " & Author & " and Code = " & Str(Code) & vbCrLf)
+                    Main.Message.AddWarning("More than one Coordinate System found! " & Str(CoordSysMatch.Count) & " matches found for Author = " & Author & " and Code = " & Str(Code) & vbCrLf)
                 End If
             Else
-                Main.Message.SetWarningStyle()
-                Main.Message.Add("No Coordinate System found for Author = " & Author & " and Code = " & Str(Code) & vbCrLf)
+                Main.Message.AddWarning("No Coordinate System found for Author = " & Author & " and Code = " & Str(Code) & vbCrLf)
             End If
         End If
 
@@ -462,8 +445,7 @@
         'Display the Datum parameters corresponding to the Author and Code.
 
         If Main.Datum.List.Count = 0 Then
-            Main.Message.SetWarningStyle()
-            Main.Message.Add("There is no Datum data!" & vbCrLf)
+            Main.Message.AddWarning("There is no Datum data!" & vbCrLf)
         Else
             Dim DatumMatch = From Datum In Main.Datum.List Where Datum.Author = Author And Datum.Code = Code
 
@@ -499,12 +481,10 @@
 
 
                 If DatumMatch.Count > 1 Then
-                    Main.Message.SetWarningStyle()
-                    Main.Message.Add("More than one Datum found! " & Str(DatumMatch.Count) & " matches found for Author = " & Author & " and Code = " & Str(Code) & vbCrLf)
+                    Main.Message.AddWarning("More than one Datum found! " & Str(DatumMatch.Count) & " matches found for Author = " & Author & " and Code = " & Str(Code) & vbCrLf)
                 End If
             Else
-                Main.Message.SetWarningStyle()
-                Main.Message.Add("No Datum found for Author = " & Author & " and Code = " & Str(Code) & vbCrLf)
+                Main.Message.AddWarning("No Datum found for Author = " & Author & " and Code = " & Str(Code) & vbCrLf)
             End If
         End If
     End Sub
@@ -638,7 +618,6 @@
                 'Select an Area of Use list file from the project archive:
 
                 'Show the zip archive file selection form:
-                'Dim Zip As New ADVL_Utilities_Library.ZipComp
                 Zip = New ADVL_Utilities_Library_1.ZipComp
                 Zip.ArchivePath = Main.Project.DataLocn.Path
                 Zip.SelectFile()
@@ -676,20 +655,6 @@
 #Region " Form Events - Events that can be triggered by this form." '--------------------------------------------------------------------------------------------------------------------------
 #End Region 'Form Events ----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-  
- 
-  
-   
-  
-   
-  
-  
-  
-  
-  
-   
- 
-  
-   
-   
+
+
 End Class

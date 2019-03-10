@@ -13,7 +13,7 @@
     <MyType>WindowsForms</MyType>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <IsWebBootstrapper>false</IsWebBootstrapper>
-    <PublishUrl>D:\My Documents\publish\LocalHost\ADVL_Coordinates\</PublishUrl>
+    <PublishUrl>D:\My Documents\publish\ADVL_Coordinates_1\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
     <UpdateEnabled>false</UpdateEnabled>
@@ -23,8 +23,8 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <ApplicationRevision>8</ApplicationRevision>
-    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <ApplicationRevision>18</ApplicationRevision>
+    <ApplicationVersion>1.1.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
@@ -62,10 +62,11 @@
     <OptionInfer>On</OptionInfer>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>F34DE6836A50409B3EC8345B1556AD2A92D51FFE</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>4C8C6E41FCE8336E5FCEF2A6E92A73D4A6A4E31F</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestKeyFile>ADVL_Coordinates_TemporaryKey.pfx</ManifestKeyFile>
+    <ManifestKeyFile>
+    </ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
     <GenerateManifests>true</GenerateManifests>
@@ -193,6 +194,12 @@
     <Compile Include="frmGeographic3DCRS.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="frmHtmlDisplay.Designer.vb">
+      <DependentUpon>frmHtmlDisplay.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmHtmlDisplay.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="frmPrimeMeridians.Designer.vb">
       <DependentUpon>frmPrimeMeridians.vb</DependentUpon>
     </Compile>
@@ -241,6 +248,18 @@
     <Compile Include="frmVerticalDatums.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="frmWebPage.Designer.vb">
+      <DependentUpon>frmWebPage.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmWebPage.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmWebPageList.Designer.vb">
+      <DependentUpon>frmWebPageList.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmWebPageList.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Main.vb">
       <SubType>Form</SubType>
     </Compile>
@@ -273,6 +292,7 @@
   <ItemGroup>
     <EmbeddedResource Include="frmAreasOfUse.resx">
       <DependentUpon>frmAreasOfUse.vb</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="frmCompoundCRS.resx">
       <DependentUpon>frmCompoundCRS.vb</DependentUpon>
@@ -316,6 +336,9 @@
     <EmbeddedResource Include="frmGeographic3DCRS.resx">
       <DependentUpon>frmGeographic3DCRS.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmHtmlDisplay.resx">
+      <DependentUpon>frmHtmlDisplay.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmPrimeMeridians.resx">
       <DependentUpon>frmPrimeMeridians.vb</DependentUpon>
     </EmbeddedResource>
@@ -339,6 +362,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmVerticalDatums.resx">
       <DependentUpon>frmVerticalDatums.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmWebPage.resx">
+      <DependentUpon>frmWebPage.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmWebPageList.resx">
+      <DependentUpon>frmWebPageList.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Main.resx">
       <DependentUpon>Main.vb</DependentUpon>
@@ -364,13 +393,13 @@
     <None Include="App.config">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\ServiceReference1\hello.xsd">
+    <None Include="Service References\ServiceReference1\ADVLService.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\ServiceReference1\hello1.xsd">
+    <None Include="Service References\ServiceReference1\ADVLService1.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\ServiceReference1\hello2.xsd">
+    <None Include="Service References\ServiceReference1\ADVLService2.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\ServiceReference1\MsgService.wsdl" />
@@ -396,26 +425,15 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <WCFMetadataStorage Include="Service References\ServiceReference1\" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\ServiceReference1\hello.disco" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\ServiceReference1\configuration91.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\ServiceReference1\configuration.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
+    <Content Include="ADVL_Coordinates_Icon.ico" />
+    <Content Include="ADVL_Coordinates_Icon2.ico" />
     <None Include="Service References\ServiceReference1\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.vb</LastGenOutput>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="ADVL_Coordinates_Icon.ico" />
-    <Content Include="ADVL_Coordinates_Icon2.ico" />
+    <None Include="Service References\ServiceReference1\configuration.svcinfo" />
+    <None Include="Service References\ServiceReference1\configuration91.svcinfo" />
+    <None Include="Service References\ServiceReference1\ADVLService.disco" />
     <None Include="Resources\Andorville 16May16 TM Crop Grey.bmp" />
     <None Include="Resources\Andorville 16May16 TM Crop.bmp" />
   </ItemGroup>
@@ -428,6 +446,9 @@
       <Project>{8f783c66-3ec9-42a3-b24e-c39c800e3c2e}</Project>
       <Name>ADVL_Utilities_Library_1</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\ServiceReference1\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

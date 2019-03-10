@@ -41,7 +41,6 @@
                                <!---->
                            </FormSettings>
 
-        'Dim SettingsFileName As String = "Formsettings_" & Main.ApplicationInfo.Name & "_" & Me.Text & ".xml"
         Dim SettingsFileName As String = "FormSettings_" & Main.ApplicationInfo.Name & "_" & Me.Text & ".xml"
         Main.Project.SaveXmlSettings(SettingsFileName, settingsData)
 
@@ -50,7 +49,6 @@
     Private Sub RestoreFormSettings()
         'Read the form settings from an XML document.
 
-        'Dim SettingsFileName As String = "Formsettings_" & Main.ApplicationInfo.Name & "_" & Me.Text & ".xml"
         Dim SettingsFileName As String = "FormSettings_" & Main.ApplicationInfo.Name & "_" & Me.Text & ".xml"
 
         If Main.Project.SettingsFileExists(SettingsFileName) Then
@@ -175,14 +173,12 @@
         'Display a record in the GeodeticDatum list.
 
         If RecordNo < 1 Then
-            Main.Message.SetWarningStyle()
-            Main.Message.Add("Cannot display Geodetic Datum data. Selected record number is too small." & vbCrLf)
+            Main.Message.AddWarning("Cannot display Geodetic Datum data. Selected record number is too small." & vbCrLf)
             Exit Sub
         End If
 
         If RecordNo > Main.GeodeticDatum.NRecords Then
-            Main.Message.SetWarningStyle()
-            Main.Message.Add("Cannot display Geodetic Datum data. Selected record number is too large." & vbCrLf)
+            Main.Message.AddWarning("Cannot display Geodetic Datum data. Selected record number is too large." & vbCrLf)
             Exit Sub
         End If
 
@@ -217,7 +213,6 @@
             'Update the list of alias names:
             cmbEllipsoidAliasNames.Items.Clear()
             cmbEllipsoidAliasNames.Text = ""
-            'For Each item As String In Main.GeodeticDatum.List(RecordNo - 1).Ellipsoid.AliasName
             For Each item As String In EllipsoidMatch(0).AliasName
                 cmbEllipsoidAliasNames.Items.Add(item)
             Next
@@ -226,23 +221,17 @@
                 cmbEllipsoidAliasNames.SelectedIndex = 0 'Select first item
             End If
 
-            'txtEllipsoidComments.Text = Main.GeodeticDatum.List(RecordNo - 1).Ellipsoid.Comments
             txtEllipsoidComments.Text = EllipsoidMatch(0).Comments
 
-            'If Main.GeodeticDatum.List(RecordNo - 1).Ellipsoid.EllipsoidParameters = ADVL_Coordinates_Library.Coordinates.Ellipsoid.DefiningParameters.SemiMajorAxis_InverseFlattening Then
             If EllipsoidMatch(0).EllipsoidParameters = ADVL_Coordinates_Library_1.Ellipsoid.DefiningParameters.SemiMajorAxis_InverseFlattening Then
                 rbSemiMajorAndInverseFlat.Checked = True
             Else
                 rbSemiMajorAndSemiMinor.Checked = True
             End If
 
-            'txtSemiMajorAxis.Text = Main.GeodeticDatum.List(RecordNo - 1).Ellipsoid.SemiMajorAxis
             txtSemiMajorAxis.Text = EllipsoidMatch(0).SemiMajorAxis
-            'txtInverseFlattening.Text = Main.GeodeticDatum.List(RecordNo - 1).Ellipsoid.InverseFlattening
             txtInverseFlattening.Text = EllipsoidMatch(0).InverseFlattening
-            'txtSemiMinorAxis.Text = Main.GeodeticDatum.List(RecordNo - 1).Ellipsoid.SemiMinorAxis
             txtSemiMinorAxis.Text = EllipsoidMatch(0).SemiMinorAxis
-            'txtAxisUnits.Text = Main.GeodeticDatum.List(RecordNo - 1).Ellipsoid.Unit.Name
             txtAxisUnits.Text = EllipsoidMatch(0).Unit.Name
         Else
 
@@ -272,8 +261,6 @@
                 cmbPrimeMeridianAliasNames.SelectedIndex = 0 'Select first item
             End If
 
-           
-            'txtPrimeMeridianComments.Text = Main.GeodeticDatum.List(RecordNo - 1).PrimeMeridian.Comments
             txtPrimeMeridianComments.Text = PmMatch(0).Comments
             'Select Case Main.GeodeticDatum.List(RecordNo - 1).PrimeMeridian.LongitudeUOM
             Select Case PmMatch(0).LongitudeUOM
@@ -286,12 +273,10 @@
                             txtPmSeconds.Enabled = False
                             cmbPmWE.Enabled = False
                             txtPmDecimalDegrees.Enabled = True
-                            'txtPmDecimalDegrees.Text = Main.GeodeticDatum.List(RecordNo - 1).PrimeMeridian.LongitudeFromGreenwich
                             txtPmDecimalDegrees.Text = PmMatch(0).LongitudeFromGreenwich
                             txtPmSexagesimalDegrees.Enabled = False
                             txtPmGrads.Enabled = False
                             txtPmRadians.Enabled = False
-                            'AngleConvert.DecimalDegrees = Main.GeodeticDatum.List(RecordNo - 1).PrimeMeridian.LongitudeFromGreenwich
                             AngleConvert.DecimalDegrees = PmMatch(0).LongitudeFromGreenwich
                             AngleConvert.ConvertDecimalDegreeToGradian()
                             txtPmGrads.Text = AngleConvert.Gradians
@@ -331,10 +316,8 @@
                             txtPmDecimalDegrees.Enabled = False
                             txtPmSexagesimalDegrees.Enabled = False
                             txtPmGrads.Enabled = True
-                            'txtPmGrads.Text = Main.GeodeticDatum.List(RecordNo - 1).PrimeMeridian.LongitudeFromGreenwich
                             txtPmGrads.Text = PmMatch(0).LongitudeFromGreenwich
                             txtPmRadians.Enabled = False
-                            'AngleConvert.Gradians = Main.GeodeticDatum.List(RecordNo - 1).PrimeMeridian.LongitudeFromGreenwich
                             AngleConvert.Gradians = PmMatch(0).LongitudeFromGreenwich
                             AngleConvert.ConvertGradianToDecimalDegree()
                             txtPmDecimalDegrees.Text = AngleConvert.DecimalDegrees
@@ -373,11 +356,9 @@
                             cmbPmWE.Enabled = False
                             txtPmDecimalDegrees.Enabled = False
                             txtPmSexagesimalDegrees.Enabled = True
-                            'txtPmSexagesimalDegrees.Text = Main.GeodeticDatum.List(RecordNo - 1).PrimeMeridian.LongitudeFromGreenwich
                             txtPmSexagesimalDegrees.Text = PmMatch(0).LongitudeFromGreenwich
                             txtPmGrads.Enabled = False
                             txtPmRadians.Enabled = False
-                            'AngleConvert.SexagesimalDegrees = Main.GeodeticDatum.List(RecordNo - 1).PrimeMeridian.LongitudeFromGreenwich
                             AngleConvert.SexagesimalDegrees = PmMatch(0).LongitudeFromGreenwich
                             AngleConvert.ConvertSexagesimalDegreeToDecimalDegree()
                             txtPmDecimalDegrees.Text = AngleConvert.DecimalDegrees
@@ -433,12 +414,10 @@
         Else
 
         End If
-      
+
 
         'Display area of use data: ------------------------------------------------------------------------------------------------------------
-        'txtAreaOfUseName.Text = Main.GeodeticDatum.List(RecordNo - 1).AreaOfUse.Name
         txtAreaOfUseName.Text = Main.GeodeticDatum.List(RecordNo - 1).Area.Name
-        'txtAouCode.Text = Main.GeodeticDatum.List(RecordNo - 1).AreaOfUse.Code
         txtAouCode.Text = Main.GeodeticDatum.List(RecordNo - 1).Area.Code
         txtAreaAuthor.Text = Main.GeodeticDatum.List(RecordNo - 1).Area.Author
 
@@ -448,7 +427,6 @@
             'Update the list of alias names:
             cmbAouAliasNames.Items.Clear()
             cmbAouAliasNames.Text = ""
-            'For Each item As String In Main.GeodeticDatum.List(RecordNo - 1).AreaOfUse.AliasName
             For Each item As String In AreaMatch(0).AliasName
                 cmbAouAliasNames.Items.Add(item)
             Next
@@ -457,22 +435,15 @@
                 cmbAouAliasNames.SelectedIndex = 0 'Select first item
             End If
 
-            'txtAouComments.Text = Main.GeodeticDatum.List(RecordNo - 1).AreaOfUse.Comments
             txtAouComments.Text = AreaMatch(0).Comments
-            'txtIso2CharCode.Text = Main.GeodeticDatum.List(RecordNo - 1).AreaOfUse.IsoA2Code
             txtIso2CharCode.Text = AreaMatch(0).IsoA2Code
-            'txtIso3CharCode.Text = Main.GeodeticDatum.List(RecordNo - 1).AreaOfUse.IsoA3Code
             txtIso3CharCode.Text = AreaMatch(0).IsoA3Code
-            'txtIsoNumericCode.Text = Main.GeodeticDatum.List(RecordNo - 1).AreaOfUse.IsoNCode
             txtIsoNumericCode.Text = AreaMatch(0).IsoNCode
-            'txtAouDescription.Text = Main.GeodeticDatum.List(RecordNo - 1).AreaOfUse.Description
             txtAouDescription.Text = AreaMatch(0).Description
 
             'Bounding coordinates are stored as decimal degrees referenced to the WGS84 datum.
             'South latitude
-            'If Main.GeodeticDatum.List(RecordNo - 1).AreaOfUse.SouthLatitude < 0 Then
             If AreaMatch(0).SouthLatitude < 0 Then
-                'AngleDMS.DecimalDegreesToDegMinSec(Main.GeodeticDatum.List(RecordNo - 1).AreaOfUse.SouthLatitude * -1)
                 AngleDMS.DecimalDegreesToDegMinSec(AreaMatch(0).SouthLatitude * -1)
                 For Each NSitem In cmbSLatNS.Items
                     If NSitem.ToString = "S" Then
@@ -480,7 +451,6 @@
                     End If
                 Next
             Else
-                'AngleDMS.DecimalDegreesToDegMinSec(Main.GeodeticDatum.List(RecordNo - 1).AreaOfUse.SouthLatitude)
                 AngleDMS.DecimalDegreesToDegMinSec(AreaMatch(0).SouthLatitude)
                 For Each NSitem In cmbSLatNS.Items
                     If NSitem.ToString = "N" Then
@@ -493,9 +463,7 @@
             txtNLatSeconds.Text = AngleDMS.Seconds
 
             'North latitude
-            'If Main.GeodeticDatum.List(RecordNo - 1).AreaOfUse.NorthLatitude < 0 Then
             If AreaMatch(0).NorthLatitude < 0 Then
-                'AngleDMS.DecimalDegreesToDegMinSec(Main.GeodeticDatum.List(RecordNo - 1).AreaOfUse.NorthLatitude * -1)
                 AngleDMS.DecimalDegreesToDegMinSec(AreaMatch(0).NorthLatitude * -1)
                 For Each NSitem In cmbNLatNS.Items
                     If NSitem.ToString = "S" Then
@@ -515,9 +483,7 @@
             txtSLatSeconds.Text = AngleDMS.Seconds
 
             'Left longitude
-            'If Main.GeodeticDatum.List(RecordNo - 1).AreaOfUse.WestLongitude < 0 Then
             If AreaMatch(0).WestLongitude < 0 Then
-                'AngleDMS.DecimalDegreesToDegMinSec(Main.GeodeticDatum.List(RecordNo - 1).AreaOfUse.WestLongitude * -1)
                 AngleDMS.DecimalDegreesToDegMinSec(AreaMatch(0).WestLongitude * -1)
                 For Each WEitem In cmbWLongWE.Items
                     If WEitem.ToString = "W" Then
@@ -525,7 +491,6 @@
                     End If
                 Next
             Else
-                'AngleDMS.DecimalDegreesToDegMinSec(Main.GeodeticDatum.List(RecordNo - 1).AreaOfUse.WestLongitude)
                 AngleDMS.DecimalDegreesToDegMinSec(AreaMatch(0).WestLongitude)
                 For Each WEitem In cmbWLongWE.Items
                     If WEitem.ToString = "E" Then
@@ -538,9 +503,7 @@
             txtWLongSeconds.Text = AngleDMS.Seconds
 
             'right longitude
-            'If Main.GeodeticDatum.List(RecordNo - 1).AreaOfUse.EastLongitude < 0 Then
             If AreaMatch(0).EastLongitude < 0 Then
-                'AngleDMS.DecimalDegreesToDegMinSec(Main.GeodeticDatum.List(RecordNo - 1).AreaOfUse.EastLongitude * -1)
                 AngleDMS.DecimalDegreesToDegMinSec(AreaMatch(0).EastLongitude * -1)
                 For Each WEitem In cmbELongWE.Items
                     If WEitem.ToString = "W" Then
@@ -548,7 +511,6 @@
                     End If
                 Next
             Else
-                'AngleDMS.DecimalDegreesToDegMinSec(Main.GeodeticDatum.List(RecordNo - 1).AreaOfUse.EastLongitude)
                 AngleDMS.DecimalDegreesToDegMinSec(AreaMatch(0).EastLongitude)
                 For Each WEitem In cmbELongWE.Items
                     If WEitem.ToString = "E" Then
@@ -571,8 +533,7 @@
         Dim DatumListFileName As String = Trim(txtDatumListFileName.Text)
 
         If DatumListFileName = "" Then
-            Main.Message.SetWarningStyle()
-            Main.Message.Add("Please enter a file name for the Geodetic Datum list!" & vbCrLf)
+            Main.Message.AddWarning("Please enter a file name for the Geodetic Datum list!" & vbCrLf)
             Exit Sub
         End If
 
@@ -741,13 +702,5 @@
 #Region " Form Events - Events that can be triggered by this form." '--------------------------------------------------------------------------------------------------------------------------
 #End Region 'Form Events ----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-  
- 
-  
 
-  
-   
-  
-   
-   
 End Class

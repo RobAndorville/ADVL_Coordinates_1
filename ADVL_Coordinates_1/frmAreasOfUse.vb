@@ -46,7 +46,6 @@
                                <!---->
                            </FormSettings>
 
-        'Dim SettingsFileName As String = "Formsettings_" & Main.ApplicationInfo.Name & "_" & Me.Text & ".xml"
         Dim SettingsFileName As String = "FormSettings_" & Main.ApplicationInfo.Name & "_" & Me.Text & ".xml"
         Main.Project.SaveXmlSettings(SettingsFileName, settingsData)
 
@@ -55,8 +54,6 @@
     Private Sub RestoreFormSettings()
         'Read the form settings from an XML document.
 
-        'Dim SettingsName As String = "FormSettings_" & Me.Text & ".xml"
-        'Dim SettingsFileName As String = "Formsettings_" & Main.ApplicationInfo.Name & "_" & Me.Text & ".xml"
         Dim SettingsFileName As String = "FormSettings_" & Main.ApplicationInfo.Name & "_" & Me.Text & ".xml"
 
         If Main.Project.SettingsFileExists(SettingsFileName) Then
@@ -121,34 +118,6 @@
 
         AngleDegMinSec.SecondsDecimalPlaces = 5
 
-
-        'Show the AreaOfUse list:
-        'If Main.AreaOfUse.ListFileName = "" Then
-        '    'No AreaOfUse list has been selected.
-        'Else
-        '    If Main.AreaOfUse.NRecords = 0 Then
-        '        'Load records from the selected AreaOfUse file:
-        '        Dim XmlDoc As System.Xml.Linq.XDocument
-        '        Main.Project.DataLocn.ReadXmlData(Main.AreaOfUse.ListFileName, XmlDoc)
-        '        Main.AreaOfUse.LoadXml(XmlDoc)
-        '        UpdateList()
-        '        Main.AreaOfUse.AddUser()
-        '        txtNRecords.Text = Main.AreaOfUse.NRecords
-        '        txtAouListFileName.Text = Main.AreaOfUse.ListFileName
-        '        'txtRecordNo.Text = 1
-        '        CurrentRecordNo = 1
-        '        DisplayListData(1)
-        '    Else
-        '        'Records have already been loaded.
-        '        UpdateList()
-        '        Main.AreaOfUse.AddUser()
-        '        txtNRecords.Text = Main.AreaOfUse.NRecords
-        '        txtAouListFileName.Text = Main.AreaOfUse.ListFileName
-        '        CurrentRecordNo = 1
-        '        DisplayListData(1)
-        '    End If
-        'End If
-
         Main.AreaOfUse.AddUser()
         UpdateList()
         txtNRecords.Text = Main.AreaOfUse.NRecords
@@ -195,14 +164,12 @@
         'Display a record in the AreaOfUse list.
 
         If RecordNo < 1 Then
-            Main.Message.SetWarningStyle()
-            Main.Message.Add("Cannot display Area Of Use data. Selected record number is too small." & vbCrLf)
+            Main.Message.AddWarning("Cannot display Area Of Use data. Selected record number is too small." & vbCrLf)
             Exit Sub
         End If
 
         If RecordNo > Main.AreaOfUse.NRecords Then
-            Main.Message.SetWarningStyle()
-            Main.Message.Add("Cannot display Area Of Use data. Selected record number is too large." & vbCrLf)
+            Main.Message.AddWarning("Cannot display Area Of Use data. Selected record number is too large." & vbCrLf)
             Exit Sub
         End If
 
@@ -359,23 +326,16 @@
         Dim AouListFileName As String = Trim(txtAouListFileName.Text)
 
         If AouListFileName = "" Then
-            Main.Message.SetWarningStyle()
-            Main.Message.Add("Please enter a file name for the Area of Use list!" & vbCrLf)
+            Main.Message.AddWarning("Please enter a file name for the Area of Use list!" & vbCrLf)
             Exit Sub
         End If
 
         If AouListFileName.EndsWith(".AouList") Then
-            'Main.Message.SetNormalStyle()
-            'Main.Message.Add("Area of use list file name = " & AouListFileName & vbCrLf)
             Main.AreaOfUse.ListFileName = AouListFileName
         Else
-            'Main.Message.SetNormalStyle()
-            'Main.Message.Add("Area of use list file name = " & AouListFileName & vbCrLf)
-            'Main.Message.Add(".AouList file extension will be added " & vbCrLf)
             AouListFileName &= ".AouList"
             Main.AreaOfUse.ListFileName = AouListFileName
             txtAouListFileName.Text = AouListFileName
-            'Main.Message.Add("New file name = " & AouListFileName & vbCrLf)
         End If
 
         Main.Project.SaveXmlData(AouListFileName, Main.AreaOfUse.ToXDoc())
@@ -496,11 +456,30 @@
         End If
     End Sub
 
+    Private Sub btnCopyToClipboard_Click(sender As Object, e As EventArgs) Handles btnCopyToClipboard.Click
+        'Copy Area of Use to clipboard.
+
+        Dim AreaXDoc = <?xml version="1.0" encoding="utf-8"?>
+                       <XMsg>
+                           <AreaOfUse>
+                               <AreaName><%= Main.AreaOfUse.List(CurrentRecordNo - 1).Name %></AreaName>
+                               <NorthLatitude><%= Main.AreaOfUse.List(CurrentRecordNo - 1).NorthLatitude %></NorthLatitude>
+                               <SouthLatitude><%= Main.AreaOfUse.List(CurrentRecordNo - 1).SouthLatitude %></SouthLatitude>
+                               <WestLongitude><%= Main.AreaOfUse.List(CurrentRecordNo - 1).WestLongitude %></WestLongitude>
+                               <EastLongitude><%= Main.AreaOfUse.List(CurrentRecordNo - 1).EastLongitude %></EastLongitude>
+                           </AreaOfUse>
+                       </XMsg>
+
+        My.Computer.Clipboard.SetText(AreaXDoc.ToString)
+    End Sub
+
+
+
 #End Region 'Form Methods ---------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
-  
-   
-  
-  
+
+
+
+
 End Class

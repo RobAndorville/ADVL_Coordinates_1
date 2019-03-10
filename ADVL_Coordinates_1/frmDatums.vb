@@ -44,7 +44,6 @@
                                <!---->
                            </FormSettings>
 
-        'Dim SettingsFileName As String = "Formsettings_" & Main.ApplicationInfo.Name & "_" & Me.Text & ".xml"
         Dim SettingsFileName As String = "FormSettings_" & Main.ApplicationInfo.Name & "_" & Me.Text & ".xml"
         Main.Project.SaveXmlSettings(SettingsFileName, settingsData)
 
@@ -53,7 +52,6 @@
     Private Sub RestoreFormSettings()
         'Read the form settings from an XML document.
 
-        'Dim SettingsFileName As String = "Formsettings_" & Main.ApplicationInfo.Name & "_" & Me.Text & ".xml"
         Dim SettingsFileName As String = "FormSettings_" & Main.ApplicationInfo.Name & "_" & Me.Text & ".xml"
 
         If Main.Project.SettingsFileExists(SettingsFileName) Then
@@ -128,7 +126,6 @@
 
     Private Sub btnExit_Click(sender As Object, e As EventArgs) Handles btnExit.Click
         'Exit the form
-        'Main.CoordinateSystem.RemoveUser()
         SaveFormSettings()
         Me.Close()
     End Sub
@@ -156,14 +153,12 @@
         'Display a record in the CoordOpMethod list.
 
         If RecordNo < 1 Then
-            Main.Message.SetWarningStyle()
-            Main.Message.Add("Cannot display Coordinate Operation Method data. Selected record number is too small." & vbCrLf)
+            Main.Message.AddWarning("Cannot display Coordinate Operation Method data. Selected record number is too small." & vbCrLf)
             Exit Sub
         End If
 
         If RecordNo > Main.Datum.NRecords Then
-            Main.Message.SetWarningStyle()
-            Main.Message.Add("Cannot display Coordinate Operation Method data. Selected record number is too large." & vbCrLf)
+            Main.Message.AddWarning("Cannot display Coordinate Operation Method data. Selected record number is too large." & vbCrLf)
             Exit Sub
         End If
 
@@ -299,10 +294,6 @@
         txtELongDegrees.Text = AngleDegMinSec.Degrees
         txtELongMinutes.Text = AngleDegMinSec.Minutes
         txtELongSeconds.Text = AngleDegMinSec.Seconds
-
-
-
-
 
     End Sub
 
@@ -487,19 +478,8 @@
 #End Region 'Form Methods ---------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 #Region " Form Events - Events that can be triggered by this form." '--------------------------------------------------------------------------------------------------------------------------
-#End Region 'Form Events ----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+#End Region 'Form Events ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- 
 
 
-   
-  
-   
-   
-  
-  
-   
-  
-  
- 
-  
-  
+
 End Class

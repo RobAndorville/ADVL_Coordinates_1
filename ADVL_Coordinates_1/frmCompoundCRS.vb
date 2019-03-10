@@ -43,7 +43,6 @@
 
         'Add code to include other settings to save after the comment line <!---->
 
-        'Dim SettingsFileName As String = "Formsettings_" & Main.ApplicationInfo.Name & "_" & Me.Text & ".xml"
         Dim SettingsFileName As String = "FormSettings_" & Main.ApplicationInfo.Name & "_" & Me.Text & ".xml"
         Main.Project.SaveXmlSettings(SettingsFileName, settingsData)
     End Sub
@@ -51,7 +50,6 @@
     Private Sub RestoreFormSettings()
         'Read the form settings from an XML document.
 
-        'Dim SettingsFileName As String = "Formsettings_" & Main.ApplicationInfo.Name & "_" & Me.Text & ".xml"
         Dim SettingsFileName As String = "FormSettings_" & Main.ApplicationInfo.Name & "_" & Me.Text & ".xml"
 
         If Main.Project.SettingsFileExists(SettingsFileName) Then
@@ -109,8 +107,6 @@
         RestoreFormSettings()   'Restore the form settings
 
         Main.AreaOfUse.AddUser()
-        'Main.Datum.AddUser()
-        'Main.CoordinateSystem.AddUser()
         Main.CompoundCRS.AddUser()
 
         UpdateList()
@@ -123,8 +119,6 @@
     Private Sub btnExit_Click(sender As Object, e As EventArgs) Handles btnExit.Click
         'Exit the Form
         Main.AreaOfUse.RemoveUser()
-        'Main.Datum.RemoveUser()
-        'Main.CoordinateSystem.RemoveUser()
         Main.CompoundCRS.RemoveUser()
 
         Me.Close() 'Close the form
@@ -151,8 +145,7 @@
         Dim CompoundCRSListFileName As String = Trim(txtCompoundCRSListFileName.Text)
 
         If CompoundCRSListFileName = "" Then
-            Main.Message.SetWarningStyle()
-            Main.Message.Add("Please enter a file name for the Compound CRS list!" & vbCrLf)
+            Main.Message.AddWarning("Please enter a file name for the Compound CRS list!" & vbCrLf)
             Exit Sub
         End If
 
@@ -190,15 +183,13 @@
         'Display a record in the Compound CRS list.
 
         If RecordNo < 1 Then
-            Main.Message.SetWarningStyle()
-            Main.Message.Add("Cannot display CRS data. Selected record number is too small." & vbCrLf)
+            Main.Message.AddWarning("Cannot display CRS data. Selected record number is too small." & vbCrLf)
             Exit Sub
         End If
 
         If RecordNo > Main.CompoundCRS.NRecords Then
-            Main.Message.SetWarningStyle()
-            Main.Message.Add("Cannot display CRS data. Selected record number is too large." & vbCrLf)
-            Main.Message.Add("RecordNo = " & RecordNo & "   Main.CompoundCRS.NRecords = " & Main.CompoundCRS.NRecords & vbCrLf)
+            Main.Message.AddWarning("Cannot display CRS data. Selected record number is too large." & vbCrLf)
+            Main.Message.AddWarning("RecordNo = " & RecordNo & "   Main.CompoundCRS.NRecords = " & Main.CompoundCRS.NRecords & vbCrLf)
             Exit Sub
         End If
 
@@ -227,7 +218,6 @@
         DisplayAOUData(Main.CompoundCRS.List(RecordNo - 1).Area.Author, Main.CompoundCRS.List(RecordNo - 1).Area.Code)
 
         txtHorCRSName.Text = Main.CompoundCRS.List(RecordNo - 1).HorizontalCRS.Name
-        'txtHorCRSType.Text = Main.CompoundCRS.List(RecordNo - 1).HorizontalCRS.Type
         txtHorCRSType.Text = Main.CompoundCRS.List(RecordNo - 1).HorizontalCRS.Type.ToString
 
         txtVertCRSName.Text = Main.CompoundCRS.List(RecordNo - 1).VerticalCRS.Name
@@ -286,17 +276,6 @@
         txtVertCRSComments.Text = Main.CompoundCRS.List(RecordNo - 1).VerticalCRS.Comments
 
 
-        ''Display Coordinate System data:
-
-        'txtCSName.Text = Main.EngineeringCRS.List(RecordNo - 1).CoordinateSystem.Name
-        'txtCSType.Text = Main.EngineeringCRS.List(RecordNo - 1).CoordinateSystem.Type
-        'DisplayCSData(Main.EngineeringCRS.List(RecordNo - 1).CoordinateSystem.Author, Main.EngineeringCRS.List(RecordNo - 1).CoordinateSystem.Code)
-
-        ''Display Datum data:
-        'txtDatumName.Text = Main.EngineeringCRS.List(RecordNo - 1).Datum.Name
-        'txtDatumType.Text = Main.EngineeringCRS.List(RecordNo - 1).Datum.Type
-        'DisplayDatumData(Main.EngineeringCRS.List(RecordNo - 1).Datum.Author, Main.EngineeringCRS.List(RecordNo - 1).Datum.Code)
-
     End Sub
 
     Private Sub DisplayAOUData(ByVal Author As String, ByVal Code As Integer)
@@ -304,10 +283,7 @@
 
         If Main.AreaOfUse.List.Count = 0 Then
             'There is no Are Of Use data.
-            'Main.MessageStyleWarningSet()
-            'Main.MessageAdd("There is no Area Of Use data!" & vbCrLf)
-            Main.Message.SetWarningStyle()
-            Main.Message.Add("There is no Area Of Use data!" & vbCrLf)
+            Main.Message.AddWarning("There is no Area Of Use data!" & vbCrLf)
         Else
             Dim AreaMatch = From Area In Main.AreaOfUse.List Where Area.Author = Author And Area.Code = Code
 
@@ -412,16 +388,10 @@
                 txtELongSeconds.Text = AngleDMS.Seconds
 
                 If AreaMatch.Count > 1 Then
-                    'Main.MessageStyleWarningSet()
-                    'Main.MessageAdd("More than one Area Of Use found! " & Str(AreaMatch.Count) & " matches found for Author = " & Author & " and Code = " & Str(Code) & vbCrLf)
-                    Main.Message.SetWarningStyle()
-                    Main.Message.Add("More than one Area Of Use found! " & Str(AreaMatch.Count) & " matches found for Author = " & Author & " and Code = " & Str(Code) & vbCrLf)
+                    Main.Message.AddWarning("More than one Area Of Use found! " & Str(AreaMatch.Count) & " matches found for Author = " & Author & " and Code = " & Str(Code) & vbCrLf)
                 End If
             Else
-                'Main.MessageStyleWarningSet()
-                'Main.MessageAdd("No Area Of Use found for Author = " & Author & " and Code = " & Str(Code) & vbCrLf)
-                Main.Message.SetWarningStyle()
-                Main.Message.Add("No Area Of Use found for Author = " & Author & " and Code = " & Str(Code) & vbCrLf)
+                Main.Message.AddWarning("No Area Of Use found for Author = " & Author & " and Code = " & Str(Code) & vbCrLf)
             End If
         End If
     End Sub

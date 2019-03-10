@@ -26,7 +26,6 @@
 
         'Add code to include other settings to save after the comment line <!---->
 
-        'Dim SettingsFileName As String = "Formsettings_" & Main.ApplicationInfo.Name & "_" & Me.Text & ".xml"
         Dim SettingsFileName As String = "FormSettings_" & Main.ApplicationInfo.Name & "_" & Me.Text & ".xml"
         Main.Project.SaveXmlSettings(SettingsFileName, settingsData)
     End Sub
@@ -34,7 +33,6 @@
     Private Sub RestoreFormSettings()
         'Read the form settings from an XML document.
 
-        'Dim SettingsFileName As String = "Formsettings_" & Main.ApplicationInfo.Name & "_" & Me.Text & ".xml"
         Dim SettingsFileName As String = "FormSettings_" & Main.ApplicationInfo.Name & "_" & Me.Text & ".xml"
 
         If Main.Project.SettingsFileExists(SettingsFileName) Then
@@ -123,14 +121,7 @@
             SaveFormSettings()
         End If
 
-        'If WindowState = FormWindowState.Normal Then
-        '    SaveFormSettings()
-        '    Main.Message.SetNormalStyle()
-        '    Main.Message.Add("Window state is normal." & vbCrLf)
-        'ElseIf WindowState = FormWindowState.Minimized Then
-        '    Main.Message.SetNormalStyle()
-        '    Main.Message.Add("Window state is minimised." & vbCrLf)
-        'End If
+
 
     End Sub
 
@@ -579,39 +570,6 @@
 
 #Region " Form Events - Events that can be triggered by this form." '--------------------------------------------------------------------------------------------------------------------------
 #End Region 'Form Events ----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-    'Private Sub frmConversions_Resize(sender As Object, e As EventArgs) Handles Me.Resize
-    '    Main.Message.SetNormalStyle()
-    '    Main.Message.Add("Resizing Conversions form." & vbCrLf)
-    '    Main.Message.Add("Form width = " & Me.Width & vbCrLf)
-    '    Main.Message.Add("Form height = " & Me.Height & vbCrLf)
-    '    Main.Message.Add("Form top = " & Me.Top & vbCrLf)
-    '    Main.Message.Add("Form left = " & Me.Left & vbCrLf & vbCrLf)
-
-    'End Sub
-
-
-
-    'Private Sub frmConversions_ResizeBegin(sender As Object, e As EventArgs) Handles Me.ResizeBegin
-    '    Main.Message.SetNormalStyle()
-    '    Main.Message.Add("Starting to resize Conversions form." & vbCrLf)
-    '    Main.Message.Add("Form width = " & Me.Width & vbCrLf)
-    '    Main.Message.Add("Form height = " & Me.Height & vbCrLf)
-    '    Main.Message.Add("Form top = " & Me.Top & vbCrLf)
-    '    Main.Message.Add("Form left = " & Me.Left & vbCrLf & vbCrLf)
-
-    'End Sub
-
-    'Private Sub frmConversions_ResizeEnd(sender As Object, e As EventArgs) Handles Me.ResizeEnd
-    '    Main.Message.SetNormalStyle()
-    '    Main.Message.Add("Finished resize Conversions form." & vbCrLf)
-    '    Main.Message.Add("Form width = " & Me.Width & vbCrLf)
-    '    Main.Message.Add("Form height = " & Me.Height & vbCrLf)
-    '    Main.Message.Add("Form top = " & Me.Top & vbCrLf)
-    '    Main.Message.Add("Form left = " & Me.Left & vbCrLf & vbCrLf)
-    'End Sub
-
-
 
 
 

@@ -41,7 +41,6 @@
                                <!---->
                            </FormSettings>
 
-        'Dim SettingsFileName As String = "Formsettings_" & Main.ApplicationInfo.Name & "_" & Me.Text & ".xml"
         Dim SettingsFileName As String = "FormSettings_" & Main.ApplicationInfo.Name & "_" & Me.Text & ".xml"
         Main.Project.SaveXmlSettings(SettingsFileName, settingsData)
 
@@ -50,8 +49,6 @@
     Private Sub RestoreFormSettings()
         'Read the form settings from an XML document.
 
-        'Dim SettingsName As String = "FormSettings_" & Me.Text & ".xml"
-        'Dim SettingsFileName As String = "Formsettings_" & Main.ApplicationInfo.Name & "_" & Me.Text & ".xml"
         Dim SettingsFileName As String = "FormSettings_" & Main.ApplicationInfo.Name & "_" & Me.Text & ".xml"
 
         If Main.Project.SettingsFileExists(SettingsFileName) Then
@@ -137,14 +134,12 @@
         'Display a record in the Coordinate System list.
 
         If RecordNo < 1 Then
-            Main.Message.SetWarningStyle()
-            Main.Message.Add("Cannot display Coordinate System data. Selected record number is too small." & vbCrLf)
+            Main.Message.AddWarning("Cannot display Coordinate System data. Selected record number is too small." & vbCrLf)
             Exit Sub
         End If
 
         If RecordNo > Main.CoordinateSystem.NRecords Then
-            Main.Message.SetWarningStyle()
-            Main.Message.Add("Cannot display Coordinate System data. Selected record number is too large." & vbCrLf)
+            Main.Message.AddWarning("Cannot display Coordinate System data. Selected record number is too large." & vbCrLf)
             Exit Sub
         End If
 
@@ -152,16 +147,6 @@
         txtCode.Text = Main.CoordinateSystem.List(RecordNo - 1).Code
         txtAuthor.Text = Main.CoordinateSystem.List(RecordNo - 1).Author
         txtDeprecated.Text = Main.CoordinateSystem.List(RecordNo - 1).Deprecated
-
-        ''Update the list of alias names:
-        'cmbAliasNames.Items.Clear()
-        'cmbAliasNames.Text = ""
-        'For Each item As String In Main.AreaOfUse.List(RecordNo - 1).AliasName
-        '    cmbAliasNames.Items.Add(item)
-        'Next
-        'If cmbAliasNames.Items.Count > 0 Then
-        '    cmbAliasNames.SelectedIndex = 0 'Select first item
-        'End If
 
         Select Case Main.CoordinateSystem.List(RecordNo - 1).Type
             Case ADVL_Coordinates_Library_1.CoordinateSystem.CSTypes.Affine
@@ -243,8 +228,7 @@
         Dim CoordSystemsListFileName As String = Trim(txtCoordSysListFileName.Text)
 
         If CoordSystemsListFileName = "" Then
-            Main.Message.SetWarningStyle()
-            Main.Message.Add("Please enter a file name for the Coordinate Systems list!" & vbCrLf)
+            Main.Message.AddWarning("Please enter a file name for the Coordinate Systems list!" & vbCrLf)
             Exit Sub
         End If
 
@@ -406,22 +390,20 @@
 
     End Sub
 
-
-
 #End Region 'Form Methods ---------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 #Region " Form Events - Events that can be triggered by this form." '--------------------------------------------------------------------------------------------------------------------------
 #End Region 'Form Events ----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-  
-   
-  
-  
- 
-   
- 
- 
-  
-  
-   
+
+
+
+
+
+
+
+
+
+
+
 End Class

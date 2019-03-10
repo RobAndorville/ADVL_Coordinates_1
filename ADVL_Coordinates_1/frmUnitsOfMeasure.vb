@@ -41,7 +41,6 @@
                                <!---->
                            </FormSettings>
 
-        'Dim SettingsFileName As String = "Formsettings_" & Main.ApplicationInfo.Name & "_" & Me.Text & ".xml"
         Dim SettingsFileName As String = "FormSettings_" & Main.ApplicationInfo.Name & "_" & Me.Text & ".xml"
         Main.Project.SaveXmlSettings(SettingsFileName, settingsData)
 
@@ -162,14 +161,12 @@
         'Display a record in the UnitOfMeasure list.
 
         If RecordNo < 1 Then
-            Main.Message.SetWarningStyle()
-            Main.Message.Add("Cannot display Area Of Use data. Selected record number is too small." & vbCrLf)
+            Main.Message.AddWarning("Cannot display Area Of Use data. Selected record number is too small." & vbCrLf)
             Exit Sub
         End If
 
         If RecordNo > Main.UnitOfMeasure.NRecords Then
-            Main.Message.SetWarningStyle()
-            Main.Message.Add("Cannot display Area Of Use data. Selected record number is too large." & vbCrLf)
+            Main.Message.AddWarning("Cannot display Area Of Use data. Selected record number is too large." & vbCrLf)
             Exit Sub
         End If
 
@@ -234,8 +231,7 @@
         Dim UomListFileName As String = Trim(txtUOMListFileName.Text)
 
         If UomListFileName = "" Then
-            Main.Message.SetWarningStyle()
-            Main.Message.Add("Please enter a file name for the Unit of Measure list!" & vbCrLf)
+            Main.Message.AddWarning("Please enter a file name for the Unit of Measure list!" & vbCrLf)
             Exit Sub
         End If
 
@@ -401,10 +397,5 @@
 #End Region 'Form Methods ---------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
-  
-  
- 
-  
-   
-  
+
 End Class

@@ -43,7 +43,6 @@
                                <!---->
                            </FormSettings>
 
-        'Dim SettingsFileName As String = "Formsettings_" & Main.ApplicationInfo.Name & "_" & Me.Text & ".xml"
         Dim SettingsFileName As String = "FormSettings_" & Main.ApplicationInfo.Name & "_" & Me.Text & ".xml"
         Main.Project.SaveXmlSettings(SettingsFileName, settingsData)
 
@@ -52,7 +51,6 @@
     Private Sub RestoreFormSettings()
         'Read the form settings from an XML document.
 
-        'Dim SettingsFileName As String = "Formsettings_" & Main.ApplicationInfo.Name & "_" & Me.Text & ".xml"
         Dim SettingsFileName As String = "FormSettings_" & Main.ApplicationInfo.Name & "_" & Me.Text & ".xml"
 
         If Main.Project.SettingsFileExists(SettingsFileName) Then
@@ -98,6 +96,22 @@
 
         RestoreFormSettings()
 
+        cmbELongWE.Items.Add("W")
+        cmbELongWE.Items.Add("E")
+        cmbELongWE.SelectedIndex = 1 'Select "E"
+
+        cmbWLongWE.Items.Add("W")
+        cmbWLongWE.Items.Add("E")
+        cmbWLongWE.SelectedIndex = 1 'Select "E"
+
+        cmbNLatNS.Items.Add("N")
+        cmbNLatNS.Items.Add("S")
+        cmbNLatNS.SelectedIndex = 0 'Select "N"
+
+        cmbSLatNS.Items.Add("N")
+        cmbSLatNS.Items.Add("S")
+        cmbSLatNS.SelectedIndex = 0 'Select "N"
+
         Main.AreaOfUse.AddUser()
         Main.CoordinateSystem.AddUser()
         Main.CoordRefSystem.AddUser()
@@ -139,14 +153,12 @@
         'Display a record in the PrimeMeridian list.
 
         If RecordNo < 1 Then
-            Main.Message.SetWarningStyle()
-            Main.Message.Add("Cannot display Prime Meridian data. Selected record number is too small." & vbCrLf)
+            Main.Message.AddWarning("Cannot display Prime Meridian data. Selected record number is too small." & vbCrLf)
             Exit Sub
         End If
 
         If RecordNo > Main.Geographic2DCRS.NRecords Then
-            Main.Message.SetWarningStyle()
-            Main.Message.Add("Cannot display Prime Meridian data. Selected record number is too large." & vbCrLf)
+            Main.Message.AddWarning("Cannot display Prime Meridian data. Selected record number is too large." & vbCrLf)
             Exit Sub
         End If
 
@@ -196,10 +208,7 @@
 
         If Main.AreaOfUse.List.Count = 0 Then
             'There is no Are Of Use data.
-            'Main.MessageStyleWarningSet()
-            'Main.MessageAdd("There is no Area Of Use data!" & vbCrLf)
-            Main.Message.SetWarningStyle()
-            Main.Message.Add("There is no Area Of Use data!" & vbCrLf)
+            Main.Message.AddWarning("There is no Area Of Use data!" & vbCrLf)
         Else
             Dim AreaMatch = From Area In Main.AreaOfUse.List Where Area.Author = Author And Area.Code = Code
 
@@ -239,9 +248,9 @@
                         End If
                     Next
                 End If
-                txtNLatDegrees.Text = AngleDMS.Degrees
-                txtNLatMinutes.Text = AngleDMS.Minutes
-                txtNLatSeconds.Text = AngleDMS.Seconds
+                txtSLatDegrees.Text = AngleDMS.Degrees
+                txtSLatMinutes.Text = AngleDMS.Minutes
+                txtSLatSeconds.Text = AngleDMS.Seconds
 
                 'North latitude
                 If AreaMatch(0).NorthLatitude < 0 Then
@@ -259,9 +268,9 @@
                         End If
                     Next
                 End If
-                txtSLatDegrees.Text = AngleDMS.Degrees
-                txtSLatMinutes.Text = AngleDMS.Minutes
-                txtSLatSeconds.Text = AngleDMS.Seconds
+                txtNLatDegrees.Text = AngleDMS.Degrees
+                txtNLatMinutes.Text = AngleDMS.Minutes
+                txtNLatSeconds.Text = AngleDMS.Seconds
 
                 'Left longitude
                 If AreaMatch(0).WestLongitude < 0 Then
@@ -304,16 +313,10 @@
                 txtELongSeconds.Text = AngleDMS.Seconds
 
                 If AreaMatch.Count > 1 Then
-                    'Main.MessageStyleWarningSet()
-                    'Main.MessageAdd("More than one Area Of Use found! " & Str(AreaMatch.Count) & " matches found for Author = " & Author & " and Code = " & Str(Code) & vbCrLf)
-                    Main.Message.SetWarningStyle()
-                    Main.Message.Add("More than one Area Of Use found! " & Str(AreaMatch.Count) & " matches found for Author = " & Author & " and Code = " & Str(Code) & vbCrLf)
+                    Main.Message.AddWarning("More than one Area Of Use found! " & Str(AreaMatch.Count) & " matches found for Author = " & Author & " and Code = " & Str(Code) & vbCrLf)
                 End If
             Else
-                'Main.MessageStyleWarningSet()
-                'Main.MessageAdd("No Area Of Use found for Author = " & Author & " and Code = " & Str(Code) & vbCrLf)
-                Main.Message.SetWarningStyle()
-                Main.Message.Add("No Area Of Use found for Author = " & Author & " and Code = " & Str(Code) & vbCrLf)
+                Main.Message.AddWarning("No Area Of Use found for Author = " & Author & " and Code = " & Str(Code) & vbCrLf)
             End If
         End If
     End Sub
@@ -323,8 +326,7 @@
 
         If Main.CoordinateSystem.List.Count = 0 Then
             'There is no Coordinate System data.
-            Main.Message.SetWarningStyle()
-            Main.Message.Add("There is no Coordinate System data!" & vbCrLf)
+            Main.Message.AddWarning("There is no Coordinate System data!" & vbCrLf)
         Else
             Dim CoordSysMatch = From CoordSys In Main.CoordinateSystem.List Where CoordSys.Author = Author And CoordSys.Code = Code
 
@@ -397,12 +399,10 @@
                 End If
 
                 If CoordSysMatch.Count > 1 Then
-                    Main.Message.SetWarningStyle()
-                    Main.Message.Add("More than one Coordinate System found! " & Str(CoordSysMatch.Count) & " matches found for Author = " & Author & " and Code = " & Str(Code) & vbCrLf)
+                    Main.Message.AddWarning("More than one Coordinate System found! " & Str(CoordSysMatch.Count) & " matches found for Author = " & Author & " and Code = " & Str(Code) & vbCrLf)
                 End If
             Else
-                Main.Message.SetWarningStyle()
-                Main.Message.Add("No Coordinate System found for Author = " & Author & " and Code = " & Str(Code) & vbCrLf)
+                Main.Message.AddWarning("No Coordinate System found for Author = " & Author & " and Code = " & Str(Code) & vbCrLf)
             End If
         End If
 
@@ -412,8 +412,7 @@
         'Display the Datum parameters corresponding to the Author and Code.
 
         If Main.Datum.List.Count = 0 Then
-            Main.Message.SetWarningStyle()
-            Main.Message.Add("There is no Datum data!" & vbCrLf)
+            Main.Message.AddWarning("There is no Datum data!" & vbCrLf)
         Else
             Dim DatumMatch = From Datum In Main.Datum.List Where Datum.Author = Author And Datum.Code = Code
 
@@ -449,12 +448,10 @@
 
 
                 If DatumMatch.Count > 1 Then
-                    Main.Message.SetWarningStyle()
-                    Main.Message.Add("More than one Datum found! " & Str(DatumMatch.Count) & " matches found for Author = " & Author & " and Code = " & Str(Code) & vbCrLf)
+                    Main.Message.AddWarning("More than one Datum found! " & Str(DatumMatch.Count) & " matches found for Author = " & Author & " and Code = " & Str(Code) & vbCrLf)
                 End If
             Else
-                Main.Message.SetWarningStyle()
-                Main.Message.Add("No Datum found for Author = " & Author & " and Code = " & Str(Code) & vbCrLf)
+                Main.Message.AddWarning("No Datum found for Author = " & Author & " and Code = " & Str(Code) & vbCrLf)
             End If
         End If
     End Sub
@@ -463,8 +460,7 @@
         'Display the Source Coordinate Reference System parameters corresponding to the Author and Code.
 
         If Main.CoordRefSystem.List.Count = 0 Then
-            Main.Message.SetWarningStyle()
-            Main.Message.Add("There is no Coordinate Reference System data!" & vbCrLf)
+            Main.Message.AddWarning("There is no Coordinate Reference System data!" & vbCrLf)
         Else
             Dim CoordRefSysMatch = From CoordRefSys In Main.CoordRefSystem.List Where CoordRefSys.Author = Author And CoordRefSys.Code = Code
 
@@ -475,28 +471,20 @@
                 txtSourceCRSDeprecated.Text = CoordRefSysMatch(0).Deprecated
                 'txtSourceCRSType.Text = CoordRefSysMatch(0).Type
                 Select Case CoordRefSysMatch(0).Type
-                    'Case ADVL_Coordinates_Library.Coordinates.CoordinateReferenceSystemSummary.CrsTypes.Compound
                     Case ADVL_Coordinates_Library_1.CrsTypes.Compound
                         txtSourceCRSType.Text = "Compound"
-                        'Case ADVL_Coordinates_Library.Coordinates.CoordinateReferenceSystemSummary.CrsTypes.Engineering
                     Case ADVL_Coordinates_Library_1.CrsTypes.Engineering
                         txtSourceCRSType.Text = "Engineering"
-                        'Case ADVL_Coordinates_Library.Coordinates.CoordinateReferenceSystemSummary.CrsTypes.Geocentric
                     Case ADVL_Coordinates_Library_1.CrsTypes.Geocentric
                         txtSourceCRSType.Text = "Geocentric"
-                        'Case ADVL_Coordinates_Library.Coordinates.CoordinateReferenceSystemSummary.CrsTypes.Geographic2D
                     Case ADVL_Coordinates_Library_1.CrsTypes.Geographic2D
                         txtSourceCRSType.Text = "Geographic2D"
-                        'Case ADVL_Coordinates_Library.Coordinates.CoordinateReferenceSystemSummary.CrsTypes.Geographic3D
                     Case ADVL_Coordinates_Library_1.CrsTypes.Geographic3D
                         txtSourceCRSType.Text = "Geographic3D"
-                        'Case ADVL_Coordinates_Library.Coordinates.CoordinateReferenceSystemSummary.CrsTypes.Projected
                     Case ADVL_Coordinates_Library_1.CrsTypes.Projected
                         txtSourceCRSType.Text = "Projected"
-                        'Case ADVL_Coordinates_Library.Coordinates.CoordinateReferenceSystemSummary.CrsTypes.Vertical
                     Case ADVL_Coordinates_Library_1.CrsTypes.Vertical
                         txtSourceCRSType.Text = "Vertical"
-                        'Case ADVL_Coordinates_Library.Coordinates.CoordinateReferenceSystemSummary.CrsTypes.Unknown
                     Case ADVL_Coordinates_Library_1.CrsTypes.Unknown
                         txtSourceCRSType.Text = "Unknown"
                 End Select
@@ -513,15 +501,13 @@
                 txtSourceCRSComments.Text = CoordRefSysMatch(0).Comments
 
                 If CoordRefSysMatch.Count > 1 Then
-                    Main.Message.SetWarningStyle()
-                    Main.Message.Add("More than one Coordinate Reference System found! " & Str(CoordRefSysMatch.Count) & " matches found for Author = " & Author & " and Code = " & Str(Code) & vbCrLf)
+                    Main.Message.AddWarning("More than one Coordinate Reference System found! " & Str(CoordRefSysMatch.Count) & " matches found for Author = " & Author & " and Code = " & Str(Code) & vbCrLf)
                 End If
             Else
                 If (Author = "") And (Code = 0) Then
                     'No need to display a warning message: There is no Source CRS associated with this Geographic 2D CRS.
                 Else
-                    Main.Message.SetWarningStyle()
-                    Main.Message.Add("No Coordinate Reference System found for Author = " & Author & " and Code = " & Str(Code) & vbCrLf)
+                    Main.Message.AddWarning("No Coordinate Reference System found for Author = " & Author & " and Code = " & Str(Code) & vbCrLf)
                 End If
 
                 txtSourceCRSName.Text = ""
@@ -542,8 +528,7 @@
         Dim CRSListFileName As String = Trim(txtGeogr2DCRSListFileName.Text)
 
         If CRSListFileName = "" Then
-            Main.Message.SetWarningStyle()
-            Main.Message.Add("Please enter a file name for the Geographic 2D CRS list!" & vbCrLf)
+            Main.Message.AddWarning("Please enter a file name for the Geographic 2D CRS list!" & vbCrLf)
             Exit Sub
         End If
 
@@ -734,10 +719,4 @@
 
 
 
-  
-   
-  
-   
-   
-   
 End Class

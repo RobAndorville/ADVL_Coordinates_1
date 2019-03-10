@@ -56,8 +56,6 @@
                                <Query><%= Query %></Query>
                            </FormSettings>
 
-        'Dim SettingsName As String = "FormSettings_" & Me.Text & ".xml"
-        'Dim SettingsName As String = "Formsettings_" & Main.ApplicationInfo.Name & "_" & Me.Text & ".xml"
         Dim SettingsName As String = "FormSettings_" & Main.ApplicationInfo.Name & "_" & Me.Text & ".xml"
         Main.Project.SaveXmlSettings(SettingsName, settingsData)
 
@@ -67,8 +65,6 @@
     Private Sub RestoreFormSettings()
         'Read the form settings from an XML document.
 
-        'Dim SettingsName As String = "FormSettings_" & Me.Text & ".xml"
-        'Dim SettingsName As String = "Formsettings_" & Main.ApplicationInfo.Name & "_" & Me.Text & ".xml"
         Dim SettingsName As String = "FormSettings_" & Main.ApplicationInfo.Name & "_" & Me.Text & ".xml"
 
         If Main.Project.SettingsFileExists(SettingsName) Then
@@ -133,8 +129,6 @@
 
         If TableName <> "" Then
             'Select the table iame in the combobox
-
-            'cmbSelectTable.FindStringExact(TableName)
             cmbSelectTable.SelectedIndex = cmbSelectTable.FindStringExact(TableName)
         End If
 
@@ -181,18 +175,12 @@
         'Fill the cmbSelectTable listbox with the availalble tables in the selected database.
 
         If Main.EpsgDatabasePath = "" Then
-            'Main.MessageStyleWarningSet()
-            'Main.MessageAdd("No EPSG database has been selected." & vbCrLf)
-            Main.Message.SetWarningStyle()
-            Main.Message.Add("No EPSG database has been selected." & vbCrLf)
+            Main.Message.AddWarning("No EPSG database has been selected." & vbCrLf)
             Exit Sub
         End If
 
         If Not System.IO.File.Exists(Main.EpsgDatabasePath) Then
-            'Main.MessageStyleWarningSet()
-            'Main.MessageAdd("Selected EPSG database can not be found." & vbCrLf)
-            Main.Message.SetWarningStyle()
-            Main.Message.Add("Selected EPSG database can not be found." & vbCrLf)
+            Main.Message.AddWarning("Selected EPSG database can not be found." & vbCrLf)
             Exit Sub
         End If
 
@@ -249,7 +237,6 @@
             Exit Sub
         End If
 
-        'TableName = "[" + cmbSelectTable.SelectedItem.ToString + "]"
         TableName = cmbSelectTable.SelectedItem.ToString
 
         Query = "Select Top 500 * From [" & TableName & "]"
@@ -313,8 +300,7 @@
             DataGridView1.Update()
             DataGridView1.Refresh()
         Catch ex As Exception
-            Main.Message.SetWarningStyle()
-            Main.Message.Add("Error: " & ex.Message & vbCrLf)
+            Main.Message.AddWarning("Error: " & ex.Message & vbCrLf)
         End Try
         myConnection.Close()
     End Sub
@@ -324,14 +310,12 @@
 
         Dim ImportFileNames As String = Trim(txtImportFileNames.Text)
         If ImportFileNames = "" Then
-            Main.Message.SetWarningStyle()
-            Main.Message.Add("Please enter a name for the imported files. The correct extension will be added to each file type." & vbCrLf)
+            Main.Message.AddWarning("Please enter a name for the imported files. The correct extension will be added to each file type." & vbCrLf)
             Exit Sub
         End If
 
         If System.IO.File.Exists(Main.EpsgDatabasePath) Then
             Dim FileName As String
-            Main.Message.SetNormalStyle()
             Main.Message.Add("Importing data from EPSG Access database." & vbCrLf)
 
             'Import Area Of Use data: -----------------------------------------------------------------
@@ -476,8 +460,7 @@
             '------------------------------------------------------------------------------------------
             Main.Message.Add("All data imported." & vbCrLf & vbCrLf)
         Else
-            Main.Message.SetWarningStyle()
-            Main.Message.Add("Please select an EPSG Access database." & vbCrLf)
+            Main.Message.AddWarning("Please select an EPSG Access database." & vbCrLf)
         End If
 
     End Sub
@@ -485,11 +468,4 @@
 #End Region 'Form Methods ---------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
-
-
-  
-  
-  
-   
-   
 End Class
