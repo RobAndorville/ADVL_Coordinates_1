@@ -27,6 +27,7 @@ Partial Class frmWebPage
         Me.txtDocumentFile = New System.Windows.Forms.TextBox()
         Me.WebBrowser1 = New System.Windows.Forms.WebBrowser()
         Me.btnExit = New System.Windows.Forms.Button()
+        Me.btnEdit = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
         'txtLink
@@ -42,7 +43,7 @@ Partial Class frmWebPage
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(12, 15)
+        Me.Label1.Location = New System.Drawing.Point(66, 15)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(75, 13)
         Me.Label1.TabIndex = 277
@@ -50,10 +51,10 @@ Partial Class frmWebPage
         '
         'txtDocumentFile
         '
-        Me.txtDocumentFile.Location = New System.Drawing.Point(93, 12)
+        Me.txtDocumentFile.Location = New System.Drawing.Point(147, 12)
         Me.txtDocumentFile.Name = "txtDocumentFile"
         Me.txtDocumentFile.ReadOnly = True
-        Me.txtDocumentFile.Size = New System.Drawing.Size(468, 20)
+        Me.txtDocumentFile.Size = New System.Drawing.Size(414, 20)
         Me.txtDocumentFile.TabIndex = 276
         '
         'WebBrowser1
@@ -77,11 +78,21 @@ Partial Class frmWebPage
         Me.btnExit.Text = "Exit"
         Me.btnExit.UseVisualStyleBackColor = True
         '
+        'btnEdit
+        '
+        Me.btnEdit.Location = New System.Drawing.Point(12, 12)
+        Me.btnEdit.Name = "btnEdit"
+        Me.btnEdit.Size = New System.Drawing.Size(48, 22)
+        Me.btnEdit.TabIndex = 281
+        Me.btnEdit.Text = "Edit"
+        Me.btnEdit.UseVisualStyleBackColor = True
+        '
         'frmWebPage
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(834, 556)
+        Me.Controls.Add(Me.btnEdit)
         Me.Controls.Add(Me.txtLink)
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.txtDocumentFile)
@@ -99,4 +110,5 @@ Partial Class frmWebPage
     Friend WithEvents txtDocumentFile As TextBox
     Friend WithEvents WebBrowser1 As WebBrowser
     Friend WithEvents btnExit As Button
+    Friend WithEvents btnEdit As Button
 End Class

@@ -85,7 +85,40 @@
 
             'Add code to read other saved setting here:
 
+            CheckFormPos()
+        End If
+    End Sub
 
+    Private Sub CheckFormPos()
+        'Check that the form can be seen on a screen.
+
+        Dim MinWidthVisible As Integer = 192 'Minimum number of X pixels visible. The form will be moved if this many form pixels are not visible.
+        Dim MinHeightVisible As Integer = 64 'Minimum number of Y pixels visible. The form will be moved if this many form pixels are not visible.
+
+        Dim FormRect As New Rectangle(Me.Left, Me.Top, Me.Width, Me.Height)
+        Dim WARect As Rectangle = Screen.GetWorkingArea(FormRect) 'The Working Area rectangle - the usable area of the screen containing the form.
+
+        ''Check if the top of the form is less than zero:
+        'If Me.Top < 0 Then Me.Top = 0
+
+        'Check if the top of the form is above the top of the Working Area:
+        If Me.Top < WARect.Top Then
+            Me.Top = WARect.Top
+        End If
+
+        'Check if the top of the form is too close to the bottom of the Working Area:
+        If (Me.Top + MinHeightVisible) > (WARect.Top + WARect.Height) Then
+            Me.Top = WARect.Top + WARect.Height - MinHeightVisible
+        End If
+
+        'Check if the left edge of the form is too close to the right edge of the Working Area:
+        If (Me.Left + MinWidthVisible) > (WARect.Left + WARect.Width) Then
+            Me.Left = WARect.Left + WARect.Width - MinWidthVisible
+        End If
+
+        'Check if the right edge of the form is too close to the left edge of the Working Area:
+        If (Me.Left + Me.Width - MinWidthVisible) < WARect.Left Then
+            Me.Left = WARect.Left - Me.Width + MinWidthVisible
         End If
     End Sub
 
@@ -166,8 +199,10 @@
 
         SaveDocument()
 
-        If Main.StartPageFileName = FileName Then
-            Main.DisplayStartPage()
+        'If Main.StartPageFileName = FileName Then
+        If Main.WorkflowFileName = FileName Then
+            'Main.DisplayStartPage()
+            Main.DisplayWorkflow()
         End If
 
         Main.UpdateWebPage(FileName)
@@ -196,6 +231,65 @@
         'Update the display.
         Dim HtmText As String = XmlHtmDisplay1.Text
         XmlHtmDisplay1.Rtf = XmlHtmDisplay1.HmlToRtf(HtmText)
+    End Sub
+
+    Private Sub btnSaveAs_Click(sender As Object, e As EventArgs) Handles btnSaveAs.Click
+        'Save the html data in a new file with the name entered in txtFileName
+
+        Dim NewFileName As String = ""
+
+        If LCase(txtFileName.Text).EndsWith(".html") Then
+            NewFileName = IO.Path.GetFileNameWithoutExtension(txtFileName.Text) & ".html"
+        ElseIf LCase(txtFileName.Text).EndsWith(".htm") Then
+            NewFileName = IO.Path.GetFileNameWithoutExtension(txtFileName.Text) & ".html"
+        ElseIf txtFileName.Text.Contains(".") Then
+            Main.Message.AddWarning("Unknown file extension: " & IO.Path.GetExtension(txtFileName.Text) & vbCrLf)
+            Exit Sub
+        Else
+            NewFileName = txtFileName.Text & ".html"
+        End If
+
+        If NewFileName = ".html" Then
+            Beep()
+        Else
+            If NewFileName = FileName Then
+                SaveDocument()
+                Main.Message.AddWarning("HTML file saved using the same file name: " & FileName & vbCrLf)
+            Else
+                If Main.Project.DataFileExists(NewFileName) Then
+                    Dim dr As System.Windows.Forms.DialogResult
+                    dr = MessageBox.Show("Press 'Yes' to overwrite the file: " & NewFileName, "Notice", MessageBoxButtons.YesNo)
+                    If dr = System.Windows.Forms.DialogResult.Yes Then
+                        'Save the HTML document using the new file name:
+                        Dim htmData As New IO.MemoryStream
+                        XmlHtmDisplay1.SaveFile(htmData, RichTextBoxStreamType.PlainText)
+                        htmData.Position = 0
+                        Main.Project.SaveData(NewFileName, htmData)
+                        DocTextChanged = False
+                    Else
+                        'The existing file NewFileName was not overwritten.
+                    End If
+                Else
+                    'Save the HTML document using the new file name:
+                    Dim htmData As New IO.MemoryStream
+                    XmlHtmDisplay1.SaveFile(htmData, RichTextBoxStreamType.PlainText)
+                    htmData.Position = 0
+                    Main.Project.SaveData(NewFileName, htmData)
+                    DocTextChanged = False
+                    UpdateWebPageList()
+                End If
+            End If
+        End If
+    End Sub
+
+    Private Sub UpdateWebPageList()
+        'Update the list of Web Pages (Workflows) shown on the Web Page List form:
+        If IsNothing(Main.WebPageList) Then
+            'The WebPageList form is not open.
+        Else
+            'Update the Web Page List:
+            Main.WebPageList.UpdateWebPageList()
+        End If
     End Sub
 
 #End Region 'Form Methods ---------------------------------------------------------------------------------------------------------------------------------------------------------------------

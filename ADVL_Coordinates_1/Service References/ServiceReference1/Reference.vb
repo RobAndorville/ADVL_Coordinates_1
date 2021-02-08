@@ -19,22 +19,34 @@ Namespace ServiceReference1
     Public Interface IMsgService
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IMsgService/Connect", ReplyAction:="http://tempuri.org/IMsgService/ConnectResponse")>  _
-        Function Connect(ByVal appNetName As String, ByVal appName As String, ByVal connectionName As String, ByVal projectName As String, ByVal projectDescription As String, ByVal projectType As ADVL_Utilities_Library_1.Project.Types, ByVal projectPath As String, ByVal getAllWarnings As Boolean, ByVal getAllMessages As Boolean) As String
+        Function Connect(ByVal proNetName As String, ByVal appName As String, ByVal connectionName As String, ByVal projectName As String, ByVal projectDescription As String, ByVal projectType As ADVL_Utilities_Library_1.Project.Types, ByVal projectPath As String, ByVal getAllWarnings As Boolean, ByVal getAllMessages As Boolean) As String
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IMsgService/Connect", ReplyAction:="http://tempuri.org/IMsgService/ConnectResponse")>  _
-        Function ConnectAsync(ByVal appNetName As String, ByVal appName As String, ByVal connectionName As String, ByVal projectName As String, ByVal projectDescription As String, ByVal projectType As ADVL_Utilities_Library_1.Project.Types, ByVal projectPath As String, ByVal getAllWarnings As Boolean, ByVal getAllMessages As Boolean) As System.Threading.Tasks.Task(Of String)
+        Function ConnectAsync(ByVal proNetName As String, ByVal appName As String, ByVal connectionName As String, ByVal projectName As String, ByVal projectDescription As String, ByVal projectType As ADVL_Utilities_Library_1.Project.Types, ByVal projectPath As String, ByVal getAllWarnings As Boolean, ByVal getAllMessages As Boolean) As System.Threading.Tasks.Task(Of String)
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IMsgService/ConnectionAvailable", ReplyAction:="http://tempuri.org/IMsgService/ConnectionAvailableResponse")>  _
-        Function ConnectionAvailable(ByVal AppNetName As String, ByVal ConnName As String) As Boolean
+        Function ConnectionAvailable(ByVal ProNetName As String, ByVal ConnName As String) As Boolean
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IMsgService/ConnectionAvailable", ReplyAction:="http://tempuri.org/IMsgService/ConnectionAvailableResponse")>  _
-        Function ConnectionAvailableAsync(ByVal AppNetName As String, ByVal ConnName As String) As System.Threading.Tasks.Task(Of Boolean)
+        Function ConnectionAvailableAsync(ByVal ProNetName As String, ByVal ConnName As String) As System.Threading.Tasks.Task(Of Boolean)
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IMsgService/ConnectionExists", ReplyAction:="http://tempuri.org/IMsgService/ConnectionExistsResponse")>  _
+        Function ConnectionExists(ByVal ProNetName As String, ByVal ConnName As String) As Boolean
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IMsgService/ConnectionExists", ReplyAction:="http://tempuri.org/IMsgService/ConnectionExistsResponse")>  _
+        Function ConnectionExistsAsync(ByVal ProNetName As String, ByVal ConnName As String) As System.Threading.Tasks.Task(Of Boolean)
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IMsgService/SendMessage", ReplyAction:="http://tempuri.org/IMsgService/SendMessageResponse")>  _
-        Sub SendMessage(ByVal appNetName As String, ByVal connName As String, ByVal message As String)
+        Sub SendMessage(ByVal proNetName As String, ByVal connName As String, ByVal message As String)
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IMsgService/SendMessage", ReplyAction:="http://tempuri.org/IMsgService/SendMessageResponse")>  _
-        Function SendMessageAsync(ByVal appNetName As String, ByVal connName As String, ByVal message As String) As System.Threading.Tasks.Task
+        Function SendMessageAsync(ByVal proNetName As String, ByVal connName As String, ByVal message As String) As System.Threading.Tasks.Task
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IMsgService/CheckConnection", ReplyAction:="http://tempuri.org/IMsgService/CheckConnectionResponse")>  _
+        Function CheckConnection(ByVal proNetName As String, ByVal connName As String) As String
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IMsgService/CheckConnection", ReplyAction:="http://tempuri.org/IMsgService/CheckConnectionResponse")>  _
+        Function CheckConnectionAsync(ByVal proNetName As String, ByVal connName As String) As System.Threading.Tasks.Task(Of String)
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IMsgService/SendAllMessage", ReplyAction:="http://tempuri.org/IMsgService/SendAllMessageResponse")>  _
         Sub SendAllMessage(ByVal message As String, ByVal SenderName As String)
@@ -66,17 +78,17 @@ Namespace ServiceReference1
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IMsgService/GetApplicationInfo", ReplyAction:="http://tempuri.org/IMsgService/GetApplicationInfoResponse")>  _
         Function GetApplicationInfoAsync(ByVal appName As String) As System.Threading.Tasks.Task
         
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IMsgService/GetMessageServiceAppInfo", ReplyAction:="http://tempuri.org/IMsgService/GetMessageServiceAppInfoResponse")>  _
-        Sub GetMessageServiceAppInfo()
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IMsgService/GetAdvlNetworkAppInfo", ReplyAction:="http://tempuri.org/IMsgService/GetAdvlNetworkAppInfoResponse")>  _
+        Sub GetAdvlNetworkAppInfo()
         
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IMsgService/GetMessageServiceAppInfo", ReplyAction:="http://tempuri.org/IMsgService/GetMessageServiceAppInfoResponse")>  _
-        Function GetMessageServiceAppInfoAsync() As System.Threading.Tasks.Task
-        
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IMsgService/Disconnect", ReplyAction:="http://tempuri.org/IMsgService/DisconnectResponse")>  _
-        Function Disconnect(ByVal appNetName As String, ByVal connName As String) As Boolean
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IMsgService/GetAdvlNetworkAppInfo", ReplyAction:="http://tempuri.org/IMsgService/GetAdvlNetworkAppInfoResponse")>  _
+        Function GetAdvlNetworkAppInfoAsync() As System.Threading.Tasks.Task
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IMsgService/Disconnect", ReplyAction:="http://tempuri.org/IMsgService/DisconnectResponse")>  _
-        Function DisconnectAsync(ByVal appNetName As String, ByVal connName As String) As System.Threading.Tasks.Task(Of Boolean)
+        Function Disconnect(ByVal proNetName As String, ByVal connName As String) As Boolean
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IMsgService/Disconnect", ReplyAction:="http://tempuri.org/IMsgService/DisconnectResponse")>  _
+        Function DisconnectAsync(ByVal proNetName As String, ByVal connName As String) As System.Threading.Tasks.Task(Of Boolean)
         
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IMsgService/IsAlive", ReplyAction:="http://tempuri.org/IMsgService/IsAliveResponse")>  _
         Function IsAlive() As Boolean
@@ -84,11 +96,23 @@ Namespace ServiceReference1
         <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IMsgService/IsAlive", ReplyAction:="http://tempuri.org/IMsgService/IsAliveResponse")>  _
         Function IsAliveAsync() As System.Threading.Tasks.Task(Of Boolean)
         
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IMsgService/AppNetNameUsed", ReplyAction:="http://tempuri.org/IMsgService/AppNetNameUsedResponse")>  _
-        Function AppNetNameUsed(ByVal AppNetName As String) As Boolean
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IMsgService/ProNetNameUsed", ReplyAction:="http://tempuri.org/IMsgService/ProNetNameUsedResponse")>  _
+        Function ProNetNameUsed(ByVal ProNetName As String) As Boolean
         
-        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IMsgService/AppNetNameUsed", ReplyAction:="http://tempuri.org/IMsgService/AppNetNameUsedResponse")>  _
-        Function AppNetNameUsedAsync(ByVal AppNetName As String) As System.Threading.Tasks.Task(Of Boolean)
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IMsgService/ProNetNameUsed", ReplyAction:="http://tempuri.org/IMsgService/ProNetNameUsedResponse")>  _
+        Function ProNetNameUsedAsync(ByVal ProNetName As String) As System.Threading.Tasks.Task(Of Boolean)
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IMsgService/StartProjectAtPath", ReplyAction:="http://tempuri.org/IMsgService/StartProjectAtPathResponse")>  _
+        Sub StartProjectAtPath(ByVal ProjectPath As String, ByVal ConnectionName As String)
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IMsgService/StartProjectAtPath", ReplyAction:="http://tempuri.org/IMsgService/StartProjectAtPathResponse")>  _
+        Function StartProjectAtPathAsync(ByVal ProjectPath As String, ByVal ConnectionName As String) As System.Threading.Tasks.Task
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IMsgService/ProjectOpen", ReplyAction:="http://tempuri.org/IMsgService/ProjectOpenResponse")>  _
+        Function ProjectOpen(ByVal ProjectPath As String) As Boolean
+        
+        <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IMsgService/ProjectOpen", ReplyAction:="http://tempuri.org/IMsgService/ProjectOpenResponse")>  _
+        Function ProjectOpenAsync(ByVal ProjectPath As String) As System.Threading.Tasks.Task(Of Boolean)
     End Interface
     
     <System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")>  _
@@ -129,28 +153,44 @@ Namespace ServiceReference1
             MyBase.New(callbackInstance, binding, remoteAddress)
         End Sub
         
-        Public Function Connect(ByVal appNetName As String, ByVal appName As String, ByVal connectionName As String, ByVal projectName As String, ByVal projectDescription As String, ByVal projectType As ADVL_Utilities_Library_1.Project.Types, ByVal projectPath As String, ByVal getAllWarnings As Boolean, ByVal getAllMessages As Boolean) As String Implements ServiceReference1.IMsgService.Connect
-            Return MyBase.Channel.Connect(appNetName, appName, connectionName, projectName, projectDescription, projectType, projectPath, getAllWarnings, getAllMessages)
+        Public Function Connect(ByVal proNetName As String, ByVal appName As String, ByVal connectionName As String, ByVal projectName As String, ByVal projectDescription As String, ByVal projectType As ADVL_Utilities_Library_1.Project.Types, ByVal projectPath As String, ByVal getAllWarnings As Boolean, ByVal getAllMessages As Boolean) As String Implements ServiceReference1.IMsgService.Connect
+            Return MyBase.Channel.Connect(proNetName, appName, connectionName, projectName, projectDescription, projectType, projectPath, getAllWarnings, getAllMessages)
         End Function
         
-        Public Function ConnectAsync(ByVal appNetName As String, ByVal appName As String, ByVal connectionName As String, ByVal projectName As String, ByVal projectDescription As String, ByVal projectType As ADVL_Utilities_Library_1.Project.Types, ByVal projectPath As String, ByVal getAllWarnings As Boolean, ByVal getAllMessages As Boolean) As System.Threading.Tasks.Task(Of String) Implements ServiceReference1.IMsgService.ConnectAsync
-            Return MyBase.Channel.ConnectAsync(appNetName, appName, connectionName, projectName, projectDescription, projectType, projectPath, getAllWarnings, getAllMessages)
+        Public Function ConnectAsync(ByVal proNetName As String, ByVal appName As String, ByVal connectionName As String, ByVal projectName As String, ByVal projectDescription As String, ByVal projectType As ADVL_Utilities_Library_1.Project.Types, ByVal projectPath As String, ByVal getAllWarnings As Boolean, ByVal getAllMessages As Boolean) As System.Threading.Tasks.Task(Of String) Implements ServiceReference1.IMsgService.ConnectAsync
+            Return MyBase.Channel.ConnectAsync(proNetName, appName, connectionName, projectName, projectDescription, projectType, projectPath, getAllWarnings, getAllMessages)
         End Function
         
-        Public Function ConnectionAvailable(ByVal AppNetName As String, ByVal ConnName As String) As Boolean Implements ServiceReference1.IMsgService.ConnectionAvailable
-            Return MyBase.Channel.ConnectionAvailable(AppNetName, ConnName)
+        Public Function ConnectionAvailable(ByVal ProNetName As String, ByVal ConnName As String) As Boolean Implements ServiceReference1.IMsgService.ConnectionAvailable
+            Return MyBase.Channel.ConnectionAvailable(ProNetName, ConnName)
         End Function
         
-        Public Function ConnectionAvailableAsync(ByVal AppNetName As String, ByVal ConnName As String) As System.Threading.Tasks.Task(Of Boolean) Implements ServiceReference1.IMsgService.ConnectionAvailableAsync
-            Return MyBase.Channel.ConnectionAvailableAsync(AppNetName, ConnName)
+        Public Function ConnectionAvailableAsync(ByVal ProNetName As String, ByVal ConnName As String) As System.Threading.Tasks.Task(Of Boolean) Implements ServiceReference1.IMsgService.ConnectionAvailableAsync
+            Return MyBase.Channel.ConnectionAvailableAsync(ProNetName, ConnName)
         End Function
         
-        Public Sub SendMessage(ByVal appNetName As String, ByVal connName As String, ByVal message As String) Implements ServiceReference1.IMsgService.SendMessage
-            MyBase.Channel.SendMessage(appNetName, connName, message)
+        Public Function ConnectionExists(ByVal ProNetName As String, ByVal ConnName As String) As Boolean Implements ServiceReference1.IMsgService.ConnectionExists
+            Return MyBase.Channel.ConnectionExists(ProNetName, ConnName)
+        End Function
+        
+        Public Function ConnectionExistsAsync(ByVal ProNetName As String, ByVal ConnName As String) As System.Threading.Tasks.Task(Of Boolean) Implements ServiceReference1.IMsgService.ConnectionExistsAsync
+            Return MyBase.Channel.ConnectionExistsAsync(ProNetName, ConnName)
+        End Function
+        
+        Public Sub SendMessage(ByVal proNetName As String, ByVal connName As String, ByVal message As String) Implements ServiceReference1.IMsgService.SendMessage
+            MyBase.Channel.SendMessage(proNetName, connName, message)
         End Sub
         
-        Public Function SendMessageAsync(ByVal appNetName As String, ByVal connName As String, ByVal message As String) As System.Threading.Tasks.Task Implements ServiceReference1.IMsgService.SendMessageAsync
-            Return MyBase.Channel.SendMessageAsync(appNetName, connName, message)
+        Public Function SendMessageAsync(ByVal proNetName As String, ByVal connName As String, ByVal message As String) As System.Threading.Tasks.Task Implements ServiceReference1.IMsgService.SendMessageAsync
+            Return MyBase.Channel.SendMessageAsync(proNetName, connName, message)
+        End Function
+        
+        Public Function CheckConnection(ByVal proNetName As String, ByVal connName As String) As String Implements ServiceReference1.IMsgService.CheckConnection
+            Return MyBase.Channel.CheckConnection(proNetName, connName)
+        End Function
+        
+        Public Function CheckConnectionAsync(ByVal proNetName As String, ByVal connName As String) As System.Threading.Tasks.Task(Of String) Implements ServiceReference1.IMsgService.CheckConnectionAsync
+            Return MyBase.Channel.CheckConnectionAsync(proNetName, connName)
         End Function
         
         Public Sub SendAllMessage(ByVal message As String, ByVal SenderName As String) Implements ServiceReference1.IMsgService.SendAllMessage
@@ -193,20 +233,20 @@ Namespace ServiceReference1
             Return MyBase.Channel.GetApplicationInfoAsync(appName)
         End Function
         
-        Public Sub GetMessageServiceAppInfo() Implements ServiceReference1.IMsgService.GetMessageServiceAppInfo
-            MyBase.Channel.GetMessageServiceAppInfo
+        Public Sub GetAdvlNetworkAppInfo() Implements ServiceReference1.IMsgService.GetAdvlNetworkAppInfo
+            MyBase.Channel.GetAdvlNetworkAppInfo
         End Sub
         
-        Public Function GetMessageServiceAppInfoAsync() As System.Threading.Tasks.Task Implements ServiceReference1.IMsgService.GetMessageServiceAppInfoAsync
-            Return MyBase.Channel.GetMessageServiceAppInfoAsync
+        Public Function GetAdvlNetworkAppInfoAsync() As System.Threading.Tasks.Task Implements ServiceReference1.IMsgService.GetAdvlNetworkAppInfoAsync
+            Return MyBase.Channel.GetAdvlNetworkAppInfoAsync
         End Function
         
-        Public Function Disconnect(ByVal appNetName As String, ByVal connName As String) As Boolean Implements ServiceReference1.IMsgService.Disconnect
-            Return MyBase.Channel.Disconnect(appNetName, connName)
+        Public Function Disconnect(ByVal proNetName As String, ByVal connName As String) As Boolean Implements ServiceReference1.IMsgService.Disconnect
+            Return MyBase.Channel.Disconnect(proNetName, connName)
         End Function
         
-        Public Function DisconnectAsync(ByVal appNetName As String, ByVal connName As String) As System.Threading.Tasks.Task(Of Boolean) Implements ServiceReference1.IMsgService.DisconnectAsync
-            Return MyBase.Channel.DisconnectAsync(appNetName, connName)
+        Public Function DisconnectAsync(ByVal proNetName As String, ByVal connName As String) As System.Threading.Tasks.Task(Of Boolean) Implements ServiceReference1.IMsgService.DisconnectAsync
+            Return MyBase.Channel.DisconnectAsync(proNetName, connName)
         End Function
         
         Public Function IsAlive() As Boolean Implements ServiceReference1.IMsgService.IsAlive
@@ -217,12 +257,28 @@ Namespace ServiceReference1
             Return MyBase.Channel.IsAliveAsync
         End Function
         
-        Public Function AppNetNameUsed(ByVal AppNetName As String) As Boolean Implements ServiceReference1.IMsgService.AppNetNameUsed
-            Return MyBase.Channel.AppNetNameUsed(AppNetName)
+        Public Function ProNetNameUsed(ByVal ProNetName As String) As Boolean Implements ServiceReference1.IMsgService.ProNetNameUsed
+            Return MyBase.Channel.ProNetNameUsed(ProNetName)
         End Function
         
-        Public Function AppNetNameUsedAsync(ByVal AppNetName As String) As System.Threading.Tasks.Task(Of Boolean) Implements ServiceReference1.IMsgService.AppNetNameUsedAsync
-            Return MyBase.Channel.AppNetNameUsedAsync(AppNetName)
+        Public Function ProNetNameUsedAsync(ByVal ProNetName As String) As System.Threading.Tasks.Task(Of Boolean) Implements ServiceReference1.IMsgService.ProNetNameUsedAsync
+            Return MyBase.Channel.ProNetNameUsedAsync(ProNetName)
+        End Function
+        
+        Public Sub StartProjectAtPath(ByVal ProjectPath As String, ByVal ConnectionName As String) Implements ServiceReference1.IMsgService.StartProjectAtPath
+            MyBase.Channel.StartProjectAtPath(ProjectPath, ConnectionName)
+        End Sub
+        
+        Public Function StartProjectAtPathAsync(ByVal ProjectPath As String, ByVal ConnectionName As String) As System.Threading.Tasks.Task Implements ServiceReference1.IMsgService.StartProjectAtPathAsync
+            Return MyBase.Channel.StartProjectAtPathAsync(ProjectPath, ConnectionName)
+        End Function
+        
+        Public Function ProjectOpen(ByVal ProjectPath As String) As Boolean Implements ServiceReference1.IMsgService.ProjectOpen
+            Return MyBase.Channel.ProjectOpen(ProjectPath)
+        End Function
+        
+        Public Function ProjectOpenAsync(ByVal ProjectPath As String) As System.Threading.Tasks.Task(Of Boolean) Implements ServiceReference1.IMsgService.ProjectOpenAsync
+            Return MyBase.Channel.ProjectOpenAsync(ProjectPath)
         End Function
     End Class
 End Namespace

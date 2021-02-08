@@ -199,6 +199,52 @@
       </wsp:All>
     </wsp:ExactlyOne>
   </wsp:Policy>
+  <wsp:Policy wsu:Id="WSDualHttpBinding_IMsgService_ConnectionExists_Input_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+          <sp:Header Name="Sequence" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="SequenceAcknowledgement" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="AckRequested" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="ChannelInstance" Namespace="http://schemas.microsoft.com/ws/2005/02/duplex" />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+        </sp:EncryptedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="WSDualHttpBinding_IMsgService_ConnectionExists_output_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+          <sp:Header Name="Sequence" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="SequenceAcknowledgement" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="AckRequested" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="ChannelInstance" Namespace="http://schemas.microsoft.com/ws/2005/02/duplex" />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+        </sp:EncryptedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
   <wsp:Policy wsu:Id="WSDualHttpBinding_IMsgService_SendMessage_Input_policy">
     <wsp:ExactlyOne>
       <wsp:All>
@@ -223,6 +269,52 @@
     </wsp:ExactlyOne>
   </wsp:Policy>
   <wsp:Policy wsu:Id="WSDualHttpBinding_IMsgService_SendMessage_output_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+          <sp:Header Name="Sequence" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="SequenceAcknowledgement" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="AckRequested" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="ChannelInstance" Namespace="http://schemas.microsoft.com/ws/2005/02/duplex" />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+        </sp:EncryptedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="WSDualHttpBinding_IMsgService_CheckConnection_Input_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+          <sp:Header Name="Sequence" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="SequenceAcknowledgement" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="AckRequested" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="ChannelInstance" Namespace="http://schemas.microsoft.com/ws/2005/02/duplex" />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+        </sp:EncryptedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="WSDualHttpBinding_IMsgService_CheckConnection_output_policy">
     <wsp:ExactlyOne>
       <wsp:All>
         <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
@@ -475,7 +567,7 @@
       </wsp:All>
     </wsp:ExactlyOne>
   </wsp:Policy>
-  <wsp:Policy wsu:Id="WSDualHttpBinding_IMsgService_GetMessageServiceAppInfo_Input_policy">
+  <wsp:Policy wsu:Id="WSDualHttpBinding_IMsgService_GetAdvlNetworkAppInfo_Input_policy">
     <wsp:ExactlyOne>
       <wsp:All>
         <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
@@ -498,7 +590,7 @@
       </wsp:All>
     </wsp:ExactlyOne>
   </wsp:Policy>
-  <wsp:Policy wsu:Id="WSDualHttpBinding_IMsgService_GetMessageServiceAppInfo_output_policy">
+  <wsp:Policy wsu:Id="WSDualHttpBinding_IMsgService_GetAdvlNetworkAppInfo_output_policy">
     <wsp:ExactlyOne>
       <wsp:All>
         <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
@@ -613,7 +705,7 @@
       </wsp:All>
     </wsp:ExactlyOne>
   </wsp:Policy>
-  <wsp:Policy wsu:Id="WSDualHttpBinding_IMsgService_AppNetNameUsed_Input_policy">
+  <wsp:Policy wsu:Id="WSDualHttpBinding_IMsgService_ProNetNameUsed_Input_policy">
     <wsp:ExactlyOne>
       <wsp:All>
         <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
@@ -636,7 +728,99 @@
       </wsp:All>
     </wsp:ExactlyOne>
   </wsp:Policy>
-  <wsp:Policy wsu:Id="WSDualHttpBinding_IMsgService_AppNetNameUsed_output_policy">
+  <wsp:Policy wsu:Id="WSDualHttpBinding_IMsgService_ProNetNameUsed_output_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+          <sp:Header Name="Sequence" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="SequenceAcknowledgement" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="AckRequested" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="ChannelInstance" Namespace="http://schemas.microsoft.com/ws/2005/02/duplex" />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+        </sp:EncryptedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="WSDualHttpBinding_IMsgService_StartProjectAtPath_Input_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+          <sp:Header Name="Sequence" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="SequenceAcknowledgement" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="AckRequested" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="ChannelInstance" Namespace="http://schemas.microsoft.com/ws/2005/02/duplex" />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+        </sp:EncryptedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="WSDualHttpBinding_IMsgService_StartProjectAtPath_output_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+          <sp:Header Name="Sequence" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="SequenceAcknowledgement" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="AckRequested" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="ChannelInstance" Namespace="http://schemas.microsoft.com/ws/2005/02/duplex" />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+        </sp:EncryptedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="WSDualHttpBinding_IMsgService_ProjectOpen_Input_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+          <sp:Header Name="Sequence" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="SequenceAcknowledgement" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="AckRequested" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="ChannelInstance" Namespace="http://schemas.microsoft.com/ws/2005/02/duplex" />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+        </sp:EncryptedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="WSDualHttpBinding_IMsgService_ProjectOpen_output_policy">
     <wsp:ExactlyOne>
       <wsp:All>
         <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
@@ -684,9 +868,9 @@
   </wsp:Policy>
   <wsdl:types>
     <xsd:schema targetNamespace="http://tempuri.org/Imports">
-      <xsd:import schemaLocation="http://localhost:8733/ADVLService?xsd=xsd0" namespace="http://tempuri.org/" />
-      <xsd:import schemaLocation="http://localhost:8733/ADVLService?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
-      <xsd:import schemaLocation="http://localhost:8733/ADVLService?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/ADVL_Utilities_Library_1" />
+      <xsd:import schemaLocation="http://localhost:8734/ADVLService?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://localhost:8734/ADVLService?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://localhost:8734/ADVLService?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/ADVL_Utilities_Library_1" />
     </xsd:schema>
   </wsdl:types>
   <wsdl:message name="IMsgService_Connect_InputMessage">
@@ -701,11 +885,23 @@
   <wsdl:message name="IMsgService_ConnectionAvailable_OutputMessage">
     <wsdl:part name="parameters" element="tns:ConnectionAvailableResponse" />
   </wsdl:message>
+  <wsdl:message name="IMsgService_ConnectionExists_InputMessage">
+    <wsdl:part name="parameters" element="tns:ConnectionExists" />
+  </wsdl:message>
+  <wsdl:message name="IMsgService_ConnectionExists_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ConnectionExistsResponse" />
+  </wsdl:message>
   <wsdl:message name="IMsgService_SendMessage_InputMessage">
     <wsdl:part name="parameters" element="tns:SendMessage" />
   </wsdl:message>
   <wsdl:message name="IMsgService_SendMessage_OutputMessage">
     <wsdl:part name="parameters" element="tns:SendMessageResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMsgService_CheckConnection_InputMessage">
+    <wsdl:part name="parameters" element="tns:CheckConnection" />
+  </wsdl:message>
+  <wsdl:message name="IMsgService_CheckConnection_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CheckConnectionResponse" />
   </wsdl:message>
   <wsdl:message name="IMsgService_SendAllMessage_InputMessage">
     <wsdl:part name="parameters" element="tns:SendAllMessage" />
@@ -737,11 +933,11 @@
   <wsdl:message name="IMsgService_GetApplicationInfo_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetApplicationInfoResponse" />
   </wsdl:message>
-  <wsdl:message name="IMsgService_GetMessageServiceAppInfo_InputMessage">
-    <wsdl:part name="parameters" element="tns:GetMessageServiceAppInfo" />
+  <wsdl:message name="IMsgService_GetAdvlNetworkAppInfo_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAdvlNetworkAppInfo" />
   </wsdl:message>
-  <wsdl:message name="IMsgService_GetMessageServiceAppInfo_OutputMessage">
-    <wsdl:part name="parameters" element="tns:GetMessageServiceAppInfoResponse" />
+  <wsdl:message name="IMsgService_GetAdvlNetworkAppInfo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAdvlNetworkAppInfoResponse" />
   </wsdl:message>
   <wsdl:message name="IMsgService_Disconnect_InputMessage">
     <wsdl:part name="parameters" element="tns:Disconnect" />
@@ -755,11 +951,23 @@
   <wsdl:message name="IMsgService_IsAlive_OutputMessage">
     <wsdl:part name="parameters" element="tns:IsAliveResponse" />
   </wsdl:message>
-  <wsdl:message name="IMsgService_AppNetNameUsed_InputMessage">
-    <wsdl:part name="parameters" element="tns:AppNetNameUsed" />
+  <wsdl:message name="IMsgService_ProNetNameUsed_InputMessage">
+    <wsdl:part name="parameters" element="tns:ProNetNameUsed" />
   </wsdl:message>
-  <wsdl:message name="IMsgService_AppNetNameUsed_OutputMessage">
-    <wsdl:part name="parameters" element="tns:AppNetNameUsedResponse" />
+  <wsdl:message name="IMsgService_ProNetNameUsed_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ProNetNameUsedResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMsgService_StartProjectAtPath_InputMessage">
+    <wsdl:part name="parameters" element="tns:StartProjectAtPath" />
+  </wsdl:message>
+  <wsdl:message name="IMsgService_StartProjectAtPath_OutputMessage">
+    <wsdl:part name="parameters" element="tns:StartProjectAtPathResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMsgService_ProjectOpen_InputMessage">
+    <wsdl:part name="parameters" element="tns:ProjectOpen" />
+  </wsdl:message>
+  <wsdl:message name="IMsgService_ProjectOpen_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ProjectOpenResponse" />
   </wsdl:message>
   <wsdl:message name="IMsgService_OnSendMessage_OutputCallbackMessage">
     <wsdl:part name="parameters" element="tns:OnSendMessage" />
@@ -773,9 +981,17 @@
       <wsdl:input wsam:Action="http://tempuri.org/IMsgService/ConnectionAvailable" message="tns:IMsgService_ConnectionAvailable_InputMessage" />
       <wsdl:output wsam:Action="http://tempuri.org/IMsgService/ConnectionAvailableResponse" message="tns:IMsgService_ConnectionAvailable_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="ConnectionExists">
+      <wsdl:input wsam:Action="http://tempuri.org/IMsgService/ConnectionExists" message="tns:IMsgService_ConnectionExists_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IMsgService/ConnectionExistsResponse" message="tns:IMsgService_ConnectionExists_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="SendMessage">
       <wsdl:input wsam:Action="http://tempuri.org/IMsgService/SendMessage" message="tns:IMsgService_SendMessage_InputMessage" />
       <wsdl:output wsam:Action="http://tempuri.org/IMsgService/SendMessageResponse" message="tns:IMsgService_SendMessage_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckConnection">
+      <wsdl:input wsam:Action="http://tempuri.org/IMsgService/CheckConnection" message="tns:IMsgService_CheckConnection_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IMsgService/CheckConnectionResponse" message="tns:IMsgService_CheckConnection_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="SendAllMessage">
       <wsdl:input wsam:Action="http://tempuri.org/IMsgService/SendAllMessage" message="tns:IMsgService_SendAllMessage_InputMessage" />
@@ -797,9 +1013,9 @@
       <wsdl:input wsam:Action="http://tempuri.org/IMsgService/GetApplicationInfo" message="tns:IMsgService_GetApplicationInfo_InputMessage" />
       <wsdl:output wsam:Action="http://tempuri.org/IMsgService/GetApplicationInfoResponse" message="tns:IMsgService_GetApplicationInfo_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="GetMessageServiceAppInfo">
-      <wsdl:input wsam:Action="http://tempuri.org/IMsgService/GetMessageServiceAppInfo" message="tns:IMsgService_GetMessageServiceAppInfo_InputMessage" />
-      <wsdl:output wsam:Action="http://tempuri.org/IMsgService/GetMessageServiceAppInfoResponse" message="tns:IMsgService_GetMessageServiceAppInfo_OutputMessage" />
+    <wsdl:operation name="GetAdvlNetworkAppInfo">
+      <wsdl:input wsam:Action="http://tempuri.org/IMsgService/GetAdvlNetworkAppInfo" message="tns:IMsgService_GetAdvlNetworkAppInfo_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IMsgService/GetAdvlNetworkAppInfoResponse" message="tns:IMsgService_GetAdvlNetworkAppInfo_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="Disconnect">
       <wsdl:input wsam:Action="http://tempuri.org/IMsgService/Disconnect" message="tns:IMsgService_Disconnect_InputMessage" />
@@ -809,9 +1025,17 @@
       <wsdl:input wsam:Action="http://tempuri.org/IMsgService/IsAlive" message="tns:IMsgService_IsAlive_InputMessage" />
       <wsdl:output wsam:Action="http://tempuri.org/IMsgService/IsAliveResponse" message="tns:IMsgService_IsAlive_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="AppNetNameUsed">
-      <wsdl:input wsam:Action="http://tempuri.org/IMsgService/AppNetNameUsed" message="tns:IMsgService_AppNetNameUsed_InputMessage" />
-      <wsdl:output wsam:Action="http://tempuri.org/IMsgService/AppNetNameUsedResponse" message="tns:IMsgService_AppNetNameUsed_OutputMessage" />
+    <wsdl:operation name="ProNetNameUsed">
+      <wsdl:input wsam:Action="http://tempuri.org/IMsgService/ProNetNameUsed" message="tns:IMsgService_ProNetNameUsed_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IMsgService/ProNetNameUsedResponse" message="tns:IMsgService_ProNetNameUsed_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="StartProjectAtPath">
+      <wsdl:input wsam:Action="http://tempuri.org/IMsgService/StartProjectAtPath" message="tns:IMsgService_StartProjectAtPath_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IMsgService/StartProjectAtPathResponse" message="tns:IMsgService_StartProjectAtPath_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ProjectOpen">
+      <wsdl:input wsam:Action="http://tempuri.org/IMsgService/ProjectOpen" message="tns:IMsgService_ProjectOpen_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IMsgService/ProjectOpenResponse" message="tns:IMsgService_ProjectOpen_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="OnSendMessage">
       <wsdl:output wsam:Action="http://tempuri.org/IMsgService/OnSendMessage" message="tns:IMsgService_OnSendMessage_OutputCallbackMessage" />
@@ -842,6 +1066,17 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="ConnectionExists">
+      <soap12:operation soapAction="http://tempuri.org/IMsgService/ConnectionExists" style="document" />
+      <wsdl:input>
+        <wsp:PolicyReference URI="#WSDualHttpBinding_IMsgService_ConnectionExists_Input_policy" />
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <wsp:PolicyReference URI="#WSDualHttpBinding_IMsgService_ConnectionExists_output_policy" />
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="SendMessage">
       <soap12:operation soapAction="http://tempuri.org/IMsgService/SendMessage" style="document" />
       <wsdl:input>
@@ -850,6 +1085,17 @@
       </wsdl:input>
       <wsdl:output>
         <wsp:PolicyReference URI="#WSDualHttpBinding_IMsgService_SendMessage_output_policy" />
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckConnection">
+      <soap12:operation soapAction="http://tempuri.org/IMsgService/CheckConnection" style="document" />
+      <wsdl:input>
+        <wsp:PolicyReference URI="#WSDualHttpBinding_IMsgService_CheckConnection_Input_policy" />
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <wsp:PolicyReference URI="#WSDualHttpBinding_IMsgService_CheckConnection_output_policy" />
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
@@ -908,14 +1154,14 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="GetMessageServiceAppInfo">
-      <soap12:operation soapAction="http://tempuri.org/IMsgService/GetMessageServiceAppInfo" style="document" />
+    <wsdl:operation name="GetAdvlNetworkAppInfo">
+      <soap12:operation soapAction="http://tempuri.org/IMsgService/GetAdvlNetworkAppInfo" style="document" />
       <wsdl:input>
-        <wsp:PolicyReference URI="#WSDualHttpBinding_IMsgService_GetMessageServiceAppInfo_Input_policy" />
+        <wsp:PolicyReference URI="#WSDualHttpBinding_IMsgService_GetAdvlNetworkAppInfo_Input_policy" />
         <soap12:body use="literal" />
       </wsdl:input>
       <wsdl:output>
-        <wsp:PolicyReference URI="#WSDualHttpBinding_IMsgService_GetMessageServiceAppInfo_output_policy" />
+        <wsp:PolicyReference URI="#WSDualHttpBinding_IMsgService_GetAdvlNetworkAppInfo_output_policy" />
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
@@ -941,14 +1187,36 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="AppNetNameUsed">
-      <soap12:operation soapAction="http://tempuri.org/IMsgService/AppNetNameUsed" style="document" />
+    <wsdl:operation name="ProNetNameUsed">
+      <soap12:operation soapAction="http://tempuri.org/IMsgService/ProNetNameUsed" style="document" />
       <wsdl:input>
-        <wsp:PolicyReference URI="#WSDualHttpBinding_IMsgService_AppNetNameUsed_Input_policy" />
+        <wsp:PolicyReference URI="#WSDualHttpBinding_IMsgService_ProNetNameUsed_Input_policy" />
         <soap12:body use="literal" />
       </wsdl:input>
       <wsdl:output>
-        <wsp:PolicyReference URI="#WSDualHttpBinding_IMsgService_AppNetNameUsed_output_policy" />
+        <wsp:PolicyReference URI="#WSDualHttpBinding_IMsgService_ProNetNameUsed_output_policy" />
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="StartProjectAtPath">
+      <soap12:operation soapAction="http://tempuri.org/IMsgService/StartProjectAtPath" style="document" />
+      <wsdl:input>
+        <wsp:PolicyReference URI="#WSDualHttpBinding_IMsgService_StartProjectAtPath_Input_policy" />
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <wsp:PolicyReference URI="#WSDualHttpBinding_IMsgService_StartProjectAtPath_output_policy" />
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ProjectOpen">
+      <soap12:operation soapAction="http://tempuri.org/IMsgService/ProjectOpen" style="document" />
+      <wsdl:input>
+        <wsp:PolicyReference URI="#WSDualHttpBinding_IMsgService_ProjectOpen_Input_policy" />
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <wsp:PolicyReference URI="#WSDualHttpBinding_IMsgService_ProjectOpen_output_policy" />
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
@@ -962,9 +1230,9 @@
   </wsdl:binding>
   <wsdl:service name="MsgService">
     <wsdl:port name="WSDualHttpBinding_IMsgService" binding="tns:WSDualHttpBinding_IMsgService">
-      <soap12:address location="http://localhost:8733/ADVLService" />
+      <soap12:address location="http://localhost:8734/ADVLService" />
       <wsa10:EndpointReference>
-        <wsa10:Address>http://localhost:8733/ADVLService</wsa10:Address>
+        <wsa10:Address>http://localhost:8734/ADVLService</wsa10:Address>
         <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
           <Upn>WalnutRd\Robert</Upn>
         </Identity>
