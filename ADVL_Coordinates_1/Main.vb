@@ -3489,6 +3489,46 @@ Public Class Main
             client = New ServiceReference1.MsgServiceClient(New System.ServiceModel.InstanceContext(New MsgServiceCallback))
         End If
 
+        'UPDATE 14 Feb 2021 - If the VS2019 version of the ADVL Network is running it may not detected by ComNetRunning()!
+        'Check if the Message Service is running by trying to open a connection:
+        Try
+            client.Endpoint.Binding.SendTimeout = New System.TimeSpan(0, 0, 16) 'Temporarily set the send timeaout to 16 seconds (8 seconds is too short for a slow computer!)
+            ConnectionName = ApplicationInfo.Name 'This name will be modified if it is already used in an existing connection.
+            ConnectionName = client.Connect(ProNetName, ApplicationInfo.Name, ConnectionName, Project.Name, Project.Description, Project.Type, Project.Path, False, False)
+            If ConnectionName <> "" Then
+                Message.Add("Connected to the Andorville™ Network with Connection Name: [" & ProNetName & "]." & ConnectionName & vbCrLf)
+                client.Endpoint.Binding.SendTimeout = New System.TimeSpan(1, 0, 0) 'Restore the send timeout to 1 hour
+                btnOnline.Text = "Online"
+                btnOnline.ForeColor = Color.ForestGreen
+                ConnectedToComNet = True
+                SendApplicationInfo()
+                SendProjectInfo()
+                client.GetAdvlNetworkAppInfoAsync() 'Update the Exe Path in case it has changed. This path may be needed in the future to start the ComNet (Message Service).
+
+                bgwComCheck.WorkerReportsProgress = True
+                bgwComCheck.WorkerSupportsCancellation = True
+                If bgwComCheck.IsBusy Then
+                    'The ComCheck thread is already running.
+                Else
+                    bgwComCheck.RunWorkerAsync() 'Start the ComCheck thread.
+                End If
+                Exit Sub 'Connection made OK
+            Else
+                'Message.Add("Connection to the Andorville™ Network failed!" & vbCrLf)
+                Message.Add("The Andorville™ Network was not found. Attempting to start it." & vbCrLf)
+                client.Endpoint.Binding.SendTimeout = New System.TimeSpan(1, 0, 0) 'Restore the send timeout to 1 hour
+            End If
+        Catch ex As System.TimeoutException
+            Message.Add("Message Service Check Timeout error. Check if the Andorville™ Network (Message Service) is running." & vbCrLf)
+            client.Endpoint.Binding.SendTimeout = New System.TimeSpan(1, 0, 0) 'Restore the send timeout to 1 hour
+            Message.Add("Attempting to start the Message Service." & vbCrLf)
+        Catch ex As Exception
+            Message.Add("Error message: " & ex.Message & vbCrLf)
+            client.Endpoint.Binding.SendTimeout = New System.TimeSpan(1, 0, 0) 'Restore the send timeout to 1 hour
+            Message.Add("Attempting to start the Message Service." & vbCrLf)
+        End Try
+        'END UPDATE
+
         If ComNetRunning() Then
             'The Message Service is Running.
         Else 'The Message Service is NOT running'
@@ -3553,6 +3593,51 @@ Public Class Main
 
     Private Sub ConnectToComNet(ByVal ConnName As String)
         'Connect to the Application Network with the connection name ConnName.
+
+        'UPDATE 14 Feb 2021 - If the VS2019 version of the ADVL Network is running it may not be detected by ComNetRunning()!
+        'Check if the Message Service is running by trying to open a connection:
+
+        If IsNothing(client) Then
+            client = New ServiceReference1.MsgServiceClient(New System.ServiceModel.InstanceContext(New MsgServiceCallback))
+        End If
+
+        Try
+            client.Endpoint.Binding.SendTimeout = New System.TimeSpan(0, 0, 16) 'Temporarily set the send timeaout to 16 seconds (8 seconds is too short for a slow computer!)
+            ConnectionName = ConnName 'This name will be modified if it is already used in an existing connection.
+            ConnectionName = client.Connect(ProNetName, ApplicationInfo.Name, ConnectionName, Project.Name, Project.Description, Project.Type, Project.Path, False, False)
+            If ConnectionName <> "" Then
+                Message.Add("Connected to the Andorville™ Network with Connection Name: [" & ProNetName & "]." & ConnectionName & vbCrLf)
+                client.Endpoint.Binding.SendTimeout = New System.TimeSpan(1, 0, 0) 'Restore the send timeout to 1 hour
+                btnOnline.Text = "Online"
+                btnOnline.ForeColor = Color.ForestGreen
+                ConnectedToComNet = True
+                SendApplicationInfo()
+                SendProjectInfo()
+                client.GetAdvlNetworkAppInfoAsync() 'Update the Exe Path in case it has changed. This path may be needed in the future to start the ComNet (Message Service).
+
+                bgwComCheck.WorkerReportsProgress = True
+                bgwComCheck.WorkerSupportsCancellation = True
+                If bgwComCheck.IsBusy Then
+                    'The ComCheck thread is already running.
+                Else
+                    bgwComCheck.RunWorkerAsync() 'Start the ComCheck thread.
+                End If
+                Exit Sub 'Connection made OK
+            Else
+                'Message.Add("Connection to the Andorville™ Network failed!" & vbCrLf)
+                Message.Add("The Andorville™ Network was not found. Attempting to start it." & vbCrLf)
+                client.Endpoint.Binding.SendTimeout = New System.TimeSpan(1, 0, 0) 'Restore the send timeout to 1 hour
+            End If
+        Catch ex As System.TimeoutException
+            Message.Add("Message Service Check Timeout error. Check if the Andorville™ Network (Message Service) is running." & vbCrLf)
+            client.Endpoint.Binding.SendTimeout = New System.TimeSpan(1, 0, 0) 'Restore the send timeout to 1 hour
+            Message.Add("Attempting to start the Message Service." & vbCrLf)
+        Catch ex As Exception
+            Message.Add("Error message: " & ex.Message & vbCrLf)
+            client.Endpoint.Binding.SendTimeout = New System.TimeSpan(1, 0, 0) 'Restore the send timeout to 1 hour
+            Message.Add("Attempting to start the Message Service." & vbCrLf)
+        End Try
+        'END UPDATE
 
         If ConnectedToComNet = False Then
             'Dim Result As Boolean
