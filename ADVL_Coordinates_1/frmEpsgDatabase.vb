@@ -302,7 +302,7 @@
     End Sub
 
     Private Sub btnApplyQuery_Click(sender As Object, e As EventArgs) Handles btnApplyQuery.Click
-        'Applu the SQL Query in txtQuary:
+        'Apply the SQL Query in txtQuary:
 
         Query = txtQuery.Text
 

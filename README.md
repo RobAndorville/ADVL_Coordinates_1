@@ -4,6 +4,10 @@
 
 
 - - -
+Note: This software has been rewritten. 
+Go to the ADVL_Coordinates_2 repository for the updated version: https://github.com/RobAndorville/ADVL_Coordinates_2 .
+- - -
+
 Copyright 2016 Signalworks Pty Ltd, ABN 26 066 681 598
 
 Licensed under the Apache License, Version 2.0 (the "License");
